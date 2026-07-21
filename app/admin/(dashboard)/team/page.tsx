@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { CollectionEditor } from '@/components/admin/collection-editor';
 import { ROLE_OPTIONS } from '@/components/admin/options';
 import type { Field } from '@/components/admin/schema';
@@ -36,6 +37,16 @@ export default function AdminTeamPage() {
         newItem={newMember}
         itemLabel={(m) => m.name}
         itemMeta={(m) => m.role}
+        renderPreview={(m) => (
+          <Image
+            src={`https://mc-heads.net/avatar/${m.minecraft || 'Steve'}/32`}
+            alt=""
+            width={32}
+            height={32}
+            unoptimized
+            className="size-8 rounded-md [image-rendering:pixelated]"
+          />
+        )}
       />
     </div>
   );

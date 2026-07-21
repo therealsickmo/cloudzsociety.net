@@ -57,6 +57,14 @@ export function getSettings(): SiteSettings {
     links: { ...defaultSettings.links, ...stored.links },
     stats: { ...defaultSettings.stats, ...stored.stats },
     theme: { ...defaultSettings.theme, ...stored.theme },
+    layout: {
+      ...defaultSettings.layout,
+      ...stored.layout,
+      sections: {
+        ...defaultSettings.layout.sections,
+        ...stored.layout?.sections,
+      },
+    },
   };
 }
 

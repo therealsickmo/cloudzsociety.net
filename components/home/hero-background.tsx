@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useSettings } from '@/components/providers/settings-provider';
 
 /**
  * Parallax hero background. Shows public/images/hero-bg.jpg (if present),
@@ -11,6 +12,8 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
  */
 export function HeroBackground() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const { layout } = useSettings();
+  const overlay = Math.min(0.95, Math.max(0, (layout.heroOverlay ?? 55) / 100));
 
   // Normalised pointer offset from the section centre (-0.5 … 0.5).
   const px = useMotionValue(0);
@@ -57,12 +60,17 @@ export function HeroBackground() {
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/cloudz-banner-leer.png')" }}
+          style={{
+            backgroundImage: `url('${layout.heroBackground || '/images/cloudz-banner-leer.png'}')`,
+          }}
         />
       </motion.div>
 
       {/* Darkening + brand glow overlays */}
-      <div className="absolute inset-0 bg-background/60" />
+      <div
+        className="absolute inset-0 bg-background"
+        style={{ opacity: overlay }}
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/45 to-background" />
       <div
         className="absolute inset-0"

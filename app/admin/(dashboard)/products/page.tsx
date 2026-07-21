@@ -6,7 +6,15 @@ import {
   CURRENCY_OPTIONS,
 } from '@/components/admin/options';
 import type { Field } from '@/components/admin/schema';
-import type { Product } from '@/types';
+import type { Product, ShopCategory } from '@/types';
+
+const CATEGORY_COLORS: Record<ShopCategory, string> = {
+  ranks: 'from-brand to-brand-700',
+  keys: 'from-amber-500 to-amber-700',
+  coins: 'from-yellow-400 to-amber-600',
+  bundles: 'from-violet-500 to-brand-600',
+  cosmetics: 'from-fuchsia-500 to-brand-500',
+};
 
 const FIELDS: Field[] = [
   { key: 'name', label: 'Name', type: 'text' },
@@ -54,6 +62,13 @@ export default function AdminProductsPage() {
         itemMeta={(p) =>
           `${p.category} · ${p.price} ${p.currency === 'eur' ? '€' : p.currency}`
         }
+        renderPreview={(p) => (
+          <span
+            className={`block size-8 rounded-md bg-gradient-to-br ${
+              CATEGORY_COLORS[p.category] ?? 'from-brand to-brand-700'
+            }`}
+          />
+        )}
       />
     </div>
   );

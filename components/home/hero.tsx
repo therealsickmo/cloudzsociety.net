@@ -17,10 +17,18 @@ import {
 import { getIcon } from '@/lib/icons';
 import { staggerContainer, slideUp } from '@/lib/animations';
 
+const LOGO_SIZE: Record<string, string> = {
+  klein: 'h-32 sm:h-40 md:h-48',
+  mittel: 'h-40 sm:h-52 md:h-64',
+  gross: 'h-52 sm:h-64 md:h-80',
+  riesig: 'h-64 sm:h-80 md:h-[26rem]',
+};
+
 export function Hero() {
-  const { links } = useSettings();
+  const { links, layout } = useSettings();
   const hero = useContent().hero;
   const [logoOk, setLogoOk] = useState(true);
+  const logoSize = LOGO_SIZE[layout.heroLogoSize] ?? LOGO_SIZE.gross;
   return (
     <section className="relative overflow-hidden pb-16 pt-20 md:pt-28">
       <HeroBackground />
@@ -66,7 +74,7 @@ export function Hero() {
                   priority
                   unoptimized
                   onError={() => setLogoOk(false)}
-                  className="mx-auto h-52 w-auto drop-shadow-[0_0_65px_rgba(0,102,255,0.5)] sm:h-64 md:h-80"
+                  className={`mx-auto w-auto drop-shadow-[0_0_65px_rgba(0,102,255,0.5)] ${logoSize}`}
                 />
               </motion.div>
             ) : (

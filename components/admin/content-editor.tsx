@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Loader2, Plus, Save, Trash2 } from 'lucide-react';
+import { ChevronDown, ChevronUp, Loader2, Plus, Save, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { FieldInput } from '@/components/admin/field-input';
+import { useToast } from '@/components/admin/toast';
 import { ICON_OPTIONS } from '@/lib/icons';
 import type { Field } from '@/components/admin/schema';
 
@@ -158,10 +159,11 @@ function setPath(obj: Json, path: string, value: unknown): Json {
 type Status = 'loading' | 'idle' | 'saving' | 'error';
 
 export function ContentEditor() {
+  const toast = useToast();
   const [data, setData] = useState<Json | null>(null);
   const [active, setActive] = useState(0);
   const [status, setStatus] = useState<Status>('loading');
-  const [message, setMessage] = useState('');
+  const [dirty, setDirty] = useState(false);
 
   useEffect(() => {
     fetch('/api/admin/content')
@@ -171,19 +173,19 @@ export function ContentEditor() {
         setStatus('idle');
       })
       .catch(() => {
-        setStatus('error');
-        setMessage('Laden fehlgeschlagen.');
+        setStatus('idle');
+        toast('Laden fehlgeschlagen.', 'error');
       });
-  }, []);
+  }, [toast]);
 
   function update(path: string, value: unknown) {
     setData((prev) => (prev ? setPath(prev, path, value) : prev));
+    setDirty(true);
   }
 
   async function save() {
     if (!data) return;
     setStatus('saving');
-    setMessage('');
     try {
       const res = await fetch('/api/admin/content', {
         method: 'PUT',
@@ -192,12 +194,12 @@ export function ContentEditor() {
       });
       const result = (await res.json()) as { ok: boolean; message?: string };
       if (!result.ok) throw new Error(result.message);
-      setStatus('idle');
-      setMessage('Gespeichert ✓');
-      window.setTimeout(() => setMessage(''), 2500);
+      setDirty(false);
+      toast('Gespeichert', 'success');
     } catch (err) {
-      setStatus('error');
-      setMessage(err instanceof Error ? err.message : 'Fehler beim Speichern.');
+      toast(err instanceof Error ? err.message : 'Fehler beim Speichern.', 'error');
+    } finally {
+      setStatus('idle');
     }
   }
 
@@ -274,6 +276,15 @@ export function ContentEditor() {
                 arr[index] = { ...arr[index], [key]: value };
                 update(group.path, arr);
               }}
+              onMove={(index, dir) => {
+                const arr = [
+                  ...((getPath(data, group.path) as Json[]) ?? []),
+                ];
+                const target = index + dir;
+                if (target < 0 || target >= arr.length) return;
+                [arr[index], arr[target]] = [arr[target], arr[index]];
+                update(group.path, arr);
+              }}
             />
           )}
         </div>
@@ -281,15 +292,13 @@ export function ContentEditor() {
         {/* Save bar */}
         <div className="sticky bottom-4 mt-6">
           <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-background/90 px-5 py-3 shadow-soft backdrop-blur">
-            <span
-              className={cn(
-                'text-sm',
-                status === 'error' ? 'text-red-400' : 'text-text-secondary',
+            <span className="flex items-center gap-2 text-sm text-text-secondary">
+              {dirty && (
+                <span className="size-2 rounded-full bg-amber-400" />
               )}
-            >
-              {message || 'Änderungen gelten für alle Bereiche'}
+              {dirty ? 'Ungespeicherte Änderungen' : 'Alle Änderungen gespeichert'}
             </span>
-            <Button onClick={save} disabled={status === 'saving'}>
+            <Button onClick={save} disabled={status === 'saving' || !dirty}>
               {status === 'saving' ? (
                 <>
                   <Loader2 className="size-4 animate-spin" /> Speichert…
@@ -315,6 +324,7 @@ function Repeater({
   onAdd,
   onRemove,
   onChange,
+  onMove,
 }: {
   items: Json[];
   fields: Field[];
@@ -322,23 +332,41 @@ function Repeater({
   onAdd: () => void;
   onRemove: (index: number) => void;
   onChange: (index: number, key: string, value: unknown) => void;
+  onMove: (index: number, dir: -1 | 1) => void;
 }) {
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
         <div key={index} className="rounded-xl border border-border bg-surface/40 p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <span className="text-sm font-medium text-white">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <span className="truncate text-sm font-medium text-white">
               {itemLabel(item) || `Eintrag ${index + 1}`}
             </span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onRemove(index)}
-              className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
-            >
-              <Trash2 className="size-4" />
-            </Button>
+            <div className="flex shrink-0 items-center gap-1">
+              <button
+                onClick={() => onMove(index, -1)}
+                disabled={index === 0}
+                className="rounded-lg p-1.5 text-text-secondary transition-colors hover:bg-white/5 hover:text-white disabled:opacity-30"
+                aria-label="Nach oben"
+              >
+                <ChevronUp className="size-4" />
+              </button>
+              <button
+                onClick={() => onMove(index, 1)}
+                disabled={index === items.length - 1}
+                className="rounded-lg p-1.5 text-text-secondary transition-colors hover:bg-white/5 hover:text-white disabled:opacity-30"
+                aria-label="Nach unten"
+              >
+                <ChevronDown className="size-4" />
+              </button>
+              <button
+                onClick={() => onRemove(index)}
+                className="rounded-lg p-1.5 text-red-400 transition-colors hover:bg-red-500/10 hover:text-red-300"
+                aria-label="Löschen"
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {fields.map((field) => (

@@ -121,12 +121,28 @@ export interface SiteStats {
   uptimeHours: number;
 }
 
+export type ButtonRadius = 'eckig' | 'abgerundet' | 'pill';
+export type HeroLogoSize = 'klein' | 'mittel' | 'gross' | 'riesig';
+
 export interface SiteTheme {
   brand: string;
   background: string;
   surface: string;
   card: string;
   textSecondary: string;
+  radius: ButtonRadius;
+}
+
+export interface SiteLayout {
+  heroLogoSize: HeroLogoSize;
+  heroOverlay: number;
+  heroBackground: string;
+  sections: {
+    about: boolean;
+    features: boolean;
+    stats: boolean;
+    cta: boolean;
+  };
 }
 
 export interface SiteSettings {
@@ -147,6 +163,7 @@ export interface SiteSettings {
   };
   stats: SiteStats;
   theme: SiteTheme;
+  layout: SiteLayout;
 }
 
 // ── Editable text content (managed via /admin → Inhalte) ───────────

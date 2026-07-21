@@ -32,6 +32,13 @@ export default function AdminRolesPage() {
         newItem={newRole}
         itemLabel={(r) => r.role}
         itemMeta={(r) => (r.status === 'open' ? 'Offen' : 'Geschlossen')}
+        renderPreview={(r) => (
+          <span
+            className={`block size-2.5 rounded-full ${
+              r.status === 'open' ? 'bg-emerald-400' : 'bg-red-400'
+            }`}
+          />
+        )}
       />
     </div>
   );

@@ -39,5 +39,17 @@ export const defaultSettings: SiteSettings = {
     surface: '#0D1117',
     card: '#151B23',
     textSecondary: '#A8B3CF',
+    radius: 'abgerundet',
+  },
+  layout: {
+    heroLogoSize: 'gross',
+    heroOverlay: 55,
+    heroBackground: '/images/cloudz-banner-leer.png',
+    sections: {
+      about: true,
+      features: true,
+      stats: true,
+      cta: true,
+    },
   },
 };

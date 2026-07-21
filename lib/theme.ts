@@ -68,5 +68,13 @@ export function buildThemeCss(theme: SiteTheme): string {
   for (const [key, ratio] of Object.entries(SHADE_RATIOS)) {
     vars.push(`--brand-${key}: ${channels(shade(brand, ratio))};`);
   }
+
+  const radiusMap: Record<string, string> = {
+    eckig: '0.375rem',
+    abgerundet: '0.9rem',
+    pill: '9999px',
+  };
+  vars.push(`--btn-radius: ${radiusMap[theme.radius] ?? '0.9rem'};`);
+
   return `:root{${vars.join('')}}`;
 }
