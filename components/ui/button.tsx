@@ -4,19 +4,19 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 active:scale-[0.96] [&_svg]:relative [&_svg]:size-4 [&_svg]:shrink-0 after:pointer-events-none after:absolute after:inset-0 after:content-[''] after:-translate-x-[130%] after:skew-x-[-20deg] after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:transition-transform after:duration-700 after:ease-out hover:after:translate-x-[130%]",
+  'relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold transition-[background-color,border-color,transform,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         default:
-          'border border-white/20 bg-brand/85 text-white backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_-10px_rgba(0,102,255,0.7)] hover:-translate-y-0.5 hover:bg-brand hover:shadow-glow',
+          'border border-white/25 bg-brand/80 text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_-12px_rgba(0,0,0,0.7)] hover:bg-brand/90',
         outline:
-          'border border-white/15 bg-white/[0.06] text-white backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] hover:-translate-y-0.5 hover:border-brand/40 hover:bg-white/[0.12]',
+          'border border-white/15 bg-white/[0.08] text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:border-white/25 hover:bg-white/[0.14]',
         ghost:
-          'text-text-secondary backdrop-blur-sm hover:bg-white/10 hover:text-white',
+          'text-text-secondary hover:bg-white/10 hover:text-white',
         secondary:
-          'border border-white/15 bg-white/[0.08] text-white backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:-translate-y-0.5 hover:border-brand/40 hover:bg-white/[0.14]',
-        link: 'text-brand underline-offset-4 after:hidden hover:underline',
+          'border border-white/15 bg-white/[0.1] text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] hover:bg-white/[0.16]',
+        link: 'text-brand underline-offset-4 hover:underline',
       },
       size: {
         default: 'h-11 px-6 py-2',

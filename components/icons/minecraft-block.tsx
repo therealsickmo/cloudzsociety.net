@@ -1,34 +1,50 @@
 import type { SVGProps } from 'react';
-import { useId } from 'react';
 
-/** Simple Minecraft-style grass block icon (fixed colours). */
+// Pixel map of a Minecraft dirt block (16×16), 4 brown shades.
+const PIXELS = [
+  '1021012310210120',
+  '0113101101131011',
+  '2101210102012101',
+  '1310112013101120',
+  '0213001102130011',
+  '1011021310110213',
+  '3102110131021101',
+  '0110131001101310',
+  '1021012010210120',
+  '0101131101011311',
+  '2110021321100213',
+  '1013100210131002',
+  '0231001102310011',
+  '1100210311002103',
+  '3102110131021101',
+  '0110131001101310',
+];
+
+const COLORS = ['#8A5C35', '#75492A', '#9C6D41', '#5C3B22'];
+
+/** Minecraft dirt block — pixel texture (fixed colours). */
 export function MinecraftBlock(props: SVGProps<SVGSVGElement>) {
-  const id = useId().replace(/:/g, '');
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <defs>
-        <clipPath id={`mcb-${id}`}>
-          <rect x="3" y="3" width="18" height="18" rx="3" />
-        </clipPath>
-      </defs>
-      <g clipPath={`url(#mcb-${id})`}>
-        <rect x="3" y="3" width="18" height="18" fill="#7B5230" />
-        <rect x="3" y="3" width="18" height="8" fill="#5FB84C" />
-        <rect x="3" y="9" width="18" height="2" fill="#3F7F32" />
-        <rect x="6.5" y="13" width="2.6" height="2.6" fill="#63421F" />
-        <rect x="13" y="16" width="2.6" height="2.6" fill="#63421F" />
-        <rect x="15.4" y="12.4" width="2.6" height="2.6" fill="#63421F" />
-        <rect x="9.5" y="17" width="2.2" height="2.2" fill="#63421F" />
-      </g>
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="3"
-        stroke="rgba(0,0,0,0.25)"
-        strokeWidth="1"
-      />
+    <svg
+      viewBox="0 0 16 16"
+      shapeRendering="crispEdges"
+      aria-hidden
+      {...props}
+    >
+      {PIXELS.map((row, y) =>
+        row
+          .split('')
+          .map((c, x) => (
+            <rect
+              key={`${x}-${y}`}
+              x={x}
+              y={y}
+              width="1"
+              height="1"
+              fill={COLORS[Number(c)]}
+            />
+          )),
+      )}
     </svg>
   );
 }

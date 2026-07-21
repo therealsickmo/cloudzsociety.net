@@ -92,7 +92,7 @@ export function Hero() {
             <JoinServer>
               <Button size="xl" className="w-full sm:w-auto">
                 <MinecraftBlock />
-                {hero.joinLabel}
+                HORIZONS
               </Button>
             </JoinServer>
             <Button
@@ -102,8 +102,8 @@ export function Hero() {
               className="w-full sm:w-auto"
             >
               <a href={links.discord} target="_blank" rel="noopener noreferrer">
-                <DiscordIcon />
-                {hero.discordLabel}
+                <DiscordIcon className="text-[#5865F2]" />
+                DISCORD
               </a>
             </Button>
             <Button
@@ -114,7 +114,7 @@ export function Hero() {
             >
               <Link href="/apply">
                 <UserPlus />
-                Jetzt bewerben
+                BEWERBEN
               </Link>
             </Button>
             <Button
@@ -125,43 +125,42 @@ export function Hero() {
             >
               <Link href="/blog">
                 <BookText />
-                {hero.rulesLabel}
+                REGELN
               </Link>
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Floating brand glow card */}
+        {/* Flat liquid-glass info bar */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-20 w-full max-w-4xl"
+          className="mt-16 w-full max-w-3xl"
         >
-          <div className="absolute inset-x-10 -top-6 h-40 rounded-full bg-brand/30 blur-[100px]" />
-          <div className="glass relative overflow-hidden rounded-3xl p-1.5 shadow-glow-lg transition-shadow duration-500 hover:shadow-glow-lg">
-            <div className="rounded-[1.35rem] bg-gradient-to-b from-surface/80 to-background/80 backdrop-blur-xl">
-              <div className="grid grid-cols-1 divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-                {hero.stats.map((stat, i) => {
-                  const Icon = getIcon(stat.icon ?? 'Sparkles');
-                  return (
-                    <div
-                      key={`${stat.label}-${i}`}
-                      className="group flex flex-col items-center gap-2.5 px-6 py-8 text-center transition-colors hover:bg-white/[0.03]"
-                    >
-                      <div className="flex size-12 items-center justify-center rounded-2xl bg-brand/10 text-brand shadow-glow-sm transition-transform duration-300 group-hover:scale-110">
-                        <Icon className="size-6" />
-                      </div>
-                      <div className="text-lg font-bold text-white md:text-xl">
+          <div className="overflow-hidden rounded-2xl border border-white/12 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl backdrop-saturate-150">
+            <div className="grid grid-cols-1 divide-y divide-white/[0.07] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {hero.stats.map((stat, i) => {
+                const Icon = getIcon(stat.icon ?? 'Sparkles');
+                return (
+                  <div
+                    key={`${stat.label}-${i}`}
+                    className="flex items-center justify-center gap-3 px-5 py-5"
+                  >
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-brand">
+                      <Icon className="size-5" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-sm font-bold leading-tight text-white md:text-base">
                         {stat.value}
                       </div>
-                      <div className="text-xs uppercase tracking-widest text-text-secondary">
+                      <div className="text-[11px] uppercase tracking-widest text-text-secondary">
                         {stat.label}
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </motion.div>

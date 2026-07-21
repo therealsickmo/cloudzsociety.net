@@ -50,11 +50,8 @@ const GROUPS: Group[] = [
     path: 'hero',
     fields: [
       { key: 'badge', label: 'Badge-Text', type: 'text', wide: true },
-      { key: 'title', label: 'Großer Titel', type: 'text' },
+      { key: 'title', label: 'Titel (für Screenreader/SEO)', type: 'text' },
       { key: 'subtitle', label: 'Untertitel', type: 'textarea', wide: true },
-      { key: 'joinLabel', label: 'Button „Server beitreten“', type: 'text' },
-      { key: 'discordLabel', label: 'Button „Discord“', type: 'text' },
-      { key: 'rulesLabel', label: 'Button „Regeln lesen“', type: 'text' },
     ],
   },
   {
