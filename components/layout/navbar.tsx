@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { BookOpen, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   useContent,
   useSettings,
 } from '@/components/providers/settings-provider';
 import { HeaderBrand } from '@/components/layout/header-brand';
-import { ServerStatusBadge } from '@/components/common/server-status-badge';
 import { DiscordIcon } from '@/components/icons/discord-icon';
 import { Button } from '@/components/ui/button';
 
@@ -44,7 +43,7 @@ export function Navbar() {
                   className={cn(
                     'stripe-hover relative flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-colors',
                     active
-                      ? 'text-white stripe-on'
+                      ? 'text-white'
                       : 'text-text-secondary hover:text-white',
                   )}
                 >
@@ -67,13 +66,18 @@ export function Navbar() {
           })}
         </ul>
 
-        {/* Desktop actions (right) */}
+        {/* Desktop actions (far right) */}
         <div className="hidden items-center gap-3 lg:flex">
-          <ServerStatusBadge />
+          <Button asChild variant="outline" size="sm">
+            <a href={links.wiki} target="_blank" rel="noopener noreferrer">
+              <BookOpen className="size-4" />
+              CLOUDZ™ WIKI
+            </a>
+          </Button>
           <Button asChild variant="outline" size="sm">
             <a href={links.discord} target="_blank" rel="noopener noreferrer">
               <DiscordIcon className="size-4 text-[#5865F2]" />
-              Discord
+              DISCORD
             </a>
           </Button>
         </div>
@@ -122,8 +126,13 @@ export function Navbar() {
                   </Link>
                 );
               })}
-              <div className="mt-3 flex flex-col gap-3">
-                <ServerStatusBadge className="w-fit" />
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                <Button asChild variant="outline" size="sm">
+                  <a href={links.wiki} target="_blank" rel="noopener noreferrer">
+                    <BookOpen className="size-4" />
+                    CLOUDZ™ WIKI
+                  </a>
+                </Button>
                 <Button asChild variant="outline" size="sm">
                   <a
                     href={links.discord}
@@ -131,7 +140,7 @@ export function Navbar() {
                     rel="noopener noreferrer"
                   >
                     <DiscordIcon className="size-4 text-[#5865F2]" />
-                    Discord
+                    DISCORD
                   </a>
                 </Button>
               </div>

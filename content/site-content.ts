@@ -9,13 +9,13 @@ import type { SiteContent } from '@/types';
 export const defaultContent: SiteContent = {
   nav: {
     items: [
-      { label: 'Home', href: '/', enabled: true },
-      { label: 'Team', href: '/team', enabled: true },
-      { label: 'Blog', href: '/blog', enabled: true },
-      { label: 'Logs', href: '/changelog', enabled: true },
-      { label: 'Projekt', href: '/projekt', enabled: true, badge: 'Neu' },
-      { label: 'Bewerben', href: '/apply', enabled: true },
-      { label: 'Spenden', href: '/donate', enabled: true },
+      { label: 'HOME', href: '/', enabled: true },
+      { label: 'TEAM', href: '/team', enabled: true },
+      { label: 'BLOG', href: '/blog', enabled: true },
+      { label: 'LOGS', href: '/changelog', enabled: true },
+      { label: 'PROJEKT', href: '/projekt', enabled: true, badge: 'Neu' },
+      { label: 'BEWERBEN', href: '/apply', enabled: true },
+      { label: 'SPENDEN', href: '/donate', enabled: true },
     ],
   },
   hero: {
