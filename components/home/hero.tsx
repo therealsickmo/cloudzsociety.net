@@ -1,6 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookText, MessageCircle, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,6 +16,7 @@ import { staggerContainer, slideUp } from '@/lib/animations';
 export function Hero() {
   const { links } = useSettings();
   const hero = useContent().hero;
+  const [logoOk, setLogoOk] = useState(true);
   return (
     <section className="relative overflow-hidden pt-20 md:pt-28">
       <div className="container flex flex-col items-center text-center">
@@ -37,14 +40,25 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          {/* Title */}
-          <motion.h1
-            variants={slideUp}
-            className="mt-8 text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
-          >
-            <span className="text-gradient-brand drop-shadow-[0_0_40px_rgba(0,102,255,0.35)]">
-              {hero.title}
-            </span>
+          {/* Logo (with title text as accessible fallback) */}
+          <motion.h1 variants={slideUp} className="mt-8">
+            <span className="sr-only">{hero.title}</span>
+            {logoOk ? (
+              <Image
+                src="/logo/cloudz-logo.png"
+                alt={hero.title}
+                width={560}
+                height={560}
+                priority
+                unoptimized
+                onError={() => setLogoOk(false)}
+                className="mx-auto h-40 w-auto drop-shadow-[0_0_55px_rgba(0,102,255,0.45)] sm:h-52 md:h-64"
+              />
+            ) : (
+              <span className="text-gradient-brand text-6xl font-extrabold tracking-tight drop-shadow-[0_0_40px_rgba(0,102,255,0.35)] sm:text-7xl md:text-8xl">
+                {hero.title}
+              </span>
+            )}
           </motion.h1>
 
           {/* Subtitle */}
