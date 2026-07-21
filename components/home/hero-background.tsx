@@ -93,6 +93,7 @@ export function HeroBackground() {
             'linear-gradient(to bottom, rgb(var(--background)) 0%, transparent 14%, transparent 40%, rgb(var(--background) / 0.75) 72%, rgb(var(--background)) 92%)',
         }}
       />
-    </div>
+      {/* Subtle glowing divider line at the bottom edge */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand/50 to-transparent shadow-[0_0_12px_rgb(var(--brand-500)/0.5)]" />
   );
 }

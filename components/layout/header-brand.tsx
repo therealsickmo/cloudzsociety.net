@@ -16,8 +16,8 @@ interface Bit {
 
 /**
  * Header brand: the CS.net logo + CLOUDZ™ wordmark. Both grow on hover.
- * Clicking always navigates home and plays a pixel-dissolve on the logo —
- * it scatters into pixels, disappears and reappears.
+ * Clicking always navigates home and plays a pixel-dissolve on the whole
+ * brand (logo + wordmark) — it scatters into pixels, disappears, reappears.
  */
 export function HeaderBrand() {
   const { site } = useSettings();
@@ -26,20 +26,20 @@ export function HeaderBrand() {
   const boxRef = useRef<HTMLSpanElement>(null);
   const idRef = useRef(0);
   const busy = useRef(false);
-  const logo = useAnimationControls();
+  const content = useAnimationControls();
 
   async function play() {
     if (busy.current) return;
     busy.current = true;
 
-    // Scatter pixel bits across the logo's area.
+    // Scatter pixel bits across the whole brand area.
     const rect = boxRef.current?.getBoundingClientRect();
-    const w = rect?.width ?? 48;
+    const w = rect?.width ?? 160;
     const h = rect?.height ?? 48;
     const spawned: Bit[] = [];
-    for (let i = 0; i < 22; i++) {
+    for (let i = 0; i < 34; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const dist = 18 + Math.random() * 46;
+      const dist = 18 + Math.random() * 50;
       spawned.push({
         id: idRef.current++,
         x: Math.random() * w,
@@ -50,8 +50,8 @@ export function HeaderBrand() {
     }
     setBits(spawned);
 
-    // Dissolve the logo…
-    await logo.start({
+    // Dissolve…
+    await content.start({
       opacity: 0,
       scale: 0.82,
       filter: 'blur(2px)',
@@ -61,7 +61,7 @@ export function HeaderBrand() {
 
     // …then reappear.
     await new Promise((r) => setTimeout(r, 130));
-    await logo.start({
+    await content.start({
       opacity: 1,
       scale: 1,
       filter: 'blur(0px)',
@@ -75,15 +75,18 @@ export function HeaderBrand() {
       href="/"
       onClick={play}
       aria-label={`${site.name} Startseite`}
-      className="flex items-center gap-2.5"
+      className="block"
     >
       <motion.span
-        ref={boxRef}
-        whileHover={{ scale: 1.06 }}
+        whileHover={{ scale: 1.05 }}
         transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-        className="relative block shrink-0"
+        className="relative block"
       >
-        <motion.span animate={logo} className="block">
+        <motion.span
+          ref={boxRef}
+          animate={content}
+          className="flex items-center gap-2.5"
+        >
           {imgOk ? (
             <Image
               src="/logo/cloudz-logo.png"
@@ -93,11 +96,12 @@ export function HeaderBrand() {
               priority
               unoptimized
               onError={() => setImgOk(false)}
-              className="h-12 w-auto drop-shadow-[0_0_12px_rgba(0,102,255,0.5)]"
+              className="h-12 w-auto shrink-0 drop-shadow-[0_0_12px_rgba(0,102,255,0.5)]"
             />
-          ) : (
-            <span className="text-xl font-bold text-white">{site.name}</span>
-          )}
+          ) : null}
+          <span className="text-xl font-bold tracking-tight text-white">
+            {site.name}
+          </span>
         </motion.span>
 
         {/* Pixel bits */}
@@ -112,14 +116,6 @@ export function HeaderBrand() {
             />
           ))}
         </AnimatePresence>
-      </motion.span>
-
-      <motion.span
-        whileHover={{ scale: 1.06 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-        className="text-xl font-bold tracking-tight text-white"
-      >
-        {site.name}
       </motion.span>
     </Link>
   );
