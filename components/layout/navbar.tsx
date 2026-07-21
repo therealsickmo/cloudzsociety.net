@@ -30,7 +30,10 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl">
       <nav className="container flex h-20 items-center justify-between gap-4">
-        {/* Desktop nav (left) */}
+        {/* Brand (far left) */}
+        <HeaderBrand />
+
+        {/* Desktop nav */}
         <ul className="hidden items-center gap-1.5 lg:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
@@ -64,32 +67,26 @@ export function Navbar() {
           })}
         </ul>
 
-        {/* Desktop actions + brand (right) */}
+        {/* Desktop actions (right) */}
         <div className="hidden items-center gap-3 lg:flex">
           <ServerStatusBadge />
-          <Button asChild size="sm">
+          <Button asChild variant="outline" size="sm">
             <a href={links.discord} target="_blank" rel="noopener noreferrer">
               <DiscordIcon className="size-4 text-[#5865F2]" />
               Discord
             </a>
           </Button>
-          <div className="ml-1 border-l border-white/10 pl-4">
-            <HeaderBrand />
-          </div>
         </div>
 
-        {/* Mobile: brand + toggle */}
-        <div className="flex items-center gap-3 lg:hidden">
-          <HeaderBrand />
-          <button
-            className="inline-flex size-10 items-center justify-center rounded-xl border border-border bg-surface/60 text-white"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
-            aria-expanded={open}
-          >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
-        </div>
+        {/* Mobile toggle */}
+        <button
+          className="inline-flex size-10 items-center justify-center rounded-xl border border-border bg-surface/60 text-white lg:hidden"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
+          aria-expanded={open}
+        >
+          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+        </button>
       </nav>
 
       {/* Mobile menu */}
@@ -127,7 +124,7 @@ export function Navbar() {
               })}
               <div className="mt-3 flex flex-col gap-3">
                 <ServerStatusBadge className="w-fit" />
-                <Button asChild size="sm">
+                <Button asChild variant="outline" size="sm">
                   <a
                     href={links.discord}
                     target="_blank"

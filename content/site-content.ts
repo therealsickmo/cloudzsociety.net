@@ -13,7 +13,7 @@ export const defaultContent: SiteContent = {
       { label: 'Team', href: '/team', enabled: true },
       { label: 'Blog', href: '/blog', enabled: true },
       { label: 'Logs', href: '/changelog', enabled: true },
-      { label: 'Akt. Projekt', href: '/projekt', enabled: true, badge: 'Neu' },
+      { label: 'Projekt', href: '/projekt', enabled: true, badge: 'Neu' },
       { label: 'Bewerben', href: '/apply', enabled: true },
       { label: 'Spenden', href: '/donate', enabled: true },
     ],
