@@ -18,17 +18,12 @@ interface Particle {
  */
 export function MouseGlow() {
   const mounted = useMounted();
-  const glowRef = useRef<HTMLDivElement>(null);
   const lastSpawn = useRef(0);
   const idRef = useRef(0);
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      // Glow follows instantly via direct DOM write (no re-render, no lag).
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      }
       // Spawn pixel particles, throttled — spawn a couple each time.
       const now = performance.now();
       if (now - lastSpawn.current > 16) {
@@ -60,16 +55,6 @@ export function MouseGlow() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-30 hidden md:block">
-      {/* Fast-following glow */}
-      <div
-        ref={glowRef}
-        className="absolute left-0 top-0 -ml-[115px] -mt-[115px] size-[230px] rounded-full"
-        style={{
-          background:
-            'radial-gradient(circle, rgb(var(--brand-500) / 0.24), transparent 70%)',
-        }}
-      />
-
       {/* Pixel particles */}
       <AnimatePresence>
         {particles.map((p) => (
