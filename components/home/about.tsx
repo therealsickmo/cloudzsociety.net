@@ -15,7 +15,7 @@ export function About() {
           const Icon = getIcon(point.icon);
           return (
             <Reveal key={`${point.title}-${i}`} delay={i * 0.08}>
-              <Card className="neon-hover h-full p-6 transition-colors duration-300 hover:border-brand/40">
+              <Card className="h-full p-6 transition-colors duration-300 hover:border-brand/40">
                 <div className="flex size-12 items-center justify-center rounded-xl bg-brand/10 text-brand shadow-glow-sm">
                   <Icon className="size-6" />
                 </div>

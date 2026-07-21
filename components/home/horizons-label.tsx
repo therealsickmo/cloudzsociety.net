@@ -6,16 +6,15 @@ import { MinecraftBlock } from '@/components/icons/minecraft-block';
 
 /**
  * Button label for "Minecraft Horizons".
- * Uses the real grass-block image (public/icons/grass-block.png) and the
- * official Minecraft wordmark (public/icons/minecraft-logo.png) if present,
- * with graceful fallbacks (SVG block + pixel text) so nothing breaks.
+ * Uses the real grass-block image (public/icons/grass-block.png) if present,
+ * with a fallback SVG. Text is in the normal button font (same as the other
+ * buttons) — no image logo, no pixel font.
  */
 export function HorizonsLabel() {
   const [blockOk, setBlockOk] = useState(true);
-  const [logoOk, setLogoOk] = useState(true);
 
   return (
-    <span className="flex items-center gap-2">
+    <span className="flex items-center gap-2.5">
       {blockOk ? (
         <Image
           src="/icons/grass-block.png"
@@ -30,23 +29,11 @@ export function HorizonsLabel() {
         <MinecraftBlock className="size-8 shrink-0" />
       )}
 
-      <span className="flex flex-col items-center justify-center leading-none">
-        {logoOk ? (
-          <Image
-            src="/icons/minecraft-logo.png"
-            alt="Minecraft"
-            width={160}
-            height={90}
-            unoptimized
-            onError={() => setLogoOk(false)}
-            className="h-5 w-auto max-w-[130px] object-contain"
-          />
-        ) : (
-          <span className="font-pixel text-sm font-bold uppercase tracking-wide text-white">
-            Minecraft
-          </span>
-        )}
-        <span className="text-gradient-brand font-pixel text-sm font-bold leading-tight">
+      <span className="flex flex-col items-start justify-center leading-none">
+        <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
+          Minecraft
+        </span>
+        <span className="text-base font-bold uppercase tracking-wide text-white">
           Horizons
         </span>
       </span>

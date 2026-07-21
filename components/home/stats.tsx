@@ -61,8 +61,7 @@ export function Stats() {
       />
 
       <Reveal>
-        <div className="neon-hover rounded-2xl">
-          <Card className="overflow-hidden p-0">
+        <Card className="overflow-hidden p-0">
           <div className="flex items-center justify-between border-b border-border px-6 py-4">
             <div className="flex items-center gap-2">
               <span className="relative flex size-2.5">
@@ -95,8 +94,7 @@ export function Stats() {
               </div>
             ))}
           </div>
-          </Card>
-        </div>
+        </Card>
       </Reveal>
     </Section>
   );

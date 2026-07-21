@@ -1,21 +1,15 @@
 # icons/
 
-## Minecraft-Grasblock & Minecraft-Logo (HORIZONS-Button)
+## Minecraft-Grasblock (HORIZONS-Button)
 
-Für den „Minecraft Horizons"-Button kannst du zwei echte Bilder ablegen:
+Für den „Minecraft Horizons"-Button kannst du den echten Grasblock ablegen:
 
 ```
-public/icons/grass-block.png     ← echter Minecraft-Grasblock (PNG, transparent, quadratisch)
-public/icons/minecraft-logo.png  ← offizielles Minecraft-Logo (PNG, transparent, quer)
+public/icons/grass-block.png   ← echter Minecraft-Grasblock (PNG, transparent, quadratisch)
 ```
 
-Sie werden **automatisch** verwendet, sobald sie existieren. Fehlen sie,
-werden Platzhalter angezeigt (nachgebauter Grasblock + „Minecraft" als Text) –
-es entsteht also nie ein kaputtes Bild.
+Er wird **automatisch** verwendet, sobald er existiert. Fehlt er, wird ein
+nachgebauter Grasblock angezeigt (kein kaputtes Bild).
 
-**Empfehlung:**
-- `grass-block.png`: quadratisch, transparenter Hintergrund, ~128–256 px.
-- `minecraft-logo.png`: transparenter Hintergrund, quer (das Logo ist breit).
-
-Hinweis: Das offizielle Minecraft-Logo ist markenrechtlich geschützt – bitte
-nur verwenden, wenn du die Nutzungsrechte hast.
+Der Text „Minecraft / Horizons" wird in der normalen Button-Schrift gerendert
+(kein Logo-Bild).

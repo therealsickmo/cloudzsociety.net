@@ -1,15 +1,11 @@
-'use client';
-
-import { motion } from 'framer-motion';
-
-// Fine grain (feTurbulence) to dither gradients so they don't band/pixelate.
+// Fine grain (feTurbulence) to dither the gradient so it doesn't band/line.
 const NOISE =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
 /**
- * Fixed decorative background: a slightly lifted base with very large, soft,
- * overlapping brand gradients (no visible circles) plus a subtle grain layer
- * to remove colour banding. Smooth and a touch lighter than pure black.
+ * Fixed decorative background: a single, uniform bluish tone tuned to the
+ * CS logo's blue. One smooth radial gradient + a grain layer so it reads as
+ * one clean colour without visible bands/lines. No multicolour blobs.
  */
 export function BackgroundEffects() {
   return (
@@ -17,40 +13,31 @@ export function BackgroundEffects() {
       aria-hidden
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      {/* Lifted base wash — a bit lighter than pure background */}
+      {/* Monochrome blue base — brighter navy near the top, deep at the edges */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(180deg, rgb(var(--surface) / 0.85) 0%, rgb(var(--background)) 55%)',
+            'radial-gradient(130% 100% at 50% -15%, rgb(var(--brand-800)) 0%, rgb(var(--brand-900) / 0.65) 32%, rgb(var(--background)) 70%)',
         }}
       />
 
-      {/* Large diffuse aurora gradients */}
+      {/* Soft brand glow (same blue) at the top */}
+      <div className="absolute -top-40 left-1/2 h-[42rem] w-[64rem] -translate-x-1/2 rounded-full bg-brand/12 blur-[180px]" />
+
+      {/* Gentle vignette to keep the edges calm */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(85% 60% at 18% 8%, rgb(var(--brand-500) / 0.16), transparent 72%), radial-gradient(80% 65% at 88% 18%, rgb(var(--brand-400) / 0.13), transparent 74%), radial-gradient(95% 75% at 60% 108%, rgb(var(--brand-600) / 0.16), transparent 78%)',
+            'radial-gradient(120% 100% at 50% 25%, transparent 55%, rgb(var(--background)) 100%)',
         }}
       />
 
-      {/* Soft, very large moving glows (huge blur → no circle edges) */}
-      <motion.div
-        className="absolute -left-1/4 top-1/4 h-[42rem] w-[42rem] rounded-full bg-brand/10 blur-[190px]"
-        animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -right-1/4 bottom-0 h-[44rem] w-[44rem] rounded-full bg-brand-400/10 blur-[200px]"
-        animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Grain overlay — kills banding / that "pixel" look */}
+      {/* Grain overlay — removes banding / the "lines" look */}
       <div
-        className="absolute inset-0 opacity-[0.045] mix-blend-soft-light"
-        style={{ backgroundImage: NOISE, backgroundSize: '120px 120px' }}
+        className="absolute inset-0 opacity-[0.07] mix-blend-overlay"
+        style={{ backgroundImage: NOISE, backgroundSize: '140px 140px' }}
       />
     </div>
   );

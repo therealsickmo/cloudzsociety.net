@@ -71,12 +71,17 @@ export function HeroBackground() {
         className="absolute inset-0 bg-background"
         style={{ opacity: overlay }}
       />
+      {/* Blue tint so the image matches the monochrome blue theme */}
+      <div
+        className="absolute inset-0"
+        style={{ background: 'rgb(var(--brand-900) / 0.45)' }}
+      />
       {/* Brand glow */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 50% 36%, rgba(0,102,255,0.20), transparent 60%)',
+            'radial-gradient(circle at 50% 34%, rgb(var(--brand-500) / 0.22), transparent 60%)',
         }}
       />
       {/* Long, smooth vertical blend so the image melts into the page
@@ -85,7 +90,7 @@ export function HeroBackground() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, rgb(var(--background)) 0%, transparent 16%, transparent 48%, rgb(var(--background) / 0.7) 78%, rgb(var(--background)) 100%)',
+            'linear-gradient(to bottom, rgb(var(--background)) 0%, transparent 14%, transparent 40%, rgb(var(--background) / 0.75) 72%, rgb(var(--background)) 92%)',
         }}
       />
     </div>

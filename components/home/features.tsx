@@ -14,21 +14,19 @@ export function Features() {
           const Icon = getIcon(feature.icon);
           return (
             <Reveal key={`${feature.title}-${i}`} delay={i * 0.08}>
-              <div className="neon-hover h-full rounded-2xl">
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 transition-colors duration-300 hover:border-brand/40">
-                  {/* Hover glow */}
-                  <div className="absolute -right-16 -top-16 size-40 rounded-full bg-brand/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative">
-                    <div className="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brand-600 text-white shadow-glow-sm">
-                      <Icon className="size-7" />
-                    </div>
-                    <h3 className="mt-6 text-xl font-semibold text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                      {feature.text}
-                    </p>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 transition-colors duration-300 hover:border-brand/40">
+                {/* Hover glow */}
+                <div className="absolute -right-16 -top-16 size-40 rounded-full bg-brand/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative">
+                  <div className="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brand-600 text-white shadow-glow-sm">
+                    <Icon className="size-7" />
                   </div>
+                  <h3 className="mt-6 text-xl font-semibold text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                    {feature.text}
+                  </p>
                 </div>
               </div>
             </Reveal>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Pixelify_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { SITE } from '@/lib/constants';
 import { getContent, getPublicSettings } from '@/lib/content-store';
@@ -13,14 +13,6 @@ import { MouseGlow } from '@/components/common/mouse-glow';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
-  display: 'swap',
-});
-
-// Minecraft-chat-style pixel font (free Google alternative).
-const pixel = Pixelify_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-pixel',
   display: 'swap',
 });
 
@@ -82,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${inter.variable} ${pixel.variable} dark`}
+      className={`${inter.variable} dark`}
       suppressHydrationWarning
     >
       <head>

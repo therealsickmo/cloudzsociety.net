@@ -95,60 +95,61 @@
   }
 }
 
-/* ── Neon hover: content grows + a running blue glow behind the box ── */
-@property --glow-angle {
+/* ── Running border stripe (buttons only) ── */
+@property --stripe-angle {
   syntax: '<angle>';
   inherits: false;
   initial-value: 0deg;
 }
 
-.neon-hover {
+.btn-stripe {
   position: relative;
   z-index: 0;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.neon-hover::before {
+.btn-stripe::before {
   content: '';
   position: absolute;
-  inset: -3px;
-  z-index: -1;
+  inset: 0;
   border-radius: inherit;
+  padding: 1.5px;
   background: conic-gradient(
-    from var(--glow-angle),
+    from var(--stripe-angle),
     transparent 0deg,
-    rgb(var(--brand-400)) 55deg,
-    rgb(var(--brand-500)) 110deg,
-    transparent 200deg,
+    rgb(var(--brand-400)) 35deg,
+    rgb(var(--brand-300)) 62deg,
+    rgb(var(--brand-400)) 90deg,
+    transparent 130deg,
     transparent 360deg
   );
-  filter: blur(11px);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  animation: neon-run 3.4s linear infinite;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 3px rgb(var(--brand-500) / 0.6));
+  animation: stripe-run 3.4s linear infinite;
   pointer-events: none;
 }
 
-.neon-hover:hover::before {
-  opacity: 0.9;
+.btn-stripe:hover::before {
+  opacity: 1;
 }
 
-.neon-hover:hover {
-  transform: scale(1.035);
-}
-
-@keyframes neon-run {
+@keyframes stripe-run {
   to {
-    --glow-angle: 360deg;
+    --stripe-angle: 360deg;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .neon-hover::before {
+  .btn-stripe::before {
     animation: none;
-  }
-  .neon-hover:hover {
-    transform: none;
+    opacity: 0.5;
   }
 }
 
