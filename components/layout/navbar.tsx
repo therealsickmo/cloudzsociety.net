@@ -10,7 +10,7 @@ import {
   useContent,
   useSettings,
 } from '@/components/providers/settings-provider';
-import { Logo } from '@/components/common/logo';
+import { HeaderBrand } from '@/components/layout/header-brand';
 import { ServerStatusBadge } from '@/components/common/server-status-badge';
 import { Button } from '@/components/ui/button';
 
@@ -25,10 +25,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl">
-      <nav className="container flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="CLOUDZ Startseite">
-          <Logo />
-        </Link>
+      <nav className="container flex h-20 items-center justify-between gap-4">
+        <HeaderBrand />
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-1 lg:flex">
