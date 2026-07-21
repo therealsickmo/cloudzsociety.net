@@ -97,8 +97,11 @@ Konfiguration erfolgt über Umgebungsvariablen (siehe `.env.example`).
 
 ## 🎨 Logo
 
-Ein eigenes SVG-Logo ist in `components/common/logo.tsx` integriert. Ein
-hochauflösendes Logo kann unter `public/logo/` abgelegt werden.
+Die `Logo`-Komponente (`components/common/logo.tsx`) nutzt automatisch dein
+echtes Logo, sobald die Datei unter `public/logo/cloudz-logo.png` liegt.
+Fehlt sie, wird nahtlos ein integriertes SVG-Logo angezeigt (kein kaputtes
+Bild). Details siehe `public/logo/README.md` — empfohlen ist ein PNG mit
+transparentem Hintergrund.
 
 ## 📝 Hinweis
 
