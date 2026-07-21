@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, BookText, MessageCircle, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
+import { HeroBackground } from '@/components/home/hero-background';
 import {
   useContent,
   useSettings,
@@ -18,8 +19,9 @@ export function Hero() {
   const hero = useContent().hero;
   const [logoOk, setLogoOk] = useState(true);
   return (
-    <section className="relative overflow-hidden pt-20 md:pt-28">
-      <div className="container flex flex-col items-center text-center">
+    <section className="relative overflow-hidden pb-16 pt-20 md:pt-28">
+      <HeroBackground />
+      <div className="container relative z-10 flex flex-col items-center text-center">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
