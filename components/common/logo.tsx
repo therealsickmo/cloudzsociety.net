@@ -40,32 +40,48 @@ export function Logo({ className, showText = true }: LogoProps) {
           />
         ) : (
           <svg
-            viewBox="0 0 48 48"
+            viewBox="0 0 52 48"
             fill="none"
-            className="relative size-9 drop-shadow-[0_0_8px_rgba(0,102,255,0.6)]"
+            className="relative h-9 w-[2.6rem] drop-shadow-[0_0_8px_rgba(0,102,255,0.6)]"
             aria-hidden
           >
             <defs>
-              <linearGradient id="cloudz-c" x1="6" y1="6" x2="42" y2="42">
-                <stop offset="0" stopColor="#3385FF" />
+              <linearGradient id="cz-blue" x1="0" y1="0" x2="0" y2="48">
+                <stop offset="0" stopColor="#4C93FF" />
                 <stop offset="0.5" stopColor="#0066FF" />
-                <stop offset="1" stopColor="#003D99" />
+                <stop offset="1" stopColor="#0036A6" />
+              </linearGradient>
+              <linearGradient id="cz-silver" x1="0" y1="0" x2="0" y2="48">
+                <stop offset="0" stopColor="#FFFFFF" />
+                <stop offset="0.55" stopColor="#D3DBE6" />
+                <stop offset="1" stopColor="#9AA6B8" />
               </linearGradient>
             </defs>
-            <rect
-              x="2"
-              y="2"
-              width="44"
-              height="44"
-              rx="12"
-              fill="url(#cloudz-c)"
-            />
-            <path
-              d="M33 17.5a11 11 0 1 0 0 13"
-              stroke="#EAF2FF"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-            />
+            <g
+              fontFamily="Inter, system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="46"
+              paintOrder="stroke"
+            >
+              <text
+                x="-3"
+                y="39"
+                fill="url(#cz-blue)"
+                stroke="#EAF2FF"
+                strokeWidth="1.5"
+              >
+                C
+              </text>
+              <text
+                x="22"
+                y="41"
+                fill="url(#cz-silver)"
+                stroke="#0D1117"
+                strokeWidth="1.2"
+              >
+                S
+              </text>
+            </g>
           </svg>
         )}
       </span>
