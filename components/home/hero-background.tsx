@@ -57,7 +57,7 @@ export function HeroBackground() {
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+          style={{ backgroundImage: "url('/images/cloudz-banner-leer.png')" }}
         />
       </motion.div>
 
