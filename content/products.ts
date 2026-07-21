@@ -1,0 +1,182 @@
+import type { Product } from '@/types';
+
+// ────────────────────────────────────────────────────────────────
+// CLOUDZ™ — Shop catalogue (mock data)
+// Replace with an API response once the shop backend is connected.
+// ────────────────────────────────────────────────────────────────
+
+export const products: Product[] = [
+  {
+    slug: 'rank-cloud',
+    name: 'Cloud Rank',
+    category: 'ranks',
+    shortDescription: 'Der Einstieg in die CLOUDZ™ VIP-Welt.',
+    description:
+      'Der Cloud Rank ist der perfekte Einstieg. Erhalte exklusive Cosmetics, einen farbigen Chat-Prefix und Zugang zu VIP-Bereichen auf allen Spielmodi.',
+    price: 9.99,
+    currency: 'eur',
+    stock: null,
+    image: '/images/shop/rank-cloud.svg',
+    benefits: [
+      'Farbiger Chat-Prefix [CLOUD]',
+      'Zugang zu VIP-Lobbys',
+      '3 exklusive Cosmetics',
+      '/hat & /nick Befehle',
+    ],
+    featured: true,
+    badge: 'Beliebt',
+  },
+  {
+    slug: 'rank-storm',
+    name: 'Storm Rank',
+    category: 'ranks',
+    shortDescription: 'Mehr Perks, mehr Style, mehr Power.',
+    description:
+      'Der Storm Rank hebt dein Erlebnis auf die nächste Stufe. Priorisierter Login, doppelte Coins und ein animierter Prefix warten auf dich.',
+    price: 19.99,
+    currency: 'eur',
+    stock: null,
+    image: '/images/shop/rank-storm.svg',
+    benefits: [
+      'Alle Cloud-Rank Vorteile',
+      'Priorisierter Server-Login',
+      '2× Goon Coins beim Spielen',
+      'Animierter Prefix',
+    ],
+    featured: true,
+  },
+  {
+    slug: 'rank-thunder',
+    name: 'Thunder Rank',
+    category: 'ranks',
+    shortDescription: 'Der ultimative Rang für echte Legenden.',
+    description:
+      'Thunder ist unser höchster Rang. Sichere dir jeden Vorteil, einen exklusiven Partikel-Effekt und ein monatliches Premium-Coin Paket.',
+    price: 39.99,
+    currency: 'eur',
+    stock: null,
+    image: '/images/shop/rank-thunder.svg',
+    benefits: [
+      'Alle Storm-Rank Vorteile',
+      'Exklusiver Partikel-Effekt',
+      '250 Premium Coins / Monat',
+      'Eigener /warp Punkt',
+    ],
+    badge: 'Best Value',
+  },
+  {
+    slug: 'key-common',
+    name: 'Common Key',
+    category: 'keys',
+    shortDescription: 'Öffne eine Common Crate.',
+    description:
+      'Der Common Key öffnet die Common Crate mit Cosmetics, Coins und nützlichen Items. Perfekt für einen schnellen Loot-Kick.',
+    price: 2.49,
+    currency: 'eur',
+    stock: 240,
+    image: '/images/shop/key-common.svg',
+    benefits: ['1× Common Crate Öffnung', 'Chance auf seltene Cosmetics'],
+  },
+  {
+    slug: 'key-legendary',
+    name: 'Legendary Key',
+    category: 'keys',
+    shortDescription: 'Die Chance auf legendäre Belohnungen.',
+    description:
+      'Der Legendary Key garantiert hochwertige Belohnungen inklusive limitierter Cosmetics und großer Coin-Pakete.',
+    price: 7.99,
+    currency: 'eur',
+    stock: 80,
+    image: '/images/shop/key-legendary.svg',
+    benefits: ['1× Legendary Crate Öffnung', 'Garantiert seltene Belohnung'],
+    featured: true,
+    badge: 'Selten',
+  },
+  {
+    slug: 'coins-goon-1000',
+    name: '1.000 Goon Coins',
+    category: 'coins',
+    shortDescription: 'Die In-Game Währung für den Alltag.',
+    description:
+      'Goon Coins sind die klassische In-Game Währung. Nutze sie im Ingame-Shop für Items, Kits und kleine Cosmetics.',
+    price: 4.99,
+    currency: 'eur',
+    stock: null,
+    image: '/images/shop/coins-goon.svg',
+    benefits: ['1.000 Goon Coins', 'Sofort auf deinem Account'],
+  },
+  {
+    slug: 'coins-premium-500',
+    name: '500 Premium Coins',
+    category: 'coins',
+    shortDescription: 'Die Premium-Währung für exklusive Items.',
+    description:
+      'Premium Coins schalten exklusive Cosmetics, limitierte Ränge und besondere Crates frei, die es nicht für Goon Coins gibt.',
+    price: 14.99,
+    currency: 'eur',
+    stock: null,
+    image: '/images/shop/coins-premium.svg',
+    benefits: ['500 Premium Coins', 'Zugang zu exklusiven Items'],
+    badge: 'Premium',
+  },
+  {
+    slug: 'bundle-starter',
+    name: 'Starter Bundle',
+    category: 'bundles',
+    shortDescription: 'Rang, Coins & Keys in einem Paket.',
+    description:
+      'Das Starter Bundle vereint den Cloud Rank, 1.000 Goon Coins und 3 Common Keys — der günstigste Weg, um voll durchzustarten.',
+    price: 16.99,
+    currency: 'eur',
+    stock: 120,
+    image: '/images/shop/bundle-starter.svg',
+    benefits: ['Cloud Rank', '1.000 Goon Coins', '3× Common Keys', '15% Rabatt'],
+    featured: true,
+    badge: '-15%',
+  },
+  {
+    slug: 'bundle-ultimate',
+    name: 'Ultimate Bundle',
+    category: 'bundles',
+    shortDescription: 'Alles, was das Herz begehrt.',
+    description:
+      'Das Ultimate Bundle enthält den Thunder Rank, 500 Premium Coins, 3 Legendary Keys und ein exklusives Cosmetic-Set.',
+    price: 49.99,
+    currency: 'eur',
+    stock: 40,
+    image: '/images/shop/bundle-ultimate.svg',
+    benefits: [
+      'Thunder Rank',
+      '500 Premium Coins',
+      '3× Legendary Keys',
+      'Exklusives Cosmetic-Set',
+    ],
+    badge: '-25%',
+  },
+  {
+    slug: 'cosmetic-wings',
+    name: 'Nebula Wings',
+    category: 'cosmetics',
+    shortDescription: 'Animierte Flügel mit Partikel-Effekt.',
+    description:
+      'Zeig deinen Style mit den Nebula Wings — animierte Flügel, die einen leuchtenden Partikel-Effekt in der CLOUDZ™-Farbe hinterlassen.',
+    price: 5.99,
+    currency: 'eur',
+    stock: 150,
+    image: '/images/shop/cosmetic-wings.svg',
+    benefits: ['Animierte Flügel', 'Partikel-Effekt', 'Auf allen Modi nutzbar'],
+  },
+  {
+    slug: 'cosmetic-trail',
+    name: 'Comet Trail',
+    category: 'cosmetics',
+    shortDescription: 'Ein leuchtender Spur-Effekt.',
+    description:
+      'Der Comet Trail hinterlässt beim Laufen eine leuchtende Spur und macht jeden Auftritt zu einem Statement.',
+    price: 3.99,
+    currency: 'eur',
+    stock: 200,
+    image: '/images/shop/cosmetic-trail.svg',
+    benefits: ['Bewegungs-Spur', 'CLOUDZ™ Glow', 'Sofort aktivierbar'],
+  },
+];

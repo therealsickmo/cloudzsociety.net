@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-text antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Custom themed scrollbar */
+  ::selection {
+    @apply bg-brand/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-white/10;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/20;
+  }
+
+  /* Respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Frosted glass surface */
+  .glass {
+    @apply border border-border bg-white/[0.03] backdrop-blur-xl;
+  }
+
+  /* Gradient text using the brand palette */
+  .text-gradient {
+    @apply bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-brand-300 via-brand to-brand-400 bg-clip-text text-transparent;
+  }
+
+  /* Card that lifts and glows on hover */
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-glow;
+  }
+}
+
+/* ── Blog prose styling ─────────────────────────────────────────── */
+.prose-cloudz {
+  @apply text-text-secondary;
+}
+.prose-cloudz h2 {
+  @apply mb-4 mt-10 text-2xl font-bold text-white;
+}
+.prose-cloudz h3 {
+  @apply mb-3 mt-8 text-xl font-semibold text-white;
+}
+.prose-cloudz p {
+  @apply mb-5 leading-relaxed;
+}
+.prose-cloudz a {
+  @apply text-brand underline underline-offset-4 hover:text-brand-300;
+}
+.prose-cloudz ul {
+  @apply mb-5 list-disc space-y-2 pl-6;
+}
+.prose-cloudz ol {
+  @apply mb-5 list-decimal space-y-2 pl-6;
+}
+.prose-cloudz strong {
+  @apply font-semibold text-white;
+}
+.prose-cloudz blockquote {
+  @apply my-6 border-l-2 border-brand pl-5 italic text-white/80;
+}
+.prose-cloudz code {
+  @apply rounded bg-white/10 px-1.5 py-0.5 text-sm text-brand-200;
+}
+.prose-cloudz hr {
+  @apply my-8 border-border;
+}
