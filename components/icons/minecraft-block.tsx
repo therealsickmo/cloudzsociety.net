@@ -1,50 +1,39 @@
 import type { SVGProps } from 'react';
 
-// Pixel map of a Minecraft dirt block (16×16), 4 brown shades.
-const PIXELS = [
-  '1021012310210120',
-  '0113101101131011',
-  '2101210102012101',
-  '1310112013101120',
-  '0213001102130011',
-  '1011021310110213',
-  '3102110131021101',
-  '0110131001101310',
-  '1021012010210120',
-  '0101131101011311',
-  '2110021321100213',
-  '1013100210131002',
-  '0231001102310011',
-  '1100210311002103',
-  '3102110131021101',
-  '0110131001101310',
-];
-
-const COLORS = ['#8A5C35', '#75492A', '#9C6D41', '#5C3B22'];
-
-/** Minecraft dirt block — pixel texture (fixed colours). */
+/** Minecraft grass block — isometric 3D icon (fixed colours). */
 export function MinecraftBlock(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg
-      viewBox="0 0 16 16"
-      shapeRendering="crispEdges"
-      aria-hidden
-      {...props}
-    >
-      {PIXELS.map((row, y) =>
-        row
-          .split('')
-          .map((c, x) => (
-            <rect
-              key={`${x}-${y}`}
-              x={x}
-              y={y}
-              width="1"
-              height="1"
-              fill={COLORS[Number(c)]}
-            />
-          )),
-      )}
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden {...props}>
+      {/* Top face — grass */}
+      <polygon
+        points="16,3 29,10.5 16,18 3,10.5"
+        fill="#6DBE45"
+        stroke="#3f7f32"
+        strokeWidth="0.7"
+        strokeLinejoin="round"
+      />
+      {/* Left face — dirt */}
+      <polygon
+        points="3,10.5 16,18 16,29 3,21.5"
+        fill="#8A5C35"
+        stroke="#4a2f1c"
+        strokeWidth="0.7"
+        strokeLinejoin="round"
+      />
+      {/* Right face — dirt (darker for shading) */}
+      <polygon
+        points="16,18 29,10.5 29,21.5 16,29"
+        fill="#6E4527"
+        stroke="#3a2517"
+        strokeWidth="0.7"
+        strokeLinejoin="round"
+      />
+      {/* Grass overhang on the left side */}
+      <polygon points="3,10.5 16,18 16,20.6 3,13.1" fill="#59A538" />
+      {/* Grass overhang on the right side */}
+      <polygon points="16,18 29,10.5 29,13.1 16,20.6" fill="#4C8C30" />
+      {/* Subtle grass texture on top */}
+      <polygon points="16,7 20,9.3 16,11.6 12,9.3" fill="#63B23D" opacity="0.7" />
     </svg>
   );
 }

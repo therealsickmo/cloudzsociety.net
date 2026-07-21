@@ -90,7 +90,7 @@ export function Hero() {
             className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row"
           >
             <JoinServer>
-              <Button size="xl" className="w-full sm:w-auto">
+              <Button size="xl" variant="secondary" className="w-full sm:w-auto">
                 <MinecraftBlock />
                 HORIZONS
               </Button>
@@ -98,7 +98,7 @@ export function Hero() {
             <Button
               asChild
               size="xl"
-              variant="outline"
+              variant="secondary"
               className="w-full sm:w-auto"
             >
               <a href={links.discord} target="_blank" rel="noopener noreferrer">
@@ -120,7 +120,7 @@ export function Hero() {
             <Button
               asChild
               size="xl"
-              variant="ghost"
+              variant="secondary"
               className="w-full sm:w-auto"
             >
               <Link href="/blog">
