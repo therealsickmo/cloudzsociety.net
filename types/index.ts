@@ -121,6 +121,14 @@ export interface SiteStats {
   uptimeHours: number;
 }
 
+export interface SiteTheme {
+  brand: string;
+  background: string;
+  surface: string;
+  card: string;
+  textSecondary: string;
+}
+
 export interface SiteSettings {
   site: {
     name: string;
@@ -138,6 +146,74 @@ export interface SiteSettings {
     github: string;
   };
   stats: SiteStats;
+  theme: SiteTheme;
+}
+
+// ── Editable text content (managed via /admin → Inhalte) ───────────
+
+export interface NavItemContent {
+  label: string;
+  href: string;
+  enabled: boolean;
+}
+
+export interface IconTextItem {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+export interface LabelValueItem {
+  label: string;
+  value: string;
+}
+
+export interface PageHeaderContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
+export interface SiteContent {
+  nav: { items: NavItemContent[] };
+  hero: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    joinLabel: string;
+    discordLabel: string;
+    rulesLabel: string;
+    stats: LabelValueItem[];
+  };
+  about: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    points: IconTextItem[];
+  };
+  features: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: IconTextItem[];
+  };
+  stats: { eyebrow: string; title: string; description: string };
+  cta: {
+    title: string;
+    description: string;
+    joinLabel: string;
+    discordLabel: string;
+  };
+  footer: { tagline: string; note: string };
+  pages: {
+    shop: PageHeaderContent;
+    team: PageHeaderContent;
+    blog: PageHeaderContent;
+    changelog: PageHeaderContent;
+    apply: PageHeaderContent;
+    donate: PageHeaderContent;
+    kontakt: PageHeaderContent;
+  };
 }
 
 /** Settings plus derived values exposed to the client. */

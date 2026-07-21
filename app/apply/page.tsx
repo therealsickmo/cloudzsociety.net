@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { ApplySection } from '@/components/apply/apply-section';
-import { getRoles } from '@/lib/content-store';
+import { getContent, getRoles } from '@/lib/content-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 
 export default function ApplyPage() {
   const applicationRoles = getRoles();
-  const openRoles = applicationRoles.filter((r) => r.status === 'open').length;
+  const header = getContent().pages.apply;
 
   return (
     <>
       <PageHeader
-        eyebrow="Bewerben"
-        title="Werde Teil des Teams"
-        description={`Wir suchen motivierte Leute, die das Netzwerk mitgestalten wollen. Aktuell sind ${openRoles} Rollen offen.`}
+        eyebrow={header.eyebrow}
+        title={header.title}
+        description={header.description}
       />
       <Section>
         <ApplySection roles={applicationRoles} />

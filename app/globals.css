@@ -5,6 +5,23 @@
 @layer base {
   :root {
     color-scheme: dark;
+
+    /* Default theme tokens (channel triplets for rgb()/<alpha-value>).
+       Overridden at runtime by the injected theme from /admin. */
+    --background: 5 7 10;
+    --surface: 13 17 23;
+    --card: 21 27 35;
+    --text-secondary: 168 179 207;
+    --brand-50: 229 240 255;
+    --brand-100: 204 224 255;
+    --brand-200: 153 194 255;
+    --brand-300: 102 163 255;
+    --brand-400: 51 133 255;
+    --brand-500: 0 102 255;
+    --brand-600: 0 82 204;
+    --brand-700: 0 61 153;
+    --brand-800: 0 41 102;
+    --brand-900: 0 20 51;
   }
 
   * {

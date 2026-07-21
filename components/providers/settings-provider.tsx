@@ -1,34 +1,49 @@
 'use client';
 
 import { createContext, useContext, type ReactNode } from 'react';
-import type { PublicSettings } from '@/types';
+import type { PublicSettings, SiteContent } from '@/types';
 
 // ────────────────────────────────────────────────────────────────
-// Provides editable site settings to client components. The value is
-// read on the server (root layout) and passed down, so the navbar,
-// hero, footer etc. always reflect what was saved in /admin.
+// Provides editable settings + text content to client components. The
+// values are read on the server (root layout) and passed down, so the
+// navbar, hero, footer etc. always reflect what was saved in /admin.
 // ────────────────────────────────────────────────────────────────
 
-const SettingsContext = createContext<PublicSettings | null>(null);
+interface ProviderValue {
+  settings: PublicSettings;
+  content: SiteContent;
+}
+
+const SettingsContext = createContext<ProviderValue | null>(null);
 
 export function SettingsProvider({
-  value,
+  settings,
+  content,
   children,
 }: {
-  value: PublicSettings;
+  settings: PublicSettings;
+  content: SiteContent;
   children: ReactNode;
 }) {
   return (
-    <SettingsContext.Provider value={value}>
+    <SettingsContext.Provider value={{ settings, content }}>
       {children}
     </SettingsContext.Provider>
   );
 }
 
-export function useSettings(): PublicSettings {
+function useProvider(): ProviderValue {
   const ctx = useContext(SettingsContext);
   if (!ctx) {
-    throw new Error('useSettings must be used within a SettingsProvider');
+    throw new Error('useSettings/useContent must be used within a SettingsProvider');
   }
   return ctx;
+}
+
+export function useSettings(): PublicSettings {
+  return useProvider().settings;
+}
+
+export function useContent(): SiteContent {
+  return useProvider().content;
 }

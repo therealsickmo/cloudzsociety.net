@@ -6,12 +6,16 @@ import { Reveal } from '@/components/common/reveal';
 import { Card } from '@/components/ui/card';
 import { AnimatedCounter } from '@/components/common/animated-counter';
 import { useServerStatus } from '@/hooks/use-server-status';
-import { useSettings } from '@/components/providers/settings-provider';
+import {
+  useContent,
+  useSettings,
+} from '@/components/providers/settings-provider';
 import { formatUptime } from '@/lib/utils';
 
 export function Stats() {
   const { status, loading } = useServerStatus();
   const { connectAddress } = useSettings();
+  const heading = useContent().stats;
 
   const items = [
     {
@@ -51,9 +55,9 @@ export function Stats() {
   return (
     <Section id="stats">
       <SectionHeading
-        eyebrow="Live Dashboard"
-        title="Serverstatistik"
-        description="Ein Blick auf unser Netzwerk in Echtzeit. (Aktuell mit Beispieldaten.)"
+        eyebrow={heading.eyebrow}
+        title={heading.title}
+        description={heading.description}
       />
 
       <Reveal>

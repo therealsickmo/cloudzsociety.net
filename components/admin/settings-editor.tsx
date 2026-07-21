@@ -45,6 +45,17 @@ const SECTIONS: SectionDef[] = [
     ],
   },
   {
+    title: 'Farben & Design',
+    group: 'theme',
+    fields: [
+      { key: 'brand', label: 'Hauptfarbe', type: 'color', hint: 'Akzentfarbe der ganzen Seite' },
+      { key: 'background', label: 'Hintergrund', type: 'color' },
+      { key: 'surface', label: 'Oberfläche', type: 'color' },
+      { key: 'card', label: 'Karten', type: 'color' },
+      { key: 'textSecondary', label: 'Sekundärtext', type: 'color' },
+    ],
+  },
+  {
     title: 'Serverstatistik (Mockdaten)',
     group: 'stats',
     fields: [

@@ -5,12 +5,14 @@ import { team as defaultTeam } from '@/content/team';
 import { changelog as defaultChangelog } from '@/content/changelog';
 import { applicationRoles as defaultRoles } from '@/content/roles';
 import { defaultSettings } from '@/content/settings';
+import { defaultContent } from '@/content/site-content';
 import type {
   ApplicationRole,
   ChangelogEntry,
   Product,
   PublicSettings,
   ServerStatus,
+  SiteContent,
   SiteSettings,
   TeamMember,
 } from '@/types';
@@ -54,11 +56,33 @@ export function getSettings(): SiteSettings {
     minecraft: { ...defaultSettings.minecraft, ...stored.minecraft },
     links: { ...defaultSettings.links, ...stored.links },
     stats: { ...defaultSettings.stats, ...stored.stats },
+    theme: { ...defaultSettings.theme, ...stored.theme },
   };
 }
 
 export function saveSettings(settings: SiteSettings): void {
   writeJson('settings', settings);
+}
+
+// ── Editable text content ──────────────────────────────────────────
+
+export function getContent(): SiteContent {
+  const stored = readJson<Partial<SiteContent>>('content', {});
+  // Merge one level deep, falling back to defaults for any missing group.
+  return {
+    nav: stored.nav ?? defaultContent.nav,
+    hero: { ...defaultContent.hero, ...stored.hero },
+    about: { ...defaultContent.about, ...stored.about },
+    features: { ...defaultContent.features, ...stored.features },
+    stats: { ...defaultContent.stats, ...stored.stats },
+    cta: { ...defaultContent.cta, ...stored.cta },
+    footer: { ...defaultContent.footer, ...stored.footer },
+    pages: { ...defaultContent.pages, ...stored.pages },
+  };
+}
+
+export function saveContent(content: SiteContent): void {
+  writeJson('content', content);
 }
 
 export function connectAddress(settings: SiteSettings): string {

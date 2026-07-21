@@ -7,6 +7,9 @@ import { Reveal } from '@/components/common/reveal';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { DonationProgress } from '@/components/donate/donation-progress';
+import { getContent } from '@/lib/content-store';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Spenden',
@@ -21,12 +24,13 @@ const providers = [
 ];
 
 export default function DonatePage() {
+  const header = getContent().pages.donate;
   return (
     <>
       <PageHeader
-        eyebrow="Spenden"
-        title="Unterstütze CLOUDZ™"
-        description="Deine Unterstützung hält das Netzwerk am Leben. Die Spendenfunktion befindet sich gerade im Aufbau."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        description={header.description}
       >
         <Badge className="mx-auto">
           <Sparkles className="size-3.5" />

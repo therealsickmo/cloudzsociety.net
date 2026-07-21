@@ -3,10 +3,11 @@ import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
-import { getPublicSettings } from '@/lib/content-store';
+import { getContent, getPublicSettings } from '@/lib/content-store';
 
 export function CTA() {
   const { links } = getPublicSettings();
+  const cta = getContent().cta;
   return (
     <Section>
       <Reveal>
@@ -14,19 +15,16 @@ export function CTA() {
           <div className="absolute inset-x-0 -top-24 mx-auto h-48 w-2/3 rounded-full bg-brand/25 blur-[120px]" />
           <div className="relative">
             <h2 className="mx-auto max-w-2xl text-balance text-3xl font-bold tracking-tight text-white md:text-4xl">
-              Bereit, Teil der{' '}
-              <span className="text-gradient-brand">CLOUDZ™</span> Community zu
-              werden?
+              {cta.title}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-text-secondary">
-              Verbinde dich mit dem Server, tritt unserem Discord bei und
-              erlebe Minecraft neu.
+              {cta.description}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <JoinServer>
                 <Button size="lg">
                   <Play className="size-4 fill-current" />
-                  Server beitreten
+                  {cta.joinLabel}
                 </Button>
               </JoinServer>
               <Button asChild size="lg" variant="outline">
@@ -36,7 +34,7 @@ export function CTA() {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="size-4" />
-                  Discord beitreten
+                  {cta.discordLabel}
                 </a>
               </Button>
             </div>

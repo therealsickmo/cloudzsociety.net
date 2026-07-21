@@ -33,4 +33,11 @@ export const defaultSettings: SiteSettings = {
     uptimeDays: 42,
     uptimeHours: 7,
   },
+  theme: {
+    brand: '#0066FF',
+    background: '#05070A',
+    surface: '#0D1117',
+    card: '#151B23',
+    textSecondary: '#A8B3CF',
+  },
 };

@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { SITE } from '@/lib/constants';
-import { getPublicSettings } from '@/lib/content-store';
+import { getContent, getPublicSettings } from '@/lib/content-store';
+import { buildThemeCss } from '@/lib/theme';
 import { SettingsProvider } from '@/components/providers/settings-provider';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
@@ -67,11 +68,19 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const settings = getPublicSettings();
+  const content = getContent();
+  const themeCss = buildThemeCss(settings.theme);
 
   return (
     <html lang="de" className={`${inter.variable} dark`} suppressHydrationWarning>
+      <head>
+        <style
+          id="cz-theme"
+          dangerouslySetInnerHTML={{ __html: themeCss }}
+        />
+      </head>
       <body className="min-h-screen bg-background font-sans">
-        <SettingsProvider value={settings}>
+        <SettingsProvider settings={settings} content={content}>
           <BackgroundEffects />
           <MouseGlow />
           <div className="relative flex min-h-screen flex-col">

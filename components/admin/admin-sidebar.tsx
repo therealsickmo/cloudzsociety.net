@@ -10,6 +10,7 @@ import {
   Newspaper,
   Settings,
   ShoppingBag,
+  Type,
   UserPlus,
   Users,
 } from 'lucide-react';
@@ -18,7 +19,8 @@ import { Logo } from '@/components/common/logo';
 
 const NAV = [
   { href: '/admin', label: 'Übersicht', icon: LayoutDashboard, exact: true },
-  { href: '/admin/settings', label: 'Einstellungen', icon: Settings },
+  { href: '/admin/content', label: 'Inhalte & Texte', icon: Type },
+  { href: '/admin/settings', label: 'Einstellungen & Design', icon: Settings },
   { href: '/admin/products', label: 'Shop-Produkte', icon: ShoppingBag },
   { href: '/admin/team', label: 'Team', icon: Users },
   { href: '/admin/blog', label: 'Blog', icon: Newspaper },

@@ -123,6 +123,27 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
         </button>
       );
 
+    case 'color': {
+      const hex = String(value ?? '#000000');
+      return (
+        <div className="flex items-center gap-2">
+          <input
+            type="color"
+            value={hex}
+            onChange={(e) => onChange(e.target.value)}
+            className="h-11 w-14 shrink-0 cursor-pointer rounded-xl border border-border bg-surface/60 p-1"
+          />
+          <Input
+            id={id}
+            value={hex}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder="#0066FF"
+            className="font-mono"
+          />
+        </div>
+      );
+    }
+
     case 'select':
       return (
         <select

@@ -3,6 +3,7 @@ import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { BlogList } from '@/components/blog/blog-list';
 import { getAllPosts, getCategories } from '@/lib/blog';
+import { getContent } from '@/lib/content-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,13 +16,14 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getAllPosts();
   const categories = getCategories();
+  const header = getContent().pages.blog;
 
   return (
     <>
       <PageHeader
-        eyebrow="Blog"
-        title="News & Updates"
-        description="Alles Wichtige aus dem Netzwerk — von neuen Spielmodi über Guides bis zu Community-Highlights."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        description={header.description}
       />
       <Section>
         <BlogList posts={posts} categories={categories} />

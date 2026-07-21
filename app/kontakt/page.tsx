@@ -3,7 +3,7 @@ import { Github, Mail, MessageCircle } from 'lucide-react';
 import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
-import { getPublicSettings } from '@/lib/content-store';
+import { getContent, getPublicSettings } from '@/lib/content-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   const { links } = getPublicSettings();
+  const header = getContent().pages.kontakt;
 
   const channels = [
     {
@@ -46,9 +47,9 @@ export default function KontaktPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Kontakt"
-        title="So erreichst du uns"
-        description="Fragen, Feedback oder Kooperationsanfragen? Wähle einfach den Kanal, der dir am liebsten ist."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        description={header.description}
       />
       <Section>
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">

@@ -5,7 +5,7 @@ import { Section, SectionHeading } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
 import { ShopGrid } from '@/components/shop/shop-grid';
 import { Currencies } from '@/components/shop/currencies';
-import { getProducts } from '@/lib/content-store';
+import { getContent, getProducts } from '@/lib/content-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,13 +17,14 @@ export const metadata: Metadata = {
 
 export default function ShopPage() {
   const products = getProducts();
+  const header = getContent().pages.shop;
 
   return (
     <>
       <PageHeader
-        eyebrow="Shop"
-        title="Unterstütze das Netzwerk"
-        description="Mit jedem Kauf hilfst du, die Server zu betreiben, neue Features zu entwickeln und die Community am Leben zu halten."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        description={header.description}
       />
 
       {/* Why the shop exists */}

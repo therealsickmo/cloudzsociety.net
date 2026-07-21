@@ -98,14 +98,18 @@ ADMIN_PASSWORD=dein-sicheres-passwort
 
 **Bearbeitbar:**
 
-| Bereich         | Was du änderst                                          |
-| --------------- | ------------------------------------------------------- |
-| Einstellungen   | Markenname, Slogan, Server-IP, Discord/Wiki/GitHub, Serverstatistik |
-| Shop-Produkte   | Anlegen, bearbeiten, löschen (Preis, Bestand, Vorteile …) |
-| Team            | Mitglieder, Rollen, Verfügbarkeit                        |
-| Blog            | Artikel schreiben/bearbeiten/löschen (Markdown)          |
-| Changelog       | Versionen, Features, Verbesserungen, Bugfixes            |
-| Bewerber-Rollen | Offene/geschlossene Rollen                               |
+| Bereich                | Was du änderst                                          |
+| ---------------------- | ------------------------------------------------------- |
+| Inhalte & Texte        | Alle Texte, Button-Beschriftungen, Navigation (ein-/ausblenden, umbenennen), Footer, Startseiten-Blöcke (Über/Features/Statistik/CTA inkl. Icons) und Seiten-Überschriften |
+| Einstellungen & Design | Markenname, Slogan, Server-IP, Discord/Wiki/GitHub, Serverstatistik **und die Farben/Theme** (Hauptfarbe, Hintergrund, Karten …) |
+| Shop-Produkte          | Anlegen, bearbeiten, löschen (Preis, Bestand, Vorteile …) |
+| Team                   | Mitglieder, Rollen, Verfügbarkeit                        |
+| Blog                   | Artikel schreiben/bearbeiten/löschen (Markdown)          |
+| Changelog              | Versionen, Features, Verbesserungen, Bugfixes            |
+| Bewerber-Rollen        | Offene/geschlossene Rollen                               |
+
+> Die Hauptfarbe recoloriert automatisch die gesamte Akzent-Palette (Buttons,
+> Links, Glow-Effekte) — eine Farbe ändern reicht.
 
 > Sicherheit: Das Panel ist für den **lokalen Betrieb** gedacht (einfacher
 > Passwortschutz). Für einen öffentlichen Livegang sollte ein echtes

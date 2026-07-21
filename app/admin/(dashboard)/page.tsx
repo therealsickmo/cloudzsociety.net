@@ -5,6 +5,7 @@ import {
   Newspaper,
   Settings,
   ShoppingBag,
+  Type,
   UserPlus,
   Users,
 } from 'lucide-react';
@@ -21,10 +22,17 @@ export const dynamic = 'force-dynamic';
 export default function AdminOverviewPage() {
   const cards = [
     {
+      href: '/admin/content',
+      icon: Type,
+      title: 'Inhalte & Texte',
+      desc: 'Alle Texte, Buttons, Navigation & Footer',
+      count: null as number | null,
+    },
+    {
       href: '/admin/settings',
       icon: Settings,
-      title: 'Einstellungen',
-      desc: 'Name, IP, Links & Serverstatistik',
+      title: 'Einstellungen & Design',
+      desc: 'Name, IP, Links, Farben & Serverstatistik',
       count: null as number | null,
     },
     {

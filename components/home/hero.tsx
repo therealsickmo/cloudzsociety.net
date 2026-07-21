@@ -5,11 +5,15 @@ import { motion } from 'framer-motion';
 import { ArrowRight, BookText, MessageCircle, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
-import { useSettings } from '@/components/providers/settings-provider';
+import {
+  useContent,
+  useSettings,
+} from '@/components/providers/settings-provider';
 import { staggerContainer, slideUp } from '@/lib/animations';
 
 export function Hero() {
-  const { site, links } = useSettings();
+  const { links } = useSettings();
+  const hero = useContent().hero;
   return (
     <section className="relative overflow-hidden pt-20 md:pt-28">
       <div className="container flex flex-col items-center text-center">
@@ -28,7 +32,7 @@ export function Hero() {
               <span className="rounded-full bg-brand px-2 py-0.5 text-xs font-semibold text-white">
                 Neu
               </span>
-              Spielmodus „Skyfall“ ist live
+              {hero.badge}
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
@@ -39,7 +43,7 @@ export function Hero() {
             className="mt-8 text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           >
             <span className="text-gradient-brand drop-shadow-[0_0_40px_rgba(0,102,255,0.35)]">
-              {site.name}
+              {hero.title}
             </span>
           </motion.h1>
 
@@ -48,8 +52,7 @@ export function Hero() {
             variants={slideUp}
             className="mt-6 max-w-xl text-balance text-lg text-text-secondary md:text-xl"
           >
-            {site.tagline} Eigene Spielmodi, eine aktive Community und
-            regelmäßige Updates — willkommen im Netzwerk.
+            {hero.subtitle}
           </motion.p>
 
           {/* CTAs */}
@@ -60,7 +63,7 @@ export function Hero() {
             <JoinServer>
               <Button size="lg" className="w-full sm:w-auto">
                 <Play className="size-4 fill-current" />
-                Server beitreten
+                {hero.joinLabel}
               </Button>
             </JoinServer>
             <Button
@@ -71,7 +74,7 @@ export function Hero() {
             >
               <a href={links.discord} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="size-4" />
-                Discord
+                {hero.discordLabel}
               </a>
             </Button>
             <Button
@@ -82,7 +85,7 @@ export function Hero() {
             >
               <Link href="/blog">
                 <BookText className="size-4" />
-                Regeln lesen
+                {hero.rulesLabel}
               </Link>
             </Button>
           </motion.div>
@@ -99,12 +102,7 @@ export function Hero() {
           <div className="glass relative overflow-hidden rounded-3xl p-1.5 shadow-glow-lg">
             <div className="rounded-[1.35rem] bg-gradient-to-b from-surface to-background">
               <div className="grid grid-cols-2 divide-x divide-border sm:grid-cols-4">
-                {[
-                  { label: 'Spielmodi', value: '8+' },
-                  { label: 'Community', value: '14K+' },
-                  { label: 'Uptime', value: '99.9%' },
-                  { label: 'Support', value: '24/7' },
-                ].map((stat) => (
+                {hero.stats.map((stat) => (
                   <div key={stat.label} className="px-4 py-8 text-center">
                     <div className="text-2xl font-bold text-white md:text-3xl">
                       {stat.value}

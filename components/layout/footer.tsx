@@ -1,12 +1,13 @@
 import Link from 'next/link';
-import { Github, Heart, MessageCircle } from 'lucide-react';
+import { Github, MessageCircle } from 'lucide-react';
 import { SITE } from '@/lib/constants';
-import { getPublicSettings } from '@/lib/content-store';
+import { getContent, getPublicSettings } from '@/lib/content-store';
 import { Logo } from '@/components/common/logo';
 
 export function Footer() {
   const year = new Date().getFullYear();
   const { site, links } = getPublicSettings();
+  const footer = getContent().footer;
 
   const legalLinks = [
     { label: 'Impressum', href: '/impressum' },
@@ -27,9 +28,7 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm text-text-secondary">
-              {site.name} — made with{' '}
-              <Heart className="inline size-4 fill-brand text-brand" /> für die
-              Community.
+              {site.name} — {footer.tagline}
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
@@ -124,7 +123,7 @@ export function Footer() {
             © {year} {SITE.brand}. Alle Rechte vorbehalten.
           </p>
           <p>
-            {site.domain} — nicht mit Mojang oder Microsoft verbunden.
+            {site.domain} — {footer.note}
           </p>
         </div>
       </div>

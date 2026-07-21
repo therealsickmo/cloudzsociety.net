@@ -10,7 +10,8 @@ export type FieldType =
   | 'date'
   | 'boolean'
   | 'select'
-  | 'lines';
+  | 'lines'
+  | 'color';
 
 export interface Field {
   key: string;

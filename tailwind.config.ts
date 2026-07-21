@@ -17,26 +17,27 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // CLOUDZ™ corporate design tokens.
-        background: '#05070A',
-        surface: '#0D1117',
-        card: '#151B23',
+        // CLOUDZ™ corporate design tokens — driven by CSS variables so the
+        // theme can be recoloured live from the /admin dashboard.
+        background: 'rgb(var(--background) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        card: 'rgb(var(--card) / <alpha-value>)',
         brand: {
-          DEFAULT: '#0066FF',
-          50: '#E5F0FF',
-          100: '#CCE0FF',
-          200: '#99C2FF',
-          300: '#66A3FF',
-          400: '#3385FF',
-          500: '#0066FF',
-          600: '#0052CC',
-          700: '#003D99',
-          800: '#002966',
-          900: '#001433',
+          DEFAULT: 'rgb(var(--brand-500) / <alpha-value>)',
+          50: 'rgb(var(--brand-50) / <alpha-value>)',
+          100: 'rgb(var(--brand-100) / <alpha-value>)',
+          200: 'rgb(var(--brand-200) / <alpha-value>)',
+          300: 'rgb(var(--brand-300) / <alpha-value>)',
+          400: 'rgb(var(--brand-400) / <alpha-value>)',
+          500: 'rgb(var(--brand-500) / <alpha-value>)',
+          600: 'rgb(var(--brand-600) / <alpha-value>)',
+          700: 'rgb(var(--brand-700) / <alpha-value>)',
+          800: 'rgb(var(--brand-800) / <alpha-value>)',
+          900: 'rgb(var(--brand-900) / <alpha-value>)',
         },
         text: {
           DEFAULT: '#FFFFFF',
-          secondary: '#A8B3CF',
+          secondary: 'rgb(var(--text-secondary) / <alpha-value>)',
         },
         border: 'rgba(255,255,255,0.08)',
       },

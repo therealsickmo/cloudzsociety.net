@@ -6,8 +6,10 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BookOpen, Menu, MessageCircle, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { NAV_ITEMS } from '@/lib/constants';
-import { useSettings } from '@/components/providers/settings-provider';
+import {
+  useContent,
+  useSettings,
+} from '@/components/providers/settings-provider';
 import { Logo } from '@/components/common/logo';
 import { ServerStatusBadge } from '@/components/common/server-status-badge';
 import { Button } from '@/components/ui/button';
@@ -15,6 +17,7 @@ import { Button } from '@/components/ui/button';
 export function Navbar() {
   const pathname = usePathname();
   const { links } = useSettings();
+  const navItems = useContent().nav.items.filter((item) => item.enabled);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -44,7 +47,7 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-1 lg:flex">
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const active =
               item.href === '/'
                 ? pathname === '/'
@@ -113,7 +116,7 @@ export function Navbar() {
             className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl lg:hidden"
           >
             <div className="container flex flex-col gap-1 py-4">
-              {NAV_ITEMS.map((item) => {
+              {navItems.map((item) => {
                 const active =
                   item.href === '/'
                     ? pathname === '/'
