@@ -29,22 +29,26 @@ export function MouseGlow() {
       if (glowRef.current) {
         glowRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
-      // Spawn a pixel particle, throttled.
+      // Spawn pixel particles, throttled — spawn a couple each time.
       const now = performance.now();
-      if (now - lastSpawn.current > 28) {
+      if (now - lastSpawn.current > 16) {
         lastSpawn.current = now;
-        const id = idRef.current++;
-        const p: Particle = {
-          id,
-          x: e.clientX,
-          y: e.clientY,
-          dx: (Math.random() - 0.5) * 26,
-          dy: (Math.random() - 0.5) * 26,
-        };
-        setParticles((prev) => [...prev.slice(-22), p]);
+        const spawned: Particle[] = [];
+        for (let k = 0; k < 2; k++) {
+          const id = idRef.current++;
+          spawned.push({
+            id,
+            x: e.clientX,
+            y: e.clientY,
+            dx: (Math.random() - 0.5) * 34,
+            dy: (Math.random() - 0.5) * 34,
+          });
+        }
+        setParticles((prev) => [...prev.slice(-46), ...spawned]);
+        const ids = spawned.map((s) => s.id);
         window.setTimeout(
-          () => setParticles((prev) => prev.filter((q) => q.id !== id)),
-          480,
+          () => setParticles((prev) => prev.filter((q) => !ids.includes(q.id))),
+          540,
         );
       }
     };
@@ -56,13 +60,13 @@ export function MouseGlow() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-30 hidden md:block">
-      {/* Small fast glow */}
+      {/* Fast-following glow */}
       <div
         ref={glowRef}
-        className="absolute left-0 top-0 -ml-[75px] -mt-[75px] size-[150px] rounded-full"
+        className="absolute left-0 top-0 -ml-[115px] -mt-[115px] size-[230px] rounded-full"
         style={{
           background:
-            'radial-gradient(circle, rgb(var(--brand-500) / 0.22), transparent 70%)',
+            'radial-gradient(circle, rgb(var(--brand-500) / 0.24), transparent 70%)',
         }}
       />
 
