@@ -95,5 +95,6 @@ export function HeroBackground() {
       />
       {/* Subtle glowing divider line at the bottom edge */}
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand/50 to-transparent shadow-[0_0_12px_rgb(var(--brand-500)/0.5)]" />
+    </div>
   );
 }
