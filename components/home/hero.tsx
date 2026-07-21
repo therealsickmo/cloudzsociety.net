@@ -8,8 +8,8 @@ import { BookText, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
 import { HeroBackground } from '@/components/home/hero-background';
+import { HorizonsLabel } from '@/components/home/horizons-label';
 import { DiscordIcon } from '@/components/icons/discord-icon';
-import { MinecraftBlock } from '@/components/icons/minecraft-block';
 import {
   useContent,
   useSettings,
@@ -66,12 +66,12 @@ export function Hero() {
             )}
           </motion.div>
 
-          {/* Gradient title */}
+          {/* Gradient title (normal font, not pixel) */}
           <motion.h1
             variants={slideUp}
-            className="text-gradient-brand mt-2 text-4xl font-extrabold tracking-tight drop-shadow-[0_0_30px_rgba(0,102,255,0.35)] sm:text-5xl md:text-6xl"
+            className="mt-2 bg-gradient-to-b from-white via-brand-200 to-brand bg-clip-text font-sans text-4xl font-extrabold tracking-tight text-transparent drop-shadow-[0_0_30px_rgba(0,102,255,0.35)] sm:text-5xl md:text-6xl"
           >
-            {hero.title}
+            {hero.title || 'CLOUDZ™'}
           </motion.h1>
 
           {/* Subtitle in Minecraft-style pixel font */}
@@ -91,17 +91,9 @@ export function Hero() {
               <Button
                 size="xl"
                 variant="secondary"
-                className="neon-hover h-16 w-full sm:w-auto sm:min-w-[200px]"
+                className="neon-hover w-full sm:w-auto sm:min-w-[190px]"
               >
-                <MinecraftBlock className="!size-8" />
-                <span className="flex flex-col items-start leading-none">
-                  <span className="font-pixel text-base font-bold uppercase tracking-wide text-white">
-                    Minecraft
-                  </span>
-                  <span className="text-gradient-brand font-pixel text-lg font-bold leading-tight">
-                    Horizons
-                  </span>
-                </span>
+                <HorizonsLabel />
               </Button>
             </JoinServer>
             <Button
@@ -145,9 +137,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 w-full max-w-3xl"
+          className="neon-hover mt-16 w-full max-w-3xl rounded-2xl"
         >
-          <div className="neon-hover overflow-hidden rounded-2xl border border-white/12 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl backdrop-saturate-150">
+          <div className="overflow-hidden rounded-2xl border border-white/12 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl backdrop-saturate-150">
             <div className="grid grid-cols-1 divide-y divide-white/[0.07] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
               {hero.stats.map((stat, i) => {
                 const Icon = getIcon(stat.icon ?? 'Sparkles');

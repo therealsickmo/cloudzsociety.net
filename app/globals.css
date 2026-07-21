@@ -95,59 +95,58 @@
   }
 }
 
-/* ── Neon hover: content grows + a blue border fills around on hover ── */
-@property --neon-fill {
-  syntax: '<number>';
+/* ── Neon hover: content grows + a running blue glow behind the box ── */
+@property --glow-angle {
+  syntax: '<angle>';
   inherits: false;
-  initial-value: 0;
+  initial-value: 0deg;
 }
 
 .neon-hover {
   position: relative;
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease;
+  z-index: 0;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .neon-hover::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -3px;
+  z-index: -1;
   border-radius: inherit;
-  padding: 2px;
   background: conic-gradient(
-    from -90deg,
-    rgb(var(--brand-500)) calc(var(--neon-fill) * 360deg),
-    rgba(255, 255, 255, 0.07) 0deg
+    from var(--glow-angle),
+    transparent 0deg,
+    rgb(var(--brand-400)) 55deg,
+    rgb(var(--brand-500)) 110deg,
+    transparent 200deg,
+    transparent 360deg
   );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
+  filter: blur(11px);
   opacity: 0;
-  filter: drop-shadow(0 0 6px rgb(var(--brand-500) / 0.85));
-  transition: opacity 0.25s ease;
+  transition: opacity 0.4s ease;
+  animation: neon-run 3.4s linear infinite;
   pointer-events: none;
 }
 
-.neon-hover:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 30px -8px rgb(var(--brand-500) / 0.45);
+.neon-hover:hover::before {
+  opacity: 0.9;
 }
 
-.neon-hover:hover::before {
-  opacity: 1;
-  --neon-fill: 1;
-  transition:
-    --neon-fill 1.1s linear,
-    opacity 0.25s ease;
+.neon-hover:hover {
+  transform: scale(1.02);
+}
+
+@keyframes neon-run {
+  to {
+    --glow-angle: 360deg;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .neon-hover::before {
+    animation: none;
+  }
   .neon-hover:hover {
     transform: none;
   }
