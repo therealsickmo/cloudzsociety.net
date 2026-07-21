@@ -172,6 +172,7 @@ export interface NavItemContent {
   label: string;
   href: string;
   enabled: boolean;
+  badge?: string;
 }
 
 export interface IconTextItem {

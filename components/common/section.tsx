@@ -11,7 +11,13 @@ interface SectionProps {
 /** Standard page section with generous vertical rhythm. */
 export function Section({ children, className, id }: SectionProps) {
   return (
-    <section id={id} className={cn('py-20 md:py-28', className)}>
+    <section
+      id={id}
+      className={cn(
+        'relative py-20 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/15 after:to-transparent md:py-28',
+        className,
+      )}
+    >
       <div className="container">{children}</div>
     </section>
   );

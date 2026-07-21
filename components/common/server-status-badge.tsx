@@ -16,7 +16,7 @@ export function ServerStatusBadge({ className }: ServerStatusBadgeProps) {
   return (
     <div
       className={cn(
-        'flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs font-medium text-text-secondary backdrop-blur',
+        'flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-2.5 text-sm font-medium text-text-secondary backdrop-blur',
         className,
       )}
     >

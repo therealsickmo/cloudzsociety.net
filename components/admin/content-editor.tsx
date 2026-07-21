@@ -40,10 +40,11 @@ const GROUPS: Group[] = [
     fields: [
       { key: 'label', label: 'Beschriftung', type: 'text' },
       { key: 'href', label: 'Link (Pfad)', type: 'text', hint: 'z. B. /shop' },
+      { key: 'badge', label: 'Badge (optional)', type: 'text', hint: 'z. B. Neu' },
       { key: 'enabled', label: 'Sichtbar', type: 'boolean' },
     ],
     itemLabel: (i) => String(i.label),
-    newItem: () => ({ label: 'Neu', href: '/', enabled: true }),
+    newItem: () => ({ label: 'Neu', href: '/', enabled: true, badge: '' }),
   },
   {
     kind: 'fields',

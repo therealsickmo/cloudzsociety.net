@@ -10,10 +10,10 @@ export const defaultContent: SiteContent = {
   nav: {
     items: [
       { label: 'Home', href: '/', enabled: true },
-      { label: 'Shop', href: '/shop', enabled: true },
       { label: 'Team', href: '/team', enabled: true },
       { label: 'Blog', href: '/blog', enabled: true },
-      { label: 'Changelog', href: '/changelog', enabled: true },
+      { label: 'Logs', href: '/changelog', enabled: true },
+      { label: 'Akt. Projekt', href: '/projekt', enabled: true, badge: 'Neu' },
       { label: 'Bewerben', href: '/apply', enabled: true },
       { label: 'Spenden', href: '/donate', enabled: true },
     ],

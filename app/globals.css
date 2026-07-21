@@ -137,7 +137,8 @@
   pointer-events: none;
 }
 
-.stripe-hover:hover::before {
+.stripe-hover:hover::before,
+.stripe-hover.stripe-on::before {
   opacity: 1;
 }
 
