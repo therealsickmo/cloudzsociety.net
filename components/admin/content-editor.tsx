@@ -59,14 +59,15 @@ const GROUPS: Group[] = [
   },
   {
     kind: 'repeater',
-    title: 'Hero – Mini-Statistiken',
+    title: 'Hero – Info-Bar',
     path: 'hero.stats',
     fields: [
-      { key: 'value', label: 'Wert', type: 'text', hint: 'z. B. 8+' },
-      { key: 'label', label: 'Beschriftung', type: 'text' },
+      { key: 'icon', label: 'Icon', type: 'select', options: ICON_OPTIONS },
+      { key: 'label', label: 'Beschriftung', type: 'text', hint: 'z. B. Gründung' },
+      { key: 'value', label: 'Wert', type: 'text', hint: 'z. B. 01.02.2026' },
     ],
-    itemLabel: (i) => `${i.value} · ${i.label}`,
-    newItem: () => ({ label: 'Neu', value: '0' }),
+    itemLabel: (i) => `${i.label} · ${i.value}`,
+    newItem: () => ({ icon: 'Sparkles', label: 'Neu', value: '' }),
   },
   {
     kind: 'fields',

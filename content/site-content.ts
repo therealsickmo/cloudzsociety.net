@@ -23,14 +23,13 @@ export const defaultContent: SiteContent = {
     title: 'CLOUDZ™',
     subtitle:
       'Eine moderne Minecraft Community. Eigene Spielmodi, eine aktive Community und regelmäßige Updates — willkommen im Netzwerk.',
-    joinLabel: 'Server beitreten',
-    discordLabel: 'Discord',
+    joinLabel: 'Minecraft Horizons',
+    discordLabel: 'CLOUDZ™ Discord',
     rulesLabel: 'Regeln lesen',
     stats: [
-      { label: 'Spielmodi', value: '8+' },
-      { label: 'Community', value: '14K+' },
-      { label: 'Uptime', value: '99.9%' },
-      { label: 'Support', value: '24/7' },
+      { icon: 'Calendar', label: 'Gründung', value: '01.02.2026' },
+      { icon: 'Users', label: 'Community', value: '+400' },
+      { icon: 'Sparkles', label: 'Konzept', value: 'Temporäre Projekte' },
     ],
   },
   about: {

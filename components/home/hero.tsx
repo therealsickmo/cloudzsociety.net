@@ -4,14 +4,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookText, MessageCircle, Play } from 'lucide-react';
+import { ArrowRight, BookText, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
 import { HeroBackground } from '@/components/home/hero-background';
+import { DiscordIcon } from '@/components/icons/discord-icon';
+import { MinecraftBlock } from '@/components/icons/minecraft-block';
 import {
   useContent,
   useSettings,
 } from '@/components/providers/settings-provider';
+import { getIcon } from '@/lib/icons';
 import { staggerContainer, slideUp } from '@/lib/animations';
 
 export function Hero() {
@@ -43,19 +46,29 @@ export function Hero() {
           </motion.div>
 
           {/* Logo (with title text as accessible fallback) */}
-          <motion.h1 variants={slideUp} className="mt-8">
+          <motion.h1 variants={slideUp} className="mt-6">
             <span className="sr-only">{hero.title}</span>
             {logoOk ? (
-              <Image
-                src="/logo/cloudz-logo.png"
-                alt={hero.title}
-                width={560}
-                height={560}
-                priority
-                unoptimized
-                onError={() => setLogoOk(false)}
-                className="mx-auto h-40 w-auto drop-shadow-[0_0_55px_rgba(0,102,255,0.45)] sm:h-52 md:h-64"
-              />
+              <motion.div
+                animate={{ scale: [1, 1.06, 1], y: [0, -6, 0] }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="mx-auto w-fit"
+              >
+                <Image
+                  src="/logo/cloudz-logo.png"
+                  alt={hero.title}
+                  width={640}
+                  height={640}
+                  priority
+                  unoptimized
+                  onError={() => setLogoOk(false)}
+                  className="mx-auto h-52 w-auto drop-shadow-[0_0_65px_rgba(0,102,255,0.5)] sm:h-64 md:h-80"
+                />
+              </motion.div>
             ) : (
               <span className="text-gradient-brand text-6xl font-extrabold tracking-tight drop-shadow-[0_0_40px_rgba(0,102,255,0.35)] sm:text-7xl md:text-8xl">
                 {hero.title}
@@ -74,33 +87,44 @@ export function Hero() {
           {/* CTAs */}
           <motion.div
             variants={slideUp}
-            className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
+            className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row"
           >
             <JoinServer>
-              <Button size="lg" className="w-full sm:w-auto">
-                <Play className="size-4 fill-current" />
+              <Button size="xl" className="w-full sm:w-auto">
+                <MinecraftBlock />
                 {hero.joinLabel}
               </Button>
             </JoinServer>
             <Button
               asChild
-              size="lg"
+              size="xl"
               variant="outline"
               className="w-full sm:w-auto"
             >
               <a href={links.discord} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="size-4" />
+                <DiscordIcon />
                 {hero.discordLabel}
               </a>
             </Button>
             <Button
               asChild
-              size="lg"
+              size="xl"
+              variant="secondary"
+              className="w-full sm:w-auto"
+            >
+              <Link href="/apply">
+                <UserPlus />
+                Jetzt bewerben
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="xl"
               variant="ghost"
               className="w-full sm:w-auto"
             >
               <Link href="/blog">
-                <BookText className="size-4" />
+                <BookText />
                 {hero.rulesLabel}
               </Link>
             </Button>
@@ -115,19 +139,28 @@ export function Hero() {
           className="relative mt-20 w-full max-w-4xl"
         >
           <div className="absolute inset-x-10 -top-6 h-40 rounded-full bg-brand/30 blur-[100px]" />
-          <div className="glass relative overflow-hidden rounded-3xl p-1.5 shadow-glow-lg">
-            <div className="rounded-[1.35rem] bg-gradient-to-b from-surface to-background">
-              <div className="grid grid-cols-2 divide-x divide-border sm:grid-cols-4">
-                {hero.stats.map((stat) => (
-                  <div key={stat.label} className="px-4 py-8 text-center">
-                    <div className="text-2xl font-bold text-white md:text-3xl">
-                      {stat.value}
+          <div className="glass relative overflow-hidden rounded-3xl p-1.5 shadow-glow-lg transition-shadow duration-500 hover:shadow-glow-lg">
+            <div className="rounded-[1.35rem] bg-gradient-to-b from-surface/80 to-background/80 backdrop-blur-xl">
+              <div className="grid grid-cols-1 divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                {hero.stats.map((stat, i) => {
+                  const Icon = getIcon(stat.icon ?? 'Sparkles');
+                  return (
+                    <div
+                      key={`${stat.label}-${i}`}
+                      className="group flex flex-col items-center gap-2.5 px-6 py-8 text-center transition-colors hover:bg-white/[0.03]"
+                    >
+                      <div className="flex size-12 items-center justify-center rounded-2xl bg-brand/10 text-brand shadow-glow-sm transition-transform duration-300 group-hover:scale-110">
+                        <Icon className="size-6" />
+                      </div>
+                      <div className="text-lg font-bold text-white md:text-xl">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs uppercase tracking-widest text-text-secondary">
+                        {stat.label}
+                      </div>
                     </div>
-                    <div className="mt-1 text-xs uppercase tracking-widest text-text-secondary">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -164,6 +164,7 @@ export interface IconTextItem {
 }
 
 export interface LabelValueItem {
+  icon?: string;
   label: string;
   value: string;
 }
