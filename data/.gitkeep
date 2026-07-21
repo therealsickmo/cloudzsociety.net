@@ -1,0 +1,4 @@
+# Editierbare Inhalte (vom /admin-Panel geschrieben) landen hier als JSON:
+# settings.json, products.json, team.json, changelog.json, roles.json
+#
+# Fehlen die Dateien, verwendet die Seite die Standardwerte aus content/.

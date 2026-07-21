@@ -10,19 +10,17 @@ import { Card } from '@/components/ui/card';
 import { ProductVisual } from '@/components/shop/product-visual';
 import { Price } from '@/components/shop/price';
 import { BuyButton } from '@/components/shop/buy-button';
-import { shopService } from '@/services/shop';
+import { getProduct } from '@/lib/content-store';
+
+export const dynamic = 'force-dynamic';
 
 interface Params {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return shopService.getProducts().map((product) => ({ slug: product.slug }));
-}
-
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const product = shopService.getProduct(slug);
+  const product = getProduct(slug);
   if (!product) return { title: 'Produkt nicht gefunden' };
   return {
     title: product.name,
@@ -32,7 +30,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Params) {
   const { slug } = await params;
-  const product = shopService.getProduct(slug);
+  const product = getProduct(slug);
   if (!product) notFound();
 
   const soldOut = product.stock === 0;

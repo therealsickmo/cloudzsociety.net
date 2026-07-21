@@ -6,10 +6,12 @@ import { Reveal } from '@/components/common/reveal';
 import { Card } from '@/components/ui/card';
 import { AnimatedCounter } from '@/components/common/animated-counter';
 import { useServerStatus } from '@/hooks/use-server-status';
+import { useSettings } from '@/components/providers/settings-provider';
 import { formatUptime } from '@/lib/utils';
 
 export function Stats() {
   const { status, loading } = useServerStatus();
+  const { connectAddress } = useSettings();
 
   const items = [
     {
@@ -66,9 +68,7 @@ export function Stats() {
                 {loading ? 'Verbinde…' : 'Netzwerk online'}
               </span>
             </div>
-            <span className="text-xs text-text-secondary">
-              play.cloudzsociety.net
-            </span>
+            <span className="text-xs text-text-secondary">{connectAddress}</span>
           </div>
 
           <div className="grid grid-cols-2 divide-x divide-y divide-border md:grid-cols-3 lg:grid-cols-5 lg:divide-y-0">

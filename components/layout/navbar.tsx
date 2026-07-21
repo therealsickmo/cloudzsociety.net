@@ -6,13 +6,15 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BookOpen, Menu, MessageCircle, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { LINKS, NAV_ITEMS } from '@/lib/constants';
+import { NAV_ITEMS } from '@/lib/constants';
+import { useSettings } from '@/components/providers/settings-provider';
 import { Logo } from '@/components/common/logo';
 import { ServerStatusBadge } from '@/components/common/server-status-badge';
 import { Button } from '@/components/ui/button';
 
 export function Navbar() {
   const pathname = usePathname();
+  const { links } = useSettings();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -76,13 +78,13 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <ServerStatusBadge />
           <Button asChild variant="ghost" size="sm">
-            <a href={LINKS.wiki} target="_blank" rel="noopener noreferrer">
+            <a href={links.wiki} target="_blank" rel="noopener noreferrer">
               <BookOpen className="size-4" />
               Wiki
             </a>
           </Button>
           <Button asChild size="sm">
-            <a href={LINKS.discord} target="_blank" rel="noopener noreferrer">
+            <a href={links.discord} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="size-4" />
               Discord
             </a>
@@ -136,7 +138,7 @@ export function Navbar() {
                 <div className="grid grid-cols-2 gap-3">
                   <Button asChild variant="outline" size="sm">
                     <a
-                      href={LINKS.wiki}
+                      href={links.wiki}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -146,7 +148,7 @@ export function Navbar() {
                   </Button>
                   <Button asChild size="sm">
                     <a
-                      href={LINKS.discord}
+                      href={links.discord}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

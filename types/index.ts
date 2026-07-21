@@ -107,3 +107,46 @@ export interface ServerStatus {
   version: string;
   uptime: number;
 }
+
+// ── Editable site settings (managed via the /admin dashboard) ──────
+
+export interface SiteStats {
+  online: boolean;
+  playersOnline: number;
+  playersMax: number;
+  registeredPlayers: number;
+  discordMembers: number;
+  version: string;
+  uptimeDays: number;
+  uptimeHours: number;
+}
+
+export interface SiteSettings {
+  site: {
+    name: string;
+    tagline: string;
+    description: string;
+    domain: string;
+  };
+  minecraft: {
+    ip: string;
+    port: string;
+  };
+  links: {
+    discord: string;
+    wiki: string;
+    github: string;
+  };
+  stats: SiteStats;
+}
+
+/** Settings plus derived values exposed to the client. */
+export interface PublicSettings extends SiteSettings {
+  connectAddress: string;
+}
+
+export type AdminCollection =
+  | 'products'
+  | 'team'
+  | 'changelog'
+  | 'roles';

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { SITE } from '@/lib/constants';
+import { getPublicSettings } from '@/lib/content-store';
+import { SettingsProvider } from '@/components/providers/settings-provider';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { BackgroundEffects } from '@/components/common/background-effects';
@@ -13,44 +15,47 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
-  title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
-    template: `%s · ${SITE.name}`,
-  },
-  description: SITE.description,
-  applicationName: SITE.brand,
-  keywords: [
-    'Minecraft',
-    'Community',
-    'CLOUDZ',
-    'CloudzSociety',
-    'Minecraft Server',
-    'Gaming',
-  ],
-  authors: [{ name: SITE.brand }],
-  openGraph: {
-    type: 'website',
-    locale: 'de_DE',
-    url: SITE.url,
-    siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.tagline}`,
-    description: SITE.description,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${SITE.name} — ${SITE.tagline}`,
-    description: SITE.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: '/icons/favicon.svg',
-  },
-};
+export function generateMetadata(): Metadata {
+  const { site } = getPublicSettings();
+  return {
+    metadataBase: new URL(SITE.url),
+    title: {
+      default: `${site.name} — ${site.tagline}`,
+      template: `%s · ${site.name}`,
+    },
+    description: site.description,
+    applicationName: SITE.brand,
+    keywords: [
+      'Minecraft',
+      'Community',
+      'CLOUDZ',
+      'CloudzSociety',
+      'Minecraft Server',
+      'Gaming',
+    ],
+    authors: [{ name: SITE.brand }],
+    openGraph: {
+      type: 'website',
+      locale: 'de_DE',
+      url: SITE.url,
+      siteName: site.name,
+      title: `${site.name} — ${site.tagline}`,
+      description: site.description,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${site.name} — ${site.tagline}`,
+      description: site.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    icons: {
+      icon: '/icons/favicon.svg',
+    },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: '#05070A',
@@ -61,16 +66,20 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const settings = getPublicSettings();
+
   return (
     <html lang="de" className={`${inter.variable} dark`} suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans">
-        <BackgroundEffects />
-        <MouseGlow />
-        <div className="relative flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <SettingsProvider value={settings}>
+          <BackgroundEffects />
+          <MouseGlow />
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </SettingsProvider>
       </body>
     </html>
   );

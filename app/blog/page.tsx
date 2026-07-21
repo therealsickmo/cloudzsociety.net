@@ -4,6 +4,8 @@ import { Section } from '@/components/common/section';
 import { BlogList } from '@/components/blog/blog-list';
 import { getAllPosts, getCategories } from '@/lib/blog';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Blog',
   description:

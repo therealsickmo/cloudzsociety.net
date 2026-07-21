@@ -5,7 +5,9 @@ import { Section, SectionHeading } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
 import { ShopGrid } from '@/components/shop/shop-grid';
 import { Currencies } from '@/components/shop/currencies';
-import { shopService } from '@/services/shop';
+import { getProducts } from '@/lib/content-store';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Shop',
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function ShopPage() {
-  const products = shopService.getProducts();
+  const products = getProducts();
 
   return (
     <>

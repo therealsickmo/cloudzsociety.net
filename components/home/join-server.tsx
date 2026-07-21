@@ -14,7 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/common/logo';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
-import { minecraftService } from '@/services/minecraft';
+import { useSettings } from '@/components/providers/settings-provider';
 import { cn } from '@/lib/utils';
 
 interface JoinServerProps {
@@ -29,7 +29,7 @@ interface JoinServerProps {
 export function JoinServer({ children }: JoinServerProps) {
   const [open, setOpen] = useState(false);
   const { copied, copy } = useCopyToClipboard();
-  const address = minecraftService.getConnectAddress();
+  const { connectAddress: address } = useSettings();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

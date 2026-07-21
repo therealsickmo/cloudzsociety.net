@@ -5,10 +5,11 @@ import { motion } from 'framer-motion';
 import { ArrowRight, BookText, MessageCircle, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
-import { LINKS, SITE } from '@/lib/constants';
+import { useSettings } from '@/components/providers/settings-provider';
 import { staggerContainer, slideUp } from '@/lib/animations';
 
 export function Hero() {
+  const { site, links } = useSettings();
   return (
     <section className="relative overflow-hidden pt-20 md:pt-28">
       <div className="container flex flex-col items-center text-center">
@@ -38,7 +39,7 @@ export function Hero() {
             className="mt-8 text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           >
             <span className="text-gradient-brand drop-shadow-[0_0_40px_rgba(0,102,255,0.35)]">
-              {SITE.name}
+              {site.name}
             </span>
           </motion.h1>
 
@@ -47,7 +48,7 @@ export function Hero() {
             variants={slideUp}
             className="mt-6 max-w-xl text-balance text-lg text-text-secondary md:text-xl"
           >
-            {SITE.tagline} Eigene Spielmodi, eine aktive Community und
+            {site.tagline} Eigene Spielmodi, eine aktive Community und
             regelmäßige Updates — willkommen im Netzwerk.
           </motion.p>
 
@@ -68,7 +69,7 @@ export function Hero() {
               variant="outline"
               className="w-full sm:w-auto"
             >
-              <a href={LINKS.discord} target="_blank" rel="noopener noreferrer">
+              <a href={links.discord} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="size-4" />
                 Discord
               </a>

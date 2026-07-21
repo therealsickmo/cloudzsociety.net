@@ -3,7 +3,9 @@ import { Github, Mail, MessageCircle } from 'lucide-react';
 import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
-import { LINKS } from '@/lib/constants';
+import { getPublicSettings } from '@/lib/content-store';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Kontakt',
@@ -11,34 +13,36 @@ export const metadata: Metadata = {
     'Nimm Kontakt mit dem CLOUDZ™ Team auf — über Discord, E-Mail oder GitHub.',
 };
 
-const channels = [
-  {
-    icon: MessageCircle,
-    title: 'Discord',
-    description: 'Der schnellste Weg zu uns. Tritt unserem Server bei.',
-    action: 'Discord öffnen',
-    href: LINKS.discord,
-    external: true,
-  },
-  {
-    icon: Mail,
-    title: 'E-Mail',
-    description: 'Für offizielle Anfragen und Kooperationen.',
-    action: 'kontakt@cloudzsociety.net',
-    href: 'mailto:kontakt@cloudzsociety.net',
-    external: false,
-  },
-  {
-    icon: Github,
-    title: 'GitHub',
-    description: 'Bugs melden oder das Projekt verfolgen.',
-    action: 'Zum Repository',
-    href: LINKS.github,
-    external: true,
-  },
-];
-
 export default function KontaktPage() {
+  const { links } = getPublicSettings();
+
+  const channels = [
+    {
+      icon: MessageCircle,
+      title: 'Discord',
+      description: 'Der schnellste Weg zu uns. Tritt unserem Server bei.',
+      action: 'Discord öffnen',
+      href: links.discord,
+      external: true,
+    },
+    {
+      icon: Mail,
+      title: 'E-Mail',
+      description: 'Für offizielle Anfragen und Kooperationen.',
+      action: 'kontakt@cloudzsociety.net',
+      href: 'mailto:kontakt@cloudzsociety.net',
+      external: false,
+    },
+    {
+      icon: Github,
+      title: 'GitHub',
+      description: 'Bugs melden oder das Projekt verfolgen.',
+      action: 'Zum Repository',
+      href: links.github,
+      external: true,
+    },
+  ];
+
   return (
     <>
       <PageHeader

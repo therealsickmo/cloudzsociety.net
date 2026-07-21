@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { SITE } from '@/lib/constants';
+import { useSettings } from '@/components/providers/settings-provider';
 
 interface LogoProps {
   className?: string;
@@ -22,6 +22,7 @@ const LOGO_SRC = '/logo/cloudz-logo.png';
  */
 export function Logo({ className, showText = true }: LogoProps) {
   const [imageOk, setImageOk] = useState(true);
+  const { site } = useSettings();
 
   return (
     <span className={cn('flex items-center gap-2.5', className)}>
@@ -87,7 +88,7 @@ export function Logo({ className, showText = true }: LogoProps) {
       </span>
       {showText && (
         <span className="text-lg font-bold tracking-tight text-white">
-          {SITE.name}
+          {site.name}
         </span>
       )}
     </span>

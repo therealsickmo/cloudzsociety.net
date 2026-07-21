@@ -8,14 +8,12 @@ import { Reveal } from '@/components/common/reveal';
 import { Badge } from '@/components/ui/badge';
 import { BlogVisual } from '@/components/blog/blog-visual';
 import { formatDate } from '@/lib/utils';
-import { getAllPosts, getPost, getPostSlugs } from '@/lib/blog';
+import { getAllPosts, getPost } from '@/lib/blog';
+
+export const dynamic = 'force-dynamic';
 
 interface Params {
   params: Promise<{ slug: string }>;
-}
-
-export function generateStaticParams() {
-  return getPostSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {

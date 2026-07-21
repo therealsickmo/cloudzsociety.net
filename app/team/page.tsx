@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { TeamGrid } from '@/components/team/team-grid';
-import { team } from '@/content/team';
+import { getTeam } from '@/lib/content-store';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Team',
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function TeamPage() {
+  const team = getTeam();
   const available = team.filter((m) => m.available).length;
 
   return (

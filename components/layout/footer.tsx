@@ -1,10 +1,23 @@
 import Link from 'next/link';
 import { Github, Heart, MessageCircle } from 'lucide-react';
-import { FOOTER_LINKS, LINKS, SITE } from '@/lib/constants';
+import { SITE } from '@/lib/constants';
+import { getPublicSettings } from '@/lib/content-store';
 import { Logo } from '@/components/common/logo';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { site, links } = getPublicSettings();
+
+  const legalLinks = [
+    { label: 'Impressum', href: '/impressum' },
+    { label: 'Datenschutz', href: '/datenschutz' },
+    { label: 'Kontakt', href: '/kontakt' },
+  ];
+  const socialLinks = [
+    { label: 'Discord', href: links.discord },
+    { label: 'GitHub', href: links.github },
+    { label: 'Wiki', href: links.wiki },
+  ];
 
   return (
     <footer className="relative border-t border-border bg-surface/40">
@@ -14,13 +27,13 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm text-text-secondary">
-              {SITE.name} — made with{' '}
+              {site.name} — made with{' '}
               <Heart className="inline size-4 fill-brand text-brand" /> für die
               Community.
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
-                href={LINKS.discord}
+                href={links.discord}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord"
@@ -29,7 +42,7 @@ export function Footer() {
                 <MessageCircle className="size-5" />
               </a>
               <a
-                href={LINKS.github}
+                href={links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -45,7 +58,7 @@ export function Footer() {
             <div>
               <h3 className="mb-4 text-sm font-semibold text-white">Rechtliches</h3>
               <ul className="space-y-3">
-                {FOOTER_LINKS.legal.map((link) => (
+                {legalLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
@@ -60,7 +73,7 @@ export function Footer() {
             <div>
               <h3 className="mb-4 text-sm font-semibold text-white">Community</h3>
               <ul className="space-y-3">
-                {FOOTER_LINKS.social.map((link) => (
+                {socialLinks.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
@@ -111,7 +124,7 @@ export function Footer() {
             © {year} {SITE.brand}. Alle Rechte vorbehalten.
           </p>
           <p>
-            {SITE.domain} — nicht mit Mojang oder Microsoft verbunden.
+            {site.domain} — nicht mit Mojang oder Microsoft verbunden.
           </p>
         </div>
       </div>

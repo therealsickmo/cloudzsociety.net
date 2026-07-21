@@ -3,9 +3,10 @@ import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
 import { Button } from '@/components/ui/button';
 import { JoinServer } from '@/components/home/join-server';
-import { LINKS } from '@/lib/constants';
+import { getPublicSettings } from '@/lib/content-store';
 
 export function CTA() {
+  const { links } = getPublicSettings();
   return (
     <Section>
       <Reveal>
@@ -30,7 +31,7 @@ export function CTA() {
               </JoinServer>
               <Button asChild size="lg" variant="outline">
                 <a
-                  href={LINKS.discord}
+                  href={links.discord}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

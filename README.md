@@ -80,6 +80,37 @@ cloudzsociety/
 └── styles/         # Globale Styles
 ```
 
+## 🛠 Admin-Dashboard (`/admin`)
+
+Ein integriertes Panel, um **alle Inhalte ohne Code** zu bearbeiten. Änderungen
+werden als JSON in `data/` (bzw. Markdown in `content/blog/`) gespeichert und
+erscheinen sofort auf der Seite.
+
+**Öffnen:** starte die Seite (`npm run dev`) und gehe auf
+**http://localhost:3000/admin**
+
+**Login:** Passwort aus der Umgebungsvariable `ADMIN_PASSWORD`
+(Standard lokal: `cloudz-admin`). Zum Ändern in `.env.local` setzen:
+
+```bash
+ADMIN_PASSWORD=dein-sicheres-passwort
+```
+
+**Bearbeitbar:**
+
+| Bereich         | Was du änderst                                          |
+| --------------- | ------------------------------------------------------- |
+| Einstellungen   | Markenname, Slogan, Server-IP, Discord/Wiki/GitHub, Serverstatistik |
+| Shop-Produkte   | Anlegen, bearbeiten, löschen (Preis, Bestand, Vorteile …) |
+| Team            | Mitglieder, Rollen, Verfügbarkeit                        |
+| Blog            | Artikel schreiben/bearbeiten/löschen (Markdown)          |
+| Changelog       | Versionen, Features, Verbesserungen, Bugfixes            |
+| Bewerber-Rollen | Offene/geschlossene Rollen                               |
+
+> Sicherheit: Das Panel ist für den **lokalen Betrieb** gedacht (einfacher
+> Passwortschutz). Für einen öffentlichen Livegang sollte ein echtes
+> Login-/Rechtesystem ergänzt werden (siehe `services/auth.ts`).
+
 ## 🔌 Vorbereitete Integrationen
 
 Der Ordner `services/` enthält saubere, noch nicht implementierte

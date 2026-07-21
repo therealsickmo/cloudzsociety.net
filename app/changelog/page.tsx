@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { ChangelogTimeline } from '@/components/changelog/changelog-timeline';
-import { changelog } from '@/content/changelog';
+import { getChangelog } from '@/lib/content-store';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Changelog',
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function ChangelogPage() {
+  const changelog = getChangelog();
   return (
     <>
       <PageHeader
