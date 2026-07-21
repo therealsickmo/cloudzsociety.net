@@ -14,7 +14,7 @@ export default async function AdminDashboardLayout({
 
   return (
     <ToastProvider>
-      <div className="relative z-10 flex min-h-[calc(100vh-4rem)] bg-background">
+      <div className="relative z-10 flex min-h-[calc(100vh-4rem)]">
         <AdminSidebar />
         <div className="flex-1 overflow-x-hidden">
           <div className="mx-auto max-w-5xl px-6 py-10">{children}</div>

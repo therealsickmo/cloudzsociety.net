@@ -57,7 +57,7 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'btn-stripe relative rounded-full border border-white/5 bg-white/[0.03] px-4 py-2 text-sm font-medium transition-colors',
+                    'stripe-hover relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
                     active
                       ? 'text-white'
                       : 'text-text-secondary hover:text-white',

@@ -102,12 +102,12 @@
   initial-value: 0deg;
 }
 
-.btn-stripe {
+.stripe-hover {
   position: relative;
   z-index: 0;
 }
 
-.btn-stripe::before {
+.stripe-hover::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -130,26 +130,20 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-  opacity: 0.85;
+  opacity: 0;
   filter: drop-shadow(0 0 3px rgb(var(--brand-500) / 0.6));
-  animation: stripe-run 3.4s linear infinite;
+  animation: stripe-run 3s linear infinite;
+  transition: opacity 0.25s ease;
   pointer-events: none;
 }
 
-.btn-stripe:hover::before {
+.stripe-hover:hover::before {
   opacity: 1;
 }
 
 @keyframes stripe-run {
   to {
     --stripe-angle: 360deg;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-stripe::before {
-    animation: none;
-    opacity: 0.5;
   }
 }
 

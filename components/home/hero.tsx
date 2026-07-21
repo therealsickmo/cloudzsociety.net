@@ -84,7 +84,7 @@ export function Hero() {
               <Button
                 size="xl"
                 variant="secondary"
-                className="btn-stripe w-full sm:w-auto sm:min-w-[190px]"
+                className="w-full sm:w-auto sm:min-w-[190px]"
               >
                 <HorizonsLabel />
               </Button>
@@ -93,7 +93,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="btn-stripe w-full sm:w-auto"
+              className="w-full sm:w-auto"
             >
               <a href={links.discord} target="_blank" rel="noopener noreferrer">
                 <DiscordIcon className="text-[#5865F2]" />
@@ -104,7 +104,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="btn-stripe w-full sm:w-auto"
+              className="w-full sm:w-auto"
             >
               <Link href="/apply">
                 <UserPlus />
@@ -115,7 +115,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="btn-stripe w-full sm:w-auto"
+              className="w-full sm:w-auto"
             >
               <Link href="/blog">
                 <BookText />
@@ -139,12 +139,12 @@ export function Hero() {
                 return (
                   <div
                     key={`${stat.label}-${i}`}
-                    className="flex items-center justify-center gap-3 px-4 py-8"
+                    className="group flex items-center justify-center gap-3 px-4 py-8"
                   >
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand transition-transform duration-300 group-hover:scale-125">
                       <Icon className="size-5" />
                     </div>
-                    <div className="text-left">
+                    <div className="text-left transition-transform duration-300 group-hover:scale-110">
                       <div className="whitespace-nowrap text-sm font-bold leading-tight text-white md:text-base">
                         {stat.value}
                       </div>
