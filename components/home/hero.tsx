@@ -74,10 +74,10 @@ export function Hero() {
             {hero.title || 'CLOUDZ™'}
           </motion.h1>
 
-          {/* Subtitle in Minecraft-style pixel font */}
+          {/* Subtitle — normal font, bold */}
           <motion.p
             variants={slideUp}
-            className="mt-5 max-w-2xl text-balance font-pixel text-lg font-semibold text-text-secondary md:text-xl"
+            className="mt-5 max-w-2xl text-balance text-lg font-bold text-text-secondary md:text-xl"
           >
             {hero.subtitle}
           </motion.p>
@@ -132,36 +132,38 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Flat liquid-glass info bar */}
+        {/* Liquid-glass info bar (transparent, same style as buttons) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="neon-hover mt-16 w-full max-w-3xl rounded-2xl"
+          className="mt-16 w-full max-w-3xl"
         >
-          <div className="overflow-hidden rounded-2xl border border-white/12 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl backdrop-saturate-150">
-            <div className="grid grid-cols-1 divide-y divide-white/[0.07] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              {hero.stats.map((stat, i) => {
-                const Icon = getIcon(stat.icon ?? 'Sparkles');
-                return (
-                  <div
-                    key={`${stat.label}-${i}`}
-                    className="flex items-center justify-center gap-3 px-5 py-5"
-                  >
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-brand">
-                      <Icon className="size-5" />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-sm font-bold leading-tight text-white md:text-base">
-                        {stat.value}
+          <div className="neon-hover rounded-2xl">
+            <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-150">
+              <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                {hero.stats.map((stat, i) => {
+                  const Icon = getIcon(stat.icon ?? 'Sparkles');
+                  return (
+                    <div
+                      key={`${stat.label}-${i}`}
+                      className="flex items-center justify-center gap-3.5 px-5 py-8"
+                    >
+                      <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand">
+                        <Icon className="size-5" />
                       </div>
-                      <div className="text-[11px] uppercase tracking-widest text-text-secondary">
-                        {stat.label}
+                      <div className="text-left">
+                        <div className="text-base font-bold leading-tight text-white md:text-lg">
+                          {stat.value}
+                        </div>
+                        <div className="text-[11px] uppercase tracking-widest text-text-secondary">
+                          {stat.label}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </motion.div>

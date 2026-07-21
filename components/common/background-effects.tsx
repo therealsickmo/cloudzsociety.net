@@ -2,10 +2,14 @@
 
 import { motion } from 'framer-motion';
 
+// Fine grain (feTurbulence) to dither gradients so they don't band/pixelate.
+const NOISE =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
 /**
- * Fixed decorative background: soft aurora-style gradients and slow floating
- * orbs in the brand colour. No grid/tiling; a touch lighter than the base so
- * the page feels graphical rather than flat-dark.
+ * Fixed decorative background: a slightly lifted base with very large, soft,
+ * overlapping brand gradients (no visible circles) plus a subtle grain layer
+ * to remove colour banding. Smooth and a touch lighter than pure black.
  */
 export function BackgroundEffects() {
   return (
@@ -13,42 +17,40 @@ export function BackgroundEffects() {
       aria-hidden
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      {/* Base lift — subtly lighter than the pure background */}
+      {/* Lifted base wash — a bit lighter than pure background */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(140% 90% at 50% -10%, rgb(var(--brand-900) / 0.55) 0%, rgb(var(--surface) / 0.4) 35%, transparent 70%)',
+            'linear-gradient(180deg, rgb(var(--surface) / 0.85) 0%, rgb(var(--background)) 55%)',
         }}
       />
 
-      {/* Aurora sweeps */}
+      {/* Large diffuse aurora gradients */}
       <div
-        className="absolute inset-0 opacity-80"
+        className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(50% 40% at 15% 20%, rgb(var(--brand-500) / 0.16), transparent 60%), radial-gradient(45% 45% at 85% 15%, rgb(var(--brand-400) / 0.14), transparent 60%), radial-gradient(55% 50% at 75% 85%, rgb(var(--brand-600) / 0.12), transparent 65%)',
+            'radial-gradient(85% 60% at 18% 8%, rgb(var(--brand-500) / 0.16), transparent 72%), radial-gradient(80% 65% at 88% 18%, rgb(var(--brand-400) / 0.13), transparent 74%), radial-gradient(95% 75% at 60% 108%, rgb(var(--brand-600) / 0.16), transparent 78%)',
         }}
       />
 
-      {/* Top brand glow */}
-      <div className="absolute -top-40 left-1/2 h-[38rem] w-[46rem] -translate-x-1/2 rounded-full bg-brand/20 blur-[150px]" />
+      {/* Soft, very large moving glows (huge blur → no circle edges) */}
+      <motion.div
+        className="absolute -left-1/4 top-1/4 h-[42rem] w-[42rem] rounded-full bg-brand/10 blur-[190px]"
+        animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
+        transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute -right-1/4 bottom-0 h-[44rem] w-[44rem] rounded-full bg-brand-400/10 blur-[200px]"
+        animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-      {/* Floating orbs */}
-      <motion.div
-        className="absolute left-[8%] top-[28%] h-72 w-72 rounded-full bg-brand/12 blur-[110px]"
-        animate={{ y: [0, -40, 0], x: [0, 24, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute right-[6%] top-[55%] h-80 w-80 rounded-full bg-brand-400/12 blur-[130px]"
-        animate={{ y: [0, 50, 0], x: [0, -30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-[6%] left-[40%] h-64 w-64 rounded-full bg-brand-600/10 blur-[120px]"
-        animate={{ y: [0, -30, 0], x: [0, -20, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      {/* Grain overlay — kills banding / that "pixel" look */}
+      <div
+        className="absolute inset-0 opacity-[0.045] mix-blend-soft-light"
+        style={{ backgroundImage: NOISE, backgroundSize: '120px 120px' }}
       />
     </div>
   );

@@ -66,21 +66,28 @@ export function HeroBackground() {
         />
       </motion.div>
 
-      {/* Darkening + brand glow overlays */}
+      {/* Even darkening */}
       <div
         className="absolute inset-0 bg-background"
         style={{ opacity: overlay }}
       />
+      {/* Brand glow */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 50% 38%, rgba(0,102,255,0.20), transparent 60%)',
+            'radial-gradient(circle at 50% 36%, rgba(0,102,255,0.20), transparent 60%)',
         }}
       />
-      {/* Smooth fade into the page background at the edges */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      {/* Long, smooth vertical blend so the image melts into the page
+          background instead of ending in a hard cut */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgb(var(--background)) 0%, transparent 16%, transparent 48%, rgb(var(--background) / 0.7) 78%, rgb(var(--background)) 100%)',
+        }}
+      />
     </div>
   );
 }
