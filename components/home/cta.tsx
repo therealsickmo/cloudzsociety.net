@@ -11,7 +11,7 @@ export function CTA() {
   return (
     <Section>
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-b from-card to-surface p-10 text-center md:p-16">
+        <div className="neon-hover relative overflow-hidden rounded-3xl border border-border bg-gradient-to-b from-card to-surface p-10 text-center md:p-16">
           <div className="absolute inset-x-0 -top-24 mx-auto h-48 w-2/3 rounded-full bg-brand/25 blur-[120px]" />
           <div className="relative">
             <h2 className="mx-auto max-w-2xl text-balance text-3xl font-bold tracking-tight text-white md:text-4xl">

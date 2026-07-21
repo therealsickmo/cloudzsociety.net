@@ -50,9 +50,8 @@ const GROUPS: Group[] = [
     title: 'Hero (Startseite oben)',
     path: 'hero',
     fields: [
-      { key: 'badge', label: 'Badge-Text', type: 'text', wide: true },
-      { key: 'title', label: 'Titel (für Screenreader/SEO)', type: 'text' },
-      { key: 'subtitle', label: 'Untertitel', type: 'textarea', wide: true },
+      { key: 'title', label: 'Titel (unter dem Logo)', type: 'text', wide: true },
+      { key: 'subtitle', label: 'Untertitel-Text', type: 'textarea', wide: true },
     ],
   },
   {

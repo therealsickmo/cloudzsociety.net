@@ -19,10 +19,9 @@ export const defaultContent: SiteContent = {
     ],
   },
   hero: {
-    badge: 'Spielmodus „Skyfall“ ist live',
     title: 'CLOUDZ™',
     subtitle:
-      'Eine moderne Minecraft Community. Eigene Spielmodi, eine aktive Community und regelmäßige Updates — willkommen im Netzwerk.',
+      'Eine moderne Minecraft Community. Temporäre Projekte, eine aktive Community und regelmäßige Updates — willkommen im Netzwerk.',
     joinLabel: 'Minecraft Horizons',
     discordLabel: 'CLOUDZ™ Discord',
     rulesLabel: 'Regeln lesen',

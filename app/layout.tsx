@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Pixelify_Sans } from 'next/font/google';
 import './globals.css';
 import { SITE } from '@/lib/constants';
 import { getContent, getPublicSettings } from '@/lib/content-store';
@@ -13,6 +13,14 @@ import { MouseGlow } from '@/components/common/mouse-glow';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
+});
+
+// Minecraft-chat-style pixel font (free Google alternative).
+const pixel = Pixelify_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-pixel',
   display: 'swap',
 });
 
@@ -72,7 +80,11 @@ export default function RootLayout({
   const themeCss = buildThemeCss(settings.theme);
 
   return (
-    <html lang="de" className={`${inter.variable} dark`} suppressHydrationWarning>
+    <html
+      lang="de"
+      className={`${inter.variable} ${pixel.variable} dark`}
+      suppressHydrationWarning
+    >
       <head>
         <style
           id="cz-theme"

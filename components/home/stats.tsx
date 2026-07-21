@@ -61,7 +61,7 @@ export function Stats() {
       />
 
       <Reveal>
-        <Card className="overflow-hidden p-0">
+        <Card className="neon-hover overflow-hidden p-0">
           <div className="flex items-center justify-between border-b border-border px-6 py-4">
             <div className="flex items-center gap-2">
               <span className="relative flex size-2.5">

@@ -195,7 +195,6 @@ export interface PageHeaderContent {
 export interface SiteContent {
   nav: { items: NavItemContent[] };
   hero: {
-    badge: string;
     title: string;
     subtitle: string;
     joinLabel: string;

@@ -14,7 +14,7 @@ export function Features() {
           const Icon = getIcon(feature.icon);
           return (
             <Reveal key={`${feature.title}-${i}`} delay={i * 0.08}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-glow">
+              <div className="neon-hover group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 transition-colors duration-300 hover:border-brand/40">
                 {/* Hover glow */}
                 <div className="absolute -right-16 -top-16 size-40 rounded-full bg-brand/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative">
