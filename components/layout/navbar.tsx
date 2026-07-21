@@ -18,28 +18,13 @@ export function Navbar() {
   const pathname = usePathname();
   const { links } = useSettings();
   const navItems = useContent().nav.items.filter((item) => item.enabled);
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   // Close the mobile menu whenever the route changes.
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        scrolled
-          ? 'border-b border-border bg-background/80 backdrop-blur-xl'
-          : 'border-b border-transparent',
-      )}
-    >
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl">
       <nav className="container flex h-16 items-center justify-between gap-4">
         <Link href="/" aria-label="CLOUDZ Startseite">
           <Logo />

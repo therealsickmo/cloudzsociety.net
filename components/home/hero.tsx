@@ -139,17 +139,19 @@ export function Hero() {
                 return (
                   <div
                     key={`${stat.label}-${i}`}
-                    className="group flex items-center justify-center gap-3 px-4 py-8"
+                    className="group flex items-center justify-center px-4 py-8"
                   >
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand transition-transform duration-300 group-hover:scale-125">
-                      <Icon className="size-5" />
-                    </div>
-                    <div className="text-left transition-transform duration-300 group-hover:scale-110">
-                      <div className="whitespace-nowrap text-sm font-bold leading-tight text-white md:text-base">
-                        {stat.value}
+                    <div className="flex items-center gap-3 transition-transform duration-300 ease-out group-hover:scale-[1.12]">
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand">
+                        <Icon className="size-5" />
                       </div>
-                      <div className="text-[11px] uppercase tracking-widest text-text-secondary">
-                        {stat.label}
+                      <div className="text-left">
+                        <div className="whitespace-nowrap text-sm font-bold leading-tight text-white md:text-base">
+                          {stat.value}
+                        </div>
+                        <div className="text-[11px] uppercase tracking-widest text-text-secondary">
+                          {stat.label}
+                        </div>
                       </div>
                     </div>
                   </div>
