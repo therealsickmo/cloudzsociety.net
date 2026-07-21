@@ -20,14 +20,14 @@ export function HorizonsLabel() {
         <Image
           src="/icons/grass-block.png"
           alt=""
-          width={40}
-          height={40}
+          width={48}
+          height={48}
           unoptimized
           onError={() => setBlockOk(false)}
-          className="size-7 shrink-0 [image-rendering:pixelated]"
+          className="size-8 shrink-0 object-contain"
         />
       ) : (
-        <MinecraftBlock className="size-7 shrink-0" />
+        <MinecraftBlock className="size-8 shrink-0" />
       )}
 
       <span className="flex flex-col items-center justify-center leading-none">
@@ -35,11 +35,11 @@ export function HorizonsLabel() {
           <Image
             src="/icons/minecraft-logo.png"
             alt="Minecraft"
-            width={140}
-            height={28}
+            width={160}
+            height={90}
             unoptimized
             onError={() => setLogoOk(false)}
-            className="h-3.5 w-auto"
+            className="h-5 w-auto max-w-[130px] object-contain"
           />
         ) : (
           <span className="font-pixel text-sm font-bold uppercase tracking-wide text-white">
