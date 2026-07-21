@@ -14,7 +14,6 @@ import {
   useContent,
   useSettings,
 } from '@/components/providers/settings-provider';
-import { getIcon } from '@/lib/icons';
 import { staggerContainer, slideUp } from '@/lib/animations';
 
 const LOGO_SIZE: Record<string, string> = {
@@ -31,69 +30,58 @@ export function Hero() {
   const logoSize = LOGO_SIZE[layout.heroLogoSize] ?? LOGO_SIZE.gross;
 
   return (
-    <>
-      {/* ── Hero image: logo + subtitle, centered ── */}
-      <section className="relative overflow-hidden py-20 md:py-28">
-        <HeroBackground />
-        <div className="container relative z-10 flex min-h-[60vh] flex-col items-center justify-center text-center">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="show"
-            className="flex flex-col items-center"
-          >
-            {/* Logo */}
-            <motion.div variants={slideUp}>
-              {logoOk ? (
-                <motion.div
-                  animate={{ scale: [1, 1.06, 1], y: [0, -8, 0] }}
-                  transition={{
-                    duration: 4.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="mx-auto w-fit"
-                >
-                  <Image
-                    src="/logo/cloudz-logo.png"
-                    alt={hero.title}
-                    width={880}
-                    height={880}
-                    priority
-                    unoptimized
-                    onError={() => setLogoOk(false)}
-                    className={`mx-auto w-auto drop-shadow-[0_0_80px_rgba(0,102,255,0.6)] ${logoSize}`}
-                  />
-                </motion.div>
-              ) : (
-                <span className="text-gradient-brand text-7xl font-extrabold tracking-tight drop-shadow-[0_0_40px_rgba(0,102,255,0.35)] md:text-8xl">
-                  {hero.title || 'CLOUDZ™'}
-                </span>
-              )}
-            </motion.div>
-            <span className="sr-only">{hero.title}</span>
-
-            {/* Subtitle — normal font, bold */}
-            <motion.p
-              variants={slideUp}
-              className="mt-6 max-w-2xl text-balance text-lg font-bold text-text-secondary md:text-xl"
-            >
-              {hero.subtitle}
-            </motion.p>
+    <section className="relative overflow-hidden py-20 md:py-28">
+      <HeroBackground />
+      <div className="container relative z-10 flex flex-col items-center text-center">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col items-center"
+        >
+          {/* Logo */}
+          <motion.div variants={slideUp}>
+            {logoOk ? (
+              <motion.div
+                animate={{ scale: [1, 1.06, 1], y: [0, -8, 0] }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="mx-auto w-fit"
+              >
+                <Image
+                  src="/logo/cloudz-logo.png"
+                  alt={hero.title}
+                  width={880}
+                  height={880}
+                  priority
+                  unoptimized
+                  onError={() => setLogoOk(false)}
+                  className={`mx-auto w-auto drop-shadow-[0_0_80px_rgba(0,102,255,0.6)] ${logoSize}`}
+                />
+              </motion.div>
+            ) : (
+              <span className="text-gradient-brand text-7xl font-extrabold tracking-tight drop-shadow-[0_0_40px_rgba(0,102,255,0.35)] md:text-8xl">
+                {hero.title || 'CLOUDZ™'}
+              </span>
+            )}
           </motion.div>
-        </div>
-      </section>
+          <span className="sr-only">{hero.title}</span>
 
-      {/* ── Actions + info bar (own section below the image) ── */}
-      <section className="relative border-t border-white/10 py-16 md:py-20">
-        <div className="container relative z-10 flex flex-col items-center text-center">
-          {/* CTAs */}
+          {/* Subtitle — normal font, bold */}
+          <motion.p
+            variants={slideUp}
+            className="mt-6 max-w-2xl text-balance text-lg font-bold text-text-secondary md:text-xl"
+          >
+            {hero.subtitle}
+          </motion.p>
+
+          {/* CTAs — directly under the text */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row"
+            variants={slideUp}
+            className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row"
           >
             <JoinServer>
               <Button
@@ -138,45 +126,8 @@ export function Hero() {
               </Link>
             </Button>
           </motion.div>
-
-          {/* Liquid-glass info bar (transparent, same style as buttons) */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12 w-full max-w-3xl"
-          >
-            <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-150">
-              <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-                {hero.stats.map((stat, i) => {
-                  const Icon = getIcon(stat.icon ?? 'Sparkles');
-                  return (
-                    <div
-                      key={`${stat.label}-${i}`}
-                      className="group flex items-center justify-center px-4 py-8"
-                    >
-                      <div className="flex items-center gap-3 transition-transform duration-300 ease-out group-hover:scale-[1.12]">
-                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand">
-                          <Icon className="size-5" />
-                        </div>
-                        <div className="text-left">
-                          <div className="whitespace-nowrap text-sm font-bold leading-tight text-white md:text-base">
-                            {stat.value}
-                          </div>
-                          <div className="text-[11px] uppercase tracking-widest text-text-secondary">
-                            {stat.label}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </>
+        </motion.div>
+      </div>
+    </section>
   );
 }
