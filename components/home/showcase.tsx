@@ -72,17 +72,18 @@ export function Showcase() {
           return (
             <Reveal key={`${card.title}-${i}`} delay={i * 0.1}>
               <div className="group relative flex min-h-[640px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-brand-500/[0.06] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.3)]">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand shadow-[0_0_16px_rgb(var(--brand-500)/0.25)] transition-transform duration-300 group-hover:scale-110">
                     <CardIcon className="size-6" />
                   </span>
-                  <h3 className="text-2xl font-bold tracking-tight text-white">
-                    {card.title}
-                  </h3>
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight text-white">
+                      {card.title}
+                    </h3>
+                    {/* Lightsaber underline directly under the title text */}
+                    <span className="mt-2 block h-0.5 w-12 origin-left rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-24" />
+                  </div>
                 </div>
-
-                {/* Lightsaber underline under the title */}
-                <span className="mt-3 block h-0.5 w-12 origin-left rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-28" />
 
                 <p className="mt-4 text-[15px] font-semibold leading-relaxed text-text-secondary">
                   {card.description}
