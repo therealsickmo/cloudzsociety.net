@@ -33,8 +33,8 @@ export function Navbar() {
         {/* Brand (far left) */}
         <HeaderBrand />
 
-        {/* Desktop nav — no permanent box; a static blue border with a soft
-            glow appears on hover and stays on the active page. No animation. */}
+        {/* Desktop nav — Liquid-Glass box appears on hover / active page,
+            with a small brand-coloured underline accent. No animation. */}
         <ul className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
@@ -43,10 +43,10 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'relative flex items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-bold transition-all duration-200 hover:scale-105',
+                    'group relative flex items-center gap-1.5 rounded-xl border px-4 py-2 text-sm font-bold backdrop-blur-xl backdrop-saturate-150 transition-all duration-200',
                     active
-                      ? 'border-brand bg-white/5 text-white shadow-[0_0_14px_rgb(var(--brand-500)/0.5)]'
-                      : 'border-transparent text-text-secondary hover:border-brand hover:bg-white/5 hover:text-white hover:shadow-[0_0_14px_rgb(var(--brand-500)/0.5)]',
+                      ? 'border-white/15 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_18px_rgb(var(--brand-500)/0.22)]'
+                      : 'border-transparent text-text-secondary hover:border-white/15 hover:bg-white/[0.08] hover:text-white hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_18px_rgb(var(--brand-500)/0.22)]',
                   )}
                 >
                   {item.label}
@@ -55,6 +55,13 @@ export function Navbar() {
                       {item.badge}
                     </span>
                   )}
+                  {/* underline accent */}
+                  <span
+                    className={cn(
+                      'pointer-events-none absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-400 to-brand-300 transition-opacity duration-200',
+                      active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
+                    )}
+                  />
                 </Link>
               </li>
             );
@@ -66,11 +73,12 @@ export function Navbar() {
           <DiscordJoinButton href={links.discord} />
           <Button
             asChild
+            variant="outline"
             size="sm"
-            className="border-brand-300/30 bg-gradient-to-r from-brand-600 via-brand-300 to-brand-600 font-bold shadow-none transition-transform duration-200 hover:scale-105"
+            className="border-brand-400/40 bg-gradient-to-br from-white/[0.1] via-brand-500/[0.12] to-brand-400/[0.16] font-bold text-white backdrop-blur-xl backdrop-saturate-150 transition-transform duration-200 hover:scale-105 hover:border-brand-300/60"
           >
             <Link href="/dashboard">
-              <LayoutDashboard className="size-4" />
+              <LayoutDashboard className="size-4 text-brand-200" />
               DASHBOARD
             </Link>
           </Button>
@@ -133,11 +141,12 @@ export function Navbar() {
                 </Button>
                 <Button
                   asChild
+                  variant="outline"
                   size="sm"
-                  className="border-brand-300/30 bg-gradient-to-r from-brand-600 via-brand-300 to-brand-600 font-bold shadow-none"
+                  className="border-brand-400/40 bg-gradient-to-br from-white/[0.1] via-brand-500/[0.12] to-brand-400/[0.16] font-bold text-white"
                 >
                   <Link href="/dashboard">
-                    <LayoutDashboard className="size-4" />
+                    <LayoutDashboard className="size-4 text-brand-200" />
                     DASHBOARD
                   </Link>
                 </Button>
