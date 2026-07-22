@@ -14,10 +14,10 @@ import {
 import { staggerContainer, slideUp } from '@/lib/animations';
 
 const LOGO_SIZE: Record<string, string> = {
-  klein: 'h-56 sm:h-72 md:h-[24rem]',
-  mittel: 'h-72 sm:h-96 md:h-[30rem]',
-  gross: 'h-80 sm:h-[28rem] md:h-[38rem]',
-  riesig: 'h-96 sm:h-[32rem] md:h-[44rem]',
+  klein: 'h-36 sm:h-44 md:h-56',
+  mittel: 'h-44 sm:h-56 md:h-72',
+  gross: 'h-56 sm:h-72 md:h-[22rem]',
+  riesig: 'h-64 sm:h-80 md:h-[27rem]',
 };
 
 export function Hero() {
@@ -27,7 +27,7 @@ export function Hero() {
   const logoSize = LOGO_SIZE[layout.heroLogoSize] ?? LOGO_SIZE.gross;
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section className="relative overflow-hidden py-10 md:py-14">
       <HeroBackground />
       <div className="container relative z-10 flex flex-col items-center text-center">
         <motion.div
@@ -70,7 +70,7 @@ export function Hero() {
           {/* Subtitle — normal font, bold */}
           <motion.p
             variants={slideUp}
-            className="mt-6 max-w-2xl text-balance text-lg font-bold text-text-secondary md:text-xl"
+            className="mt-5 max-w-2xl text-balance text-base font-bold text-text-secondary md:text-lg"
           >
             {hero.subtitle}
           </motion.p>
@@ -78,13 +78,13 @@ export function Hero() {
           {/* CTAs — bigger buttons with a lift-on-hover effect */}
           <motion.div
             variants={slideUp}
-            className="mt-12 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row"
+            className="mt-8 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row"
           >
             <Button
               asChild
               size="xl"
               variant="secondary"
-              className="h-16 w-full px-10 text-lg transition-transform duration-200 hover:scale-105 [&_svg]:size-6 sm:w-auto sm:min-w-[210px]"
+              className="h-[4.5rem] w-full px-12 text-xl transition-transform duration-200 hover:scale-105 [&_svg]:size-7 sm:w-auto sm:min-w-[230px]"
             >
               <Link href="/apply">
                 <UserPlus />
@@ -95,7 +95,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="h-16 w-full px-10 text-lg transition-transform duration-200 hover:scale-105 [&_svg]:size-6 sm:w-auto sm:min-w-[210px]"
+              className="h-[4.5rem] w-full px-12 text-xl transition-transform duration-200 hover:scale-105 [&_svg]:size-7 sm:w-auto sm:min-w-[230px]"
             >
               <Link href="/blog">
                 <BookText />
