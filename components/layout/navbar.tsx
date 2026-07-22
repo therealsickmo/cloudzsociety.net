@@ -58,7 +58,7 @@ export function Navbar() {
                   {/* lightsaber underline — ignites from the centre outwards */}
                   <span
                     className={cn(
-                      'pointer-events-none absolute bottom-1 left-1/2 h-[3px] w-10 -translate-x-1/2 rounded-full bg-brand-300 shadow-[0_0_10px_rgb(var(--brand-400)),0_0_4px_rgb(var(--brand-200))] transition-transform duration-300 ease-out',
+                      'pointer-events-none absolute bottom-1 left-1/2 h-px w-10 -translate-x-1/2 rounded-full bg-brand-200 shadow-[0_0_10px_rgb(var(--brand-300)),0_0_5px_rgb(var(--brand-100))] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
                       active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
                     )}
                   />
@@ -75,10 +75,10 @@ export function Navbar() {
             asChild
             variant="outline"
             size="sm"
-            className="border-brand-400/40 bg-gradient-to-br from-white/[0.1] via-brand-500/[0.12] to-brand-400/[0.16] font-bold text-white backdrop-blur-xl backdrop-saturate-150 transition-transform duration-200 hover:scale-105 hover:border-brand-300/60"
+            className="border-brand-300/60 bg-gradient-to-br from-brand-400/80 via-brand-500/80 to-brand-600/80 font-bold text-white backdrop-blur-xl backdrop-saturate-150 transition-transform duration-200 hover:scale-105 hover:border-brand-200/70 hover:from-brand-300/90 hover:to-brand-500/90"
           >
             <Link href="/dashboard">
-              <LayoutDashboard className="size-4 text-brand-200" />
+              <LayoutDashboard className="size-4 text-white" />
               DASHBOARD
             </Link>
           </Button>
@@ -143,10 +143,10 @@ export function Navbar() {
                   asChild
                   variant="outline"
                   size="sm"
-                  className="border-brand-400/40 bg-gradient-to-br from-white/[0.1] via-brand-500/[0.12] to-brand-400/[0.16] font-bold text-white"
+                  className="border-brand-300/60 bg-gradient-to-br from-brand-400/80 via-brand-500/80 to-brand-600/80 font-bold text-white"
                 >
                   <Link href="/dashboard">
-                    <LayoutDashboard className="size-4 text-brand-200" />
+                    <LayoutDashboard className="size-4 text-white" />
                     DASHBOARD
                   </Link>
                 </Button>
