@@ -76,12 +76,12 @@ export function Showcase() {
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand shadow-[0_0_16px_rgb(var(--brand-500)/0.25)] transition-transform duration-300 group-hover:scale-110">
                     <CardIcon className="size-6" />
                   </span>
-                  <div>
+                  <div className="w-fit">
                     <h3 className="text-2xl font-bold tracking-tight text-white">
                       {card.title}
                     </h3>
-                    {/* Lightsaber underline directly under the title text */}
-                    <span className="mt-2 block h-0.5 w-12 origin-left rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-24" />
+                    {/* Blue underline as wide as the title */}
+                    <span className="mt-2 block h-0.5 w-full rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))]" />
                   </div>
                 </div>
 
