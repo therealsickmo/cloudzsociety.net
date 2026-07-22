@@ -72,6 +72,7 @@ const GROUPS: Group[] = [
     title: 'Showcase – Überschrift',
     path: 'showcase',
     fields: [
+      { key: 'eyebrow', label: 'Kleiner Text (über dem Titel)', type: 'text', wide: true },
       { key: 'title', label: 'Großer Titel', type: 'text', wide: true, hint: '„CLOUDZ" wird automatisch blau' },
       { key: 'subtitle', label: 'Untertitel', type: 'text', wide: true },
     ],

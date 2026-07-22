@@ -18,16 +18,20 @@ function highlightBrand(text: string): ReactNode {
 }
 
 export function Showcase() {
-  const { title, subtitle, cards } = getContent().showcase;
+  const { eyebrow, title, subtitle, cards } = getContent().showcase;
 
   return (
     <Section>
-      {/* Big title + subtitle with underline accent */}
-      <Reveal className="mb-14 flex flex-col items-center gap-4 text-center">
-        <h2 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-white md:text-5xl">
+      {/* Eyebrow + big title + subtitle */}
+      <Reveal className="mb-14 flex flex-col items-center gap-3 text-center">
+        {eyebrow && (
+          <span className="text-sm font-extrabold uppercase tracking-widest text-brand">
+            {eyebrow}
+          </span>
+        )}
+        <h2 className="max-w-4xl text-balance text-4xl font-black tracking-tight text-white md:text-5xl">
           {highlightBrand(title)}
         </h2>
-        <span className="h-0.5 w-20 rounded-full bg-gradient-to-r from-brand-400 to-brand-300 shadow-[0_0_10px_rgb(var(--brand-500))]" />
         {subtitle && (
           <p className="max-w-2xl text-pretty text-base font-semibold text-text-secondary md:text-lg">
             {subtitle}

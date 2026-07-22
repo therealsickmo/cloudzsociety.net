@@ -202,6 +202,7 @@ export interface ShowcaseCard {
 }
 
 export interface ShowcaseContent {
+  eyebrow: string;
   title: string;
   subtitle: string;
   cards: ShowcaseCard[];
