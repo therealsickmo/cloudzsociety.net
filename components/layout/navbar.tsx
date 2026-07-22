@@ -58,7 +58,7 @@ export function Navbar() {
                   {/* lightsaber underline — ignites from the centre outwards */}
                   <span
                     className={cn(
-                      'pointer-events-none absolute bottom-1 left-1/2 h-px w-10 -translate-x-1/2 rounded-full bg-brand-200 shadow-[0_0_10px_rgb(var(--brand-300)),0_0_5px_rgb(var(--brand-100))] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+                      'pointer-events-none absolute bottom-1 left-1/2 h-0.5 w-10 -translate-x-1/2 rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
                       active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
                     )}
                   />
