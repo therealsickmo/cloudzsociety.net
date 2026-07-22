@@ -82,19 +82,21 @@ const GROUPS: Group[] = [
     title: 'Showcase – Karten',
     path: 'showcase.cards',
     fields: [
+      { key: 'icon', label: 'Icon (vor dem Titel)', type: 'select', options: ICON_OPTIONS },
+      { key: 'title', label: 'Titel', type: 'text' },
       { key: 'image', label: 'Skin-Bild', type: 'image', wide: true },
-      { key: 'title', label: 'Titel', type: 'text', wide: true },
       { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },
       {
         key: 'tags',
         label: 'Tags',
         type: 'text',
         wide: true,
-        hint: 'Komma-getrennt, z. B. 99.9% Uptime, Fair Play',
+        hint: 'Komma-getrennt. Icon optional mit | davor, z. B. Zap|99.9% Uptime, Shield|Fair Play',
       },
     ],
     itemLabel: (i) => String(i.title),
     newItem: () => ({
+      icon: 'Sparkles',
       image: '/images/skin-render.webp',
       title: 'Neue Karte',
       description: '',

@@ -3,6 +3,15 @@ import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
 import { CardSkin } from '@/components/home/skin-render';
 import { getContent } from '@/lib/content-store';
+import { getIcon } from '@/lib/icons';
+
+/** Parse a tag string that may be "IconName|Label" into { icon, label }. */
+function parseTag(raw: string): { icon: string; label: string } {
+  const [a, b] = raw.split('|');
+  return b !== undefined
+    ? { icon: a.trim(), label: b.trim() }
+    : { icon: 'Sparkles', label: a.trim() };
+}
 
 /** Colour every "CLOUDZ" / "CLOUDZ™" occurrence in the brand blue. */
 function highlightBrand(text: string): ReactNode {
@@ -41,28 +50,39 @@ export function Showcase() {
 
       <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
         {cards.map((card, i) => {
+          const CardIcon = getIcon(card.icon);
           const tags = card.tags
             .split(',')
             .map((t) => t.trim())
-            .filter(Boolean);
+            .filter(Boolean)
+            .map(parseTag);
           return (
             <Reveal key={`${card.title}-${i}`} delay={i * 0.1}>
-              <div className="relative flex min-h-[640px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-brand-900/20 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl">
-                <h3 className="text-2xl font-bold tracking-tight text-white">
-                  {card.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+              <div className="group relative flex min-h-[640px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-brand-900/20 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.3)]">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand shadow-[0_0_16px_rgb(var(--brand-500)/0.25)] transition-transform duration-300 group-hover:scale-110">
+                    <CardIcon className="size-6" />
+                  </span>
+                  <h3 className="text-2xl font-bold tracking-tight text-white">
+                    {card.title}
+                  </h3>
+                </div>
+                <p className="mt-4 text-[15px] font-semibold leading-relaxed text-text-secondary">
                   {card.description}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {tags.map((tag, t) => (
-                    <span
-                      key={`${tag}-${t}`}
-                      className="rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-semibold text-white"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {tags.map((tag, t) => {
+                    const TagIcon = getIcon(tag.icon);
+                    return (
+                      <span
+                        key={`${tag.label}-${t}`}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold text-white"
+                      >
+                        <TagIcon className="size-3.5 text-brand-200" />
+                        {tag.label}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 {/* Skin — large, on the left, anchored bottom */}

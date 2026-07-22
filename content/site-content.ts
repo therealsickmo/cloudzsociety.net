@@ -24,25 +24,28 @@ export const defaultContent: SiteContent = {
     subtitle: 'Der faire deutsche Minecraft Server ohne Pay2Win',
     cards: [
       {
+        icon: 'Sparkles',
         image: '/images/skin-render.webp',
-        title: 'Stabile Server ohne Lags',
+        title: 'Immer etwas Neues',
         description:
-          'Hochleistungs-Hardware garantiert dir ein lagfreies Minecraft-Erlebnis rund um die Uhr.',
-        tags: '99.9% Uptime, Dedicated Hardware',
+          'Langweilige Dauer-Server gibt es genug. CLOUDZ™ setzt auf zeitlich begrenzte Projekte mit frischen Ideen und einzigartigen Erlebnissen.',
+        tags: 'RefreshCw|Temporäre Projekte, Sparkles|Einzigartige Konzepte',
       },
       {
+        icon: 'Users',
         image: '/images/skin-render.webp',
-        title: 'Faires Spiel ohne Pay2Win',
+        title: 'Jeder startet gleich',
         description:
-          'Bei uns entscheidet Können, nicht dein Geldbeutel. Alle Spieler starten mit den gleichen Chancen.',
-        tags: 'Kein Pay2Win, Fair Play',
+          'Neue Projekte bedeuten einen gemeinsamen Start für alle. Niemand ist jahrelang im Vorteil – jeder hat die Chance, Geschichte zu schreiben.',
+        tags: 'Target|Chancengleichheit, Shield|Faire Bedingungen',
       },
       {
+        icon: 'Gem',
         image: '/images/skin-render.webp',
-        title: 'Aktive & freundliche Community',
+        title: 'Qualität statt Masse',
         description:
-          'Eine loyale Community und ein Team, das rund um die Uhr für dich da ist.',
-        tags: '+400 Mitglieder, 24/7 Support',
+          'Wir veröffentlichen nur Projekte, hinter denen wir stehen. Weniger Features, dafür mehr Liebe zum Detail und ein durchdachtes Spielerlebnis.',
+        tags: 'Heart|Liebe zum Detail, Trophy|Hohe Qualität',
       },
     ],
   },

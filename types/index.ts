@@ -194,10 +194,11 @@ export interface PageHeaderContent {
 }
 
 export interface ShowcaseCard {
+  icon: string;
   image: string;
   title: string;
   description: string;
-  /** Comma-separated tags. */
+  /** Comma-separated tags; each may be "IconName|Label" for a tag icon. */
   tags: string;
 }
 
