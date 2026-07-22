@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { getIcon, ICON_OPTIONS } from '@/lib/icons';
-import { TAG_COLOR_OPTIONS } from '@/lib/tag-colors';
+import { iconColorClass, TAG_COLOR_OPTIONS } from '@/lib/tag-colors';
 import type { Field } from '@/components/admin/schema';
 
 interface FieldInputProps {
@@ -261,8 +261,8 @@ function TagsControl({
             className="space-y-2 rounded-xl border border-border bg-surface/40 p-3"
           >
             <div className="flex items-center gap-2">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface/60 text-brand">
-                <Icon className="size-4" />
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface/60">
+                <Icon className={`size-4 ${iconColorClass(tag.iconColor)}`} />
               </span>
               <Input
                 value={tag.label}
