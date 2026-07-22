@@ -43,10 +43,10 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'group relative flex items-center gap-1.5 rounded-xl border px-4 py-2 text-sm font-bold backdrop-blur-xl backdrop-saturate-150 transition-all duration-200',
+                    'group relative flex items-center gap-1.5 rounded-xl border px-4 py-2 text-sm font-bold backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 hover:scale-105',
                     active
-                      ? 'border-white/15 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_18px_rgb(var(--brand-500)/0.22)]'
-                      : 'border-transparent text-text-secondary hover:border-white/15 hover:bg-white/[0.08] hover:text-white hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_18px_rgb(var(--brand-500)/0.22)]',
+                      ? 'border-white/15 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]'
+                      : 'border-transparent text-text-secondary hover:border-white/15 hover:bg-white/[0.08] hover:text-white hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]',
                   )}
                 >
                   {item.label}
@@ -55,11 +55,11 @@ export function Navbar() {
                       {item.badge}
                     </span>
                   )}
-                  {/* underline accent */}
+                  {/* lightsaber underline — ignites from the centre outwards */}
                   <span
                     className={cn(
-                      'pointer-events-none absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-400 to-brand-300 transition-opacity duration-200',
-                      active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
+                      'pointer-events-none absolute bottom-1 left-1/2 h-[3px] w-10 -translate-x-1/2 rounded-full bg-brand-300 shadow-[0_0_10px_rgb(var(--brand-400)),0_0_4px_rgb(var(--brand-200))] transition-transform duration-300 ease-out',
+                      active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
                     )}
                   />
                 </Link>
