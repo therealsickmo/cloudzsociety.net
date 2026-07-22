@@ -80,8 +80,8 @@ export function Showcase() {
                     <h3 className="text-2xl font-bold tracking-tight text-white">
                       {card.title}
                     </h3>
-                    {/* Blue underline as wide as the title */}
-                    <span className="mt-2 block h-0.5 w-full rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))]" />
+                    {/* Blue underline (title width) — ignites on hover */}
+                    <span className="mt-2 block h-0.5 w-full origin-left scale-x-0 rounded-full bg-brand-500 shadow-[0_0_10px_rgb(var(--brand-500)),0_0_5px_rgb(var(--brand-400))] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
                   </div>
                 </div>
 
