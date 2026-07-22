@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { BookOpen, Menu, X } from 'lucide-react';
+import { LogIn, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   useContent,
@@ -69,16 +69,16 @@ export function Navbar() {
         {/* Desktop actions (far right) */}
         <div className="hidden items-center gap-3 lg:flex">
           <Button asChild variant="outline" size="sm">
-            <a href={links.wiki} target="_blank" rel="noopener noreferrer">
-              <BookOpen className="size-4" />
-              CLOUDZ™ WIKI
-            </a>
-          </Button>
-          <Button asChild variant="outline" size="sm">
             <a href={links.discord} target="_blank" rel="noopener noreferrer">
               <DiscordIcon className="size-4 text-[#5865F2]" />
               DISCORD
             </a>
+          </Button>
+          <Button asChild size="sm">
+            <Link href="/login">
+              <LogIn className="size-4" />
+              LOGIN
+            </Link>
           </Button>
         </div>
 
@@ -128,12 +128,6 @@ export function Navbar() {
               })}
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <Button asChild variant="outline" size="sm">
-                  <a href={links.wiki} target="_blank" rel="noopener noreferrer">
-                    <BookOpen className="size-4" />
-                    CLOUDZ™ WIKI
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="sm">
                   <a
                     href={links.discord}
                     target="_blank"
@@ -142,6 +136,12 @@ export function Navbar() {
                     <DiscordIcon className="size-4 text-[#5865F2]" />
                     DISCORD
                   </a>
+                </Button>
+                <Button asChild size="sm">
+                  <Link href="/login">
+                    <LogIn className="size-4" />
+                    LOGIN
+                  </Link>
                 </Button>
               </div>
             </div>
