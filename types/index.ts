@@ -202,7 +202,8 @@ export interface ShowcaseCard {
 }
 
 export interface ShowcaseContent {
-  sectionTitle: string;
+  title: string;
+  subtitle: string;
   cards: ShowcaseCard[];
 }
 

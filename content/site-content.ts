@@ -19,7 +19,8 @@ export const defaultContent: SiteContent = {
     ],
   },
   showcase: {
-    sectionTitle: 'Der faire deutsche Minecraft Server ohne Pay2Win',
+    title: 'Wieso ausgerechnet CLOUDZ™?',
+    subtitle: 'Der faire deutsche Minecraft Server ohne Pay2Win',
     cards: [
       {
         image: '/images/skin-render.webp',

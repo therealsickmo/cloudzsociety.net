@@ -1,6 +1,5 @@
 import { Hero } from '@/components/home/hero';
 import { Showcase } from '@/components/home/showcase';
-import { About } from '@/components/home/about';
 import { Features } from '@/components/home/features';
 import { Stats } from '@/components/home/stats';
 import { CTA } from '@/components/home/cta';
@@ -13,7 +12,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      {sections.about && <About />}
       <Showcase />
       {sections.features && <Features />}
       {sections.stats && <Stats />}
