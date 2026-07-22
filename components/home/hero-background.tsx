@@ -22,8 +22,8 @@ export function HeroBackground() {
   const sy = useSpring(py, { stiffness: 50, damping: 18, mass: 0.6 });
 
   // Background moves opposite to the pointer (depth).
-  const bgX = useTransform(sx, [-0.5, 0.5], [28, -28]);
-  const bgY = useTransform(sy, [-0.5, 0.5], [28, -28]);
+  const bgX = useTransform(sx, [-0.5, 0.5], [14, -14]);
+  const bgY = useTransform(sy, [-0.5, 0.5], [14, -14]);
 
   useEffect(() => {
     const section = rootRef.current?.parentElement;
@@ -63,11 +63,11 @@ export function HeroBackground() {
     >
       {/* Parallax image layer (scaled up so edges never show while shifting) */}
       <motion.div
-        style={{ x: bgX, y: bgY, scale: 1.14 }}
+        style={{ x: bgX, y: bgY, scale: 1.05 }}
         className="absolute inset-0"
       >
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('${layout.heroBackground || '/images/cloudz-banner-leer.png'}')`,
           }}

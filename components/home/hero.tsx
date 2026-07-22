@@ -84,7 +84,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="h-[4.5rem] w-full px-12 text-xl transition-transform duration-200 hover:scale-105 [&_svg]:size-7 sm:w-auto sm:min-w-[230px]"
+              className="w-full transition-transform duration-200 hover:scale-105 sm:w-auto sm:min-w-[200px]"
             >
               <Link href="/apply">
                 <UserPlus />
@@ -95,7 +95,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="h-[4.5rem] w-full px-12 text-xl transition-transform duration-200 hover:scale-105 [&_svg]:size-7 sm:w-auto sm:min-w-[230px]"
+              className="w-full transition-transform duration-200 hover:scale-105 sm:w-auto sm:min-w-[200px]"
             >
               <Link href="/blog">
                 <BookText />
