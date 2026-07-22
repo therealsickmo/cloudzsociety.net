@@ -43,7 +43,7 @@ export function Showcase() {
             .filter(Boolean);
           return (
             <Reveal key={`${card.title}-${i}`} delay={i * 0.1}>
-              <div className="relative flex min-h-[560px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-brand-900/20 p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl">
+              <div className="relative flex min-h-[640px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-brand-900/20 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl">
                 <h3 className="text-2xl font-bold tracking-tight text-white">
                   {card.title}
                 </h3>

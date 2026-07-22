@@ -12,7 +12,7 @@ export function CardSkin({ src }: { src: string }) {
   if (!ok || !src) return null;
 
   return (
-    <div className="pointer-events-none absolute bottom-0 left-0 z-20 flex h-[72%] items-end">
+    <div className="pointer-events-none absolute bottom-4 left-3 z-20 flex h-[54%] items-end">
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
