@@ -43,9 +43,9 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'group relative flex items-center gap-1.5 rounded-xl border px-4 py-2 text-sm font-bold backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 hover:scale-105',
+                    'group relative flex items-center gap-1.5 rounded-xl border px-4 py-2 text-sm font-bold transition-all duration-200 hover:scale-105',
                     active
-                      ? 'border-white/15 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]'
+                      ? 'border-white/15 bg-white/[0.08] text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]'
                       : 'border-transparent text-text-secondary hover:border-white/15 hover:bg-white/[0.08] hover:text-white hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]',
                   )}
                 >
