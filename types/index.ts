@@ -193,8 +193,17 @@ export interface PageHeaderContent {
   description: string;
 }
 
+export interface ShowcaseContent {
+  sectionTitle: string;
+  cardTitle: string;
+  description: string;
+  image: string;
+  tags: { label: string }[];
+}
+
 export interface SiteContent {
   nav: { items: NavItemContent[] };
+  showcase: ShowcaseContent;
   hero: {
     title: string;
     subtitle: string;

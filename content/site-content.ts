@@ -18,6 +18,18 @@ export const defaultContent: SiteContent = {
       { label: 'SPENDEN', href: '/donate', enabled: true },
     ],
   },
+  showcase: {
+    sectionTitle: 'Der faire deutsche Minecraft Server ohne Pay2Win',
+    cardTitle: 'Stabile Server ohne Lags',
+    description:
+      'Hochleistungs-Hardware garantiert dir ein lagfreies Minecraft-Erlebnis rund um die Uhr. 99.9% Uptime mit dedizierter Hardware und optimierter Tickrate.',
+    image: '/images/skin-render.png',
+    tags: [
+      { label: '99.9% Uptime' },
+      { label: 'Dedicated Hardware' },
+      { label: 'Optimierte Tickrate' },
+    ],
+  },
   hero: {
     title: 'CLOUDZ™',
     subtitle:

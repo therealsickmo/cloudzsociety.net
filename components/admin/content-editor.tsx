@@ -69,6 +69,31 @@ const GROUPS: Group[] = [
   },
   {
     kind: 'fields',
+    title: 'Showcase (Skin-Sektion)',
+    path: 'showcase',
+    fields: [
+      { key: 'sectionTitle', label: 'Überschrift (oben)', type: 'text', wide: true },
+      { key: 'cardTitle', label: 'Karten-Titel', type: 'text', wide: true },
+      { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },
+      {
+        key: 'image',
+        label: 'Skin-Bild (Pfad)',
+        type: 'text',
+        wide: true,
+        hint: 'z. B. /images/skin-render.png',
+      },
+    ],
+  },
+  {
+    kind: 'repeater',
+    title: 'Showcase – Tags',
+    path: 'showcase.tags',
+    fields: [{ key: 'label', label: 'Tag', type: 'text' }],
+    itemLabel: (i) => String(i.label),
+    newItem: () => ({ label: 'Neu' }),
+  },
+  {
+    kind: 'fields',
     title: 'Über Cloudz – Überschrift',
     path: 'about',
     fields: HEADER_FIELDS,

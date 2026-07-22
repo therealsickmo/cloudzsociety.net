@@ -79,6 +79,7 @@ export function getContent(): SiteContent {
   // Merge one level deep, falling back to defaults for any missing group.
   return {
     nav: stored.nav ?? defaultContent.nav,
+    showcase: { ...defaultContent.showcase, ...stored.showcase },
     hero: { ...defaultContent.hero, ...stored.hero },
     about: { ...defaultContent.about, ...stored.about },
     features: { ...defaultContent.features, ...stored.features },

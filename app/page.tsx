@@ -1,4 +1,5 @@
 import { Hero } from '@/components/home/hero';
+import { Showcase } from '@/components/home/showcase';
 import { About } from '@/components/home/about';
 import { Features } from '@/components/home/features';
 import { Stats } from '@/components/home/stats';
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Showcase />
       {sections.about && <About />}
       {sections.features && <Features />}
       {sections.stats && <Stats />}
