@@ -63,22 +63,21 @@ export function HeaderBrand() {
     }
     setBits(spawned);
 
-    // Dissolve into the pixels (a touch slower so the break-up reads).
+    // Dissolve smoothly (no scale → no "jump"): the logo just fades and
+    // softens while the pixels drift away.
     await content.start({
       opacity: 0,
-      scale: 0.9,
-      filter: 'blur(1px)',
-      transition: { duration: 0.3, ease: 'easeIn' },
+      filter: 'blur(3px)',
+      transition: { duration: 0.42, ease: 'easeOut' },
     });
     window.setTimeout(() => setBits([]), 640);
 
-    // …then reassemble.
-    await new Promise((r) => setTimeout(r, 150));
+    // …then fade back in, equally smooth.
+    await new Promise((r) => setTimeout(r, 160));
     await content.start({
       opacity: 1,
-      scale: 1,
       filter: 'blur(0px)',
-      transition: { duration: 0.3, ease: 'easeOut' },
+      transition: { duration: 0.45, ease: 'easeOut' },
     });
     busy.current = false;
   }
