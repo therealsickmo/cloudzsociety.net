@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { getIcon, ICON_OPTIONS } from '@/lib/icons';
+import { TAG_COLOR_OPTIONS } from '@/lib/tag-colors';
 import type { Field } from '@/components/admin/schema';
 
 interface FieldInputProps {
@@ -219,8 +220,8 @@ function IconControl({
   );
 }
 
-/** Editable list of {icon, label} tags with icon preview per row. */
-type Tag = { icon: string; label: string };
+/** Editable list of tags with icon preview + colour pickers per tag. */
+type Tag = { icon: string; label: string; color: string; iconColor: string };
 
 function TagsControl({
   value,
@@ -230,50 +231,91 @@ function TagsControl({
   onChange: (value: unknown) => void;
 }) {
   const tags: Tag[] = Array.isArray(value)
-    ? (value as Tag[]).map((t) => ({
+    ? (value as Partial<Tag>[]).map((t) => ({
         icon: String(t?.icon ?? 'Sparkles'),
         label: String(t?.label ?? ''),
+        color: String(t?.color ?? 'blue'),
+        iconColor: String(t?.iconColor ?? 'blue'),
       }))
     : [];
 
   const update = (i: number, patch: Partial<Tag>) =>
     onChange(tags.map((t, x) => (x === i ? { ...t, ...patch } : t)));
   const remove = (i: number) => onChange(tags.filter((_, x) => x !== i));
-  const add = () => onChange([...tags, { icon: 'Sparkles', label: 'Neu' }]);
+  const add = () =>
+    onChange([
+      ...tags,
+      { icon: 'Sparkles', label: 'Neu', color: 'blue', iconColor: 'blue' },
+    ]);
+
+  const selectCls =
+    'h-10 rounded-lg border border-border bg-surface/60 px-2 text-sm text-white focus-visible:border-brand/50 focus-visible:outline-none';
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {tags.map((tag, i) => {
         const Icon = getIcon(tag.icon || 'Sparkles');
         return (
-          <div key={i} className="flex items-center gap-2">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface/60 text-brand">
-              <Icon className="size-4" />
-            </span>
-            <select
-              value={tag.icon}
-              onChange={(e) => update(i, { icon: e.target.value })}
-              className="h-10 w-32 shrink-0 rounded-lg border border-border bg-surface/60 px-2 text-sm text-white focus-visible:border-brand/50 focus-visible:outline-none"
-            >
-              {ICON_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value} className="bg-surface">
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <Input
-              value={tag.label}
-              placeholder="Beschriftung…"
-              onChange={(e) => update(i, { label: e.target.value })}
-            />
-            <button
-              type="button"
-              onClick={() => remove(i)}
-              className="shrink-0 rounded-lg p-2 text-red-400 transition-colors hover:bg-red-500/10"
-              aria-label="Tag entfernen"
-            >
-              <Trash2 className="size-4" />
-            </button>
+          <div
+            key={i}
+            className="space-y-2 rounded-xl border border-border bg-surface/40 p-3"
+          >
+            <div className="flex items-center gap-2">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface/60 text-brand">
+                <Icon className="size-4" />
+              </span>
+              <Input
+                value={tag.label}
+                placeholder="Beschriftung…"
+                onChange={(e) => update(i, { label: e.target.value })}
+              />
+              <button
+                type="button"
+                onClick={() => remove(i)}
+                className="shrink-0 rounded-lg p-2 text-red-400 transition-colors hover:bg-red-500/10"
+                aria-label="Tag entfernen"
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <select
+                value={tag.icon}
+                onChange={(e) => update(i, { icon: e.target.value })}
+                className={selectCls}
+                title="Icon"
+              >
+                {ICON_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value} className="bg-surface">
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={tag.color}
+                onChange={(e) => update(i, { color: e.target.value })}
+                className={selectCls}
+                title="Farbe"
+              >
+                {TAG_COLOR_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value} className="bg-surface">
+                    Farbe: {opt.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={tag.iconColor}
+                onChange={(e) => update(i, { iconColor: e.target.value })}
+                className={selectCls}
+                title="Icon-Farbe"
+              >
+                {TAG_COLOR_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value} className="bg-surface">
+                    Icon: {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         );
       })}

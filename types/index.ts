@@ -196,6 +196,10 @@ export interface PageHeaderContent {
 export interface ShowcaseTag {
   icon: string;
   label: string;
+  /** Colour name from lib/tag-colors (pill colour). */
+  color?: string;
+  /** Colour name for the tag icon. */
+  iconColor?: string;
 }
 
 export interface ShowcaseCard {
