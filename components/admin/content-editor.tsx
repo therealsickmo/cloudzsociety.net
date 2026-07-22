@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { FieldInput } from '@/components/admin/field-input';
 import { useToast } from '@/components/admin/toast';
-import { ICON_OPTIONS } from '@/lib/icons';
 import type { Field } from '@/components/admin/schema';
 
 // ── Field presets ──────────────────────────────────────────────────
@@ -16,7 +15,7 @@ const HEADER_FIELDS: Field[] = [
   { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },
 ];
 const ICON_TEXT_FIELDS: Field[] = [
-  { key: 'icon', label: 'Icon', type: 'select', options: ICON_OPTIONS },
+  { key: 'icon', label: 'Icon', type: 'icon' },
   { key: 'title', label: 'Titel', type: 'text' },
   { key: 'text', label: 'Text', type: 'textarea', wide: true },
 ];
@@ -60,7 +59,7 @@ const GROUPS: Group[] = [
     title: 'Hero – Info-Bar',
     path: 'hero.stats',
     fields: [
-      { key: 'icon', label: 'Icon', type: 'select', options: ICON_OPTIONS },
+      { key: 'icon', label: 'Icon', type: 'icon' },
       { key: 'label', label: 'Beschriftung', type: 'text', hint: 'z. B. Gründung' },
       { key: 'value', label: 'Wert', type: 'text', hint: 'z. B. 01.02.2026' },
     ],
@@ -82,7 +81,7 @@ const GROUPS: Group[] = [
     title: 'Showcase – Karten',
     path: 'showcase.cards',
     fields: [
-      { key: 'icon', label: 'Icon (vor dem Titel)', type: 'select', options: ICON_OPTIONS },
+      { key: 'icon', label: 'Icon (vor dem Titel)', type: 'icon' },
       { key: 'title', label: 'Titel', type: 'text' },
       { key: 'image', label: 'Skin-Bild', type: 'image', wide: true },
       { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },

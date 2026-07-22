@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { getIcon, ICON_OPTIONS } from '@/lib/icons';
 import type { Field } from '@/components/admin/schema';
 
 interface FieldInputProps {
@@ -161,6 +162,11 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
         </select>
       );
 
+    case 'icon':
+      return (
+        <IconControl id={id} value={String(value ?? '')} onChange={onChange} />
+      );
+
     case 'image':
       return (
         <ImageControl id={id} value={String(value ?? '')} onChange={onChange} />
@@ -176,6 +182,38 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
         />
       );
   }
+}
+
+/** Icon picker with a live preview of the selected icon. */
+function IconControl({
+  id,
+  value,
+  onChange,
+}: {
+  id: string;
+  value: string;
+  onChange: (value: unknown) => void;
+}) {
+  const Icon = getIcon(value || 'Sparkles');
+  return (
+    <div className="flex items-center gap-2">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface/60 text-brand">
+        <Icon className="size-5" />
+      </span>
+      <select
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-11 w-full rounded-xl border border-border bg-surface/60 px-4 text-sm text-white focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
+      >
+        {ICON_OPTIONS.map((opt) => (
+          <option key={opt.value} value={opt.value} className="bg-surface">
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 }
 
 /** Image path field with a preview and a direct upload button. */

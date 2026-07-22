@@ -10,6 +10,7 @@ export type FieldType =
   | 'date'
   | 'boolean'
   | 'select'
+  | 'icon'
   | 'lines'
   | 'color'
   | 'image';
