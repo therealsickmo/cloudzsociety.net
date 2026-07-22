@@ -7,32 +7,46 @@ import { motion, useAnimationControls } from 'framer-motion';
 import { useSettings } from '@/components/providers/settings-provider';
 
 /**
- * Header brand: the CS.net logo + CLOUDZ™ wordmark. On hover the logo grows
- * and the wordmark is pulled in towards the logo, then spat back out with a
- * springy overshoot. Clicking always navigates to Home.
+ * Header brand: the CS.net logo + CLOUDZ™ wordmark.
+ * - Hover: the whole brand scales up.
+ * - Click: the logo darts right and "sucks in" the wordmark, then glides
+ *   back to the left as the wordmark is spat out again. Always navigates Home.
  */
 export function HeaderBrand() {
   const { site } = useSettings();
   const [imgOk, setImgOk] = useState(true);
-  const [hovered, setHovered] = useState(false);
+  const logo = useAnimationControls();
   const word = useAnimationControls();
   const busy = useRef(false);
 
-  async function onEnter() {
-    setHovered(true);
+  async function play() {
     if (busy.current) return;
     busy.current = true;
-    // Pull the wordmark in towards the logo…
-    await word.start({
-      x: -22,
-      opacity: 0,
-      transition: { duration: 0.16, ease: 'easeIn' },
+
+    // Logo darts right and sucks the wordmark in.
+    await Promise.all([
+      logo.start({
+        x: 26,
+        transition: { duration: 0.24, ease: [0.4, 0, 0.2, 1] },
+      }),
+      word.start({
+        x: -34,
+        scaleX: 0,
+        opacity: 0,
+        transition: { duration: 0.24, ease: 'easeIn' },
+      }),
+    ]);
+
+    // Logo glides back left, wordmark is spat back out.
+    logo.start({
+      x: 0,
+      transition: { type: 'spring', stiffness: 420, damping: 20 },
     });
-    // …then spit it back out with a bouncy overshoot.
     await word.start({
       x: 0,
+      scaleX: 1,
       opacity: 1,
-      transition: { type: 'spring', stiffness: 520, damping: 12 },
+      transition: { type: 'spring', stiffness: 480, damping: 15 },
     });
     busy.current = false;
   }
@@ -40,18 +54,17 @@ export function HeaderBrand() {
   return (
     <Link
       href="/"
+      onClick={play}
       aria-label={`${site.name} Startseite`}
-      onMouseEnter={onEnter}
-      onMouseLeave={() => setHovered(false)}
       className="block"
     >
-      <span className="flex items-center gap-2.5 overflow-hidden">
+      <motion.span
+        whileHover={{ scale: 1.06 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+        className="flex items-center gap-2.5"
+      >
         {imgOk ? (
-          <motion.span
-            animate={{ scale: hovered ? 1.22 : 1 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 16 }}
-            className="block shrink-0"
-          >
+          <motion.span animate={logo} className="block shrink-0">
             <Image
               src="/logo/cloudz-logo.png"
               alt={site.name}
@@ -66,11 +79,12 @@ export function HeaderBrand() {
         ) : null}
         <motion.span
           animate={word}
+          style={{ transformOrigin: 'left center' }}
           className="text-xl font-bold tracking-tight text-white"
         >
           {site.name}
         </motion.span>
-      </span>
+      </motion.span>
     </Link>
   );
 }
