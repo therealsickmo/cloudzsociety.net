@@ -20,8 +20,8 @@ export function Showcase() {
       {/* Card with the skin render breaking out on the right */}
       <Reveal>
         <div className="relative mx-auto max-w-5xl">
-          <div className="relative overflow-visible rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-brand-900/20 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl md:p-12">
-            <div className="max-w-xl">
+          <div className="relative min-h-[440px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-brand-900/20 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl md:p-12">
+            <div className="relative z-10 flex h-full flex-col justify-center md:max-w-[54%]">
               <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
                 {cardTitle}
               </h3>
