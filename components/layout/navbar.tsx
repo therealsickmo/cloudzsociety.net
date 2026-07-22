@@ -13,7 +13,7 @@ import {
 import { HeaderBrand } from '@/components/layout/header-brand';
 import { DiscordJoinButton } from '@/components/layout/discord-join-button';
 import { DiscordIcon } from '@/components/icons/discord-icon';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -33,8 +33,9 @@ export function Navbar() {
         {/* Brand (far left) */}
         <HeaderBrand />
 
-        {/* Desktop nav — same box style as the Discord button */}
-        <ul className="hidden items-center gap-2 lg:flex">
+        {/* Desktop nav — no permanent box; a glowing blue stripe ring appears
+            on hover and stays on the active page. Scales up on hover. */}
+        <ul className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -42,9 +43,10 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    buttonVariants({ variant: 'outline', size: 'sm' }),
-                    'gap-1.5 transition-transform hover:scale-105',
-                    active && 'border-brand/50 bg-brand/15 text-white',
+                    'stripe-hover relative flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-bold transition-transform duration-200 hover:scale-105',
+                    active
+                      ? 'stripe-on text-white'
+                      : 'text-text-secondary hover:text-white',
                   )}
                 >
                   {item.label}
@@ -62,7 +64,11 @@ export function Navbar() {
         {/* Desktop actions (far right) */}
         <div className="hidden items-center gap-3 lg:flex">
           <DiscordJoinButton href={links.discord} />
-          <Button asChild size="sm" className="transition-transform hover:scale-105">
+          <Button
+            asChild
+            size="sm"
+            className="border-brand-300/30 bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700 font-bold shadow-[0_8px_24px_-10px_rgb(var(--brand-500)/0.8)] transition-transform duration-200 hover:scale-105 hover:from-brand-300 hover:to-brand-600"
+          >
             <Link href="/dashboard">
               <LayoutDashboard className="size-4" />
               DASHBOARD
@@ -125,7 +131,11 @@ export function Navbar() {
                     DISCORD
                   </a>
                 </Button>
-                <Button asChild size="sm">
+                <Button
+                  asChild
+                  size="sm"
+                  className="border-brand-300/30 bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700 font-bold"
+                >
                   <Link href="/dashboard">
                     <LayoutDashboard className="size-4" />
                     DASHBOARD
