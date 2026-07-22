@@ -29,7 +29,10 @@ export const defaultContent: SiteContent = {
         title: 'Immer etwas Neues',
         description:
           'Langweilige Dauer-Server gibt es genug. CLOUDZ™ setzt auf zeitlich begrenzte Projekte mit frischen Ideen und einzigartigen Erlebnissen.',
-        tags: 'RefreshCw|Temporäre Projekte, Sparkles|Einzigartige Konzepte',
+        tags: [
+          { icon: 'RefreshCw', label: 'Temporäre Projekte' },
+          { icon: 'Sparkles', label: 'Einzigartige Konzepte' },
+        ],
       },
       {
         icon: 'Users',
@@ -37,7 +40,10 @@ export const defaultContent: SiteContent = {
         title: 'Jeder startet gleich',
         description:
           'Neue Projekte bedeuten einen gemeinsamen Start für alle. Niemand ist jahrelang im Vorteil – jeder hat die Chance, Geschichte zu schreiben.',
-        tags: 'Target|Chancengleichheit, Shield|Faire Bedingungen',
+        tags: [
+          { icon: 'Target', label: 'Chancengleichheit' },
+          { icon: 'Shield', label: 'Faire Bedingungen' },
+        ],
       },
       {
         icon: 'Gem',
@@ -45,7 +51,10 @@ export const defaultContent: SiteContent = {
         title: 'Qualität statt Masse',
         description:
           'Wir veröffentlichen nur Projekte, hinter denen wir stehen. Weniger Features, dafür mehr Liebe zum Detail und ein durchdachtes Spielerlebnis.',
-        tags: 'Heart|Liebe zum Detail, Trophy|Hohe Qualität',
+        tags: [
+          { icon: 'Heart', label: 'Liebe zum Detail' },
+          { icon: 'Trophy', label: 'Hohe Qualität' },
+        ],
       },
     ],
   },

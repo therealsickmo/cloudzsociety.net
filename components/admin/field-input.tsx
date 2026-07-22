@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Check, Loader2, Upload } from 'lucide-react';
+import { Check, Loader2, Plus, Trash2, Upload } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -167,6 +167,9 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
         <IconControl id={id} value={String(value ?? '')} onChange={onChange} />
       );
 
+    case 'tags':
+      return <TagsControl value={value} onChange={onChange} />;
+
     case 'image':
       return (
         <ImageControl id={id} value={String(value ?? '')} onChange={onChange} />
@@ -212,6 +215,76 @@ function IconControl({
           </option>
         ))}
       </select>
+    </div>
+  );
+}
+
+/** Editable list of {icon, label} tags with icon preview per row. */
+type Tag = { icon: string; label: string };
+
+function TagsControl({
+  value,
+  onChange,
+}: {
+  value: unknown;
+  onChange: (value: unknown) => void;
+}) {
+  const tags: Tag[] = Array.isArray(value)
+    ? (value as Tag[]).map((t) => ({
+        icon: String(t?.icon ?? 'Sparkles'),
+        label: String(t?.label ?? ''),
+      }))
+    : [];
+
+  const update = (i: number, patch: Partial<Tag>) =>
+    onChange(tags.map((t, x) => (x === i ? { ...t, ...patch } : t)));
+  const remove = (i: number) => onChange(tags.filter((_, x) => x !== i));
+  const add = () => onChange([...tags, { icon: 'Sparkles', label: 'Neu' }]);
+
+  return (
+    <div className="space-y-2">
+      {tags.map((tag, i) => {
+        const Icon = getIcon(tag.icon || 'Sparkles');
+        return (
+          <div key={i} className="flex items-center gap-2">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface/60 text-brand">
+              <Icon className="size-4" />
+            </span>
+            <select
+              value={tag.icon}
+              onChange={(e) => update(i, { icon: e.target.value })}
+              className="h-10 w-32 shrink-0 rounded-lg border border-border bg-surface/60 px-2 text-sm text-white focus-visible:border-brand/50 focus-visible:outline-none"
+            >
+              {ICON_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value} className="bg-surface">
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <Input
+              value={tag.label}
+              placeholder="Beschriftung…"
+              onChange={(e) => update(i, { label: e.target.value })}
+            />
+            <button
+              type="button"
+              onClick={() => remove(i)}
+              className="shrink-0 rounded-lg p-2 text-red-400 transition-colors hover:bg-red-500/10"
+              aria-label="Tag entfernen"
+            >
+              <Trash2 className="size-4" />
+            </button>
+          </div>
+        );
+      })}
+      <button
+        type="button"
+        onClick={add}
+        className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface/60 px-3 py-2 text-sm font-medium text-white transition-colors hover:border-brand/50"
+      >
+        <Plus className="size-4" />
+        Tag hinzufügen
+      </button>
     </div>
   );
 }

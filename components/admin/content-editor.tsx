@@ -85,13 +85,7 @@ const GROUPS: Group[] = [
       { key: 'title', label: 'Titel', type: 'text' },
       { key: 'image', label: 'Skin-Bild', type: 'image', wide: true },
       { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },
-      {
-        key: 'tags',
-        label: 'Tags',
-        type: 'text',
-        wide: true,
-        hint: 'Komma-getrennt. Icon optional mit | davor, z. B. Zap|99.9% Uptime, Shield|Fair Play',
-      },
+      { key: 'tags', label: 'Tags (mit Icon)', type: 'tags', wide: true },
     ],
     itemLabel: (i) => String(i.title),
     newItem: () => ({
@@ -99,7 +93,7 @@ const GROUPS: Group[] = [
       image: '/images/skin-render.webp',
       title: 'Neue Karte',
       description: '',
-      tags: '',
+      tags: [],
     }),
   },
   {

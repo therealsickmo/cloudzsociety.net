@@ -11,6 +11,7 @@ export type FieldType =
   | 'boolean'
   | 'select'
   | 'icon'
+  | 'tags'
   | 'lines'
   | 'color'
   | 'image';
