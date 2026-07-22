@@ -6,10 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BookText, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { JoinServer } from '@/components/home/join-server';
 import { HeroBackground } from '@/components/home/hero-background';
-import { HorizonsLabel } from '@/components/home/horizons-label';
-import { DiscordIcon } from '@/components/icons/discord-icon';
 import {
   useContent,
   useSettings,
@@ -24,7 +21,7 @@ const LOGO_SIZE: Record<string, string> = {
 };
 
 export function Hero() {
-  const { links, layout } = useSettings();
+  const { layout } = useSettings();
   const hero = useContent().hero;
   const [logoOk, setLogoOk] = useState(true);
   const logoSize = LOGO_SIZE[layout.heroLogoSize] ?? LOGO_SIZE.gross;
@@ -78,36 +75,16 @@ export function Hero() {
             {hero.subtitle}
           </motion.p>
 
-          {/* CTAs — directly under the text */}
+          {/* CTAs — bigger buttons with a lift-on-hover effect */}
           <motion.div
             variants={slideUp}
-            className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row"
+            className="mt-12 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row"
           >
-            <JoinServer>
-              <Button
-                size="xl"
-                variant="secondary"
-                className="w-full sm:w-auto sm:min-w-[190px]"
-              >
-                <HorizonsLabel />
-              </Button>
-            </JoinServer>
             <Button
               asChild
               size="xl"
               variant="secondary"
-              className="w-full sm:w-auto"
-            >
-              <a href={links.discord} target="_blank" rel="noopener noreferrer">
-                <DiscordIcon className="text-[#5865F2]" />
-                DISCORD
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="xl"
-              variant="secondary"
-              className="w-full sm:w-auto"
+              className="h-16 w-full px-10 text-lg transition-transform duration-200 hover:scale-105 [&_svg]:size-6 sm:w-auto sm:min-w-[210px]"
             >
               <Link href="/apply">
                 <UserPlus />
@@ -118,7 +95,7 @@ export function Hero() {
               asChild
               size="xl"
               variant="secondary"
-              className="w-full sm:w-auto"
+              className="h-16 w-full px-10 text-lg transition-transform duration-200 hover:scale-105 [&_svg]:size-6 sm:w-auto sm:min-w-[210px]"
             >
               <Link href="/blog">
                 <BookText />

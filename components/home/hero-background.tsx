@@ -84,17 +84,15 @@ export function HeroBackground() {
             'radial-gradient(circle at 50% 34%, rgb(var(--brand-500) / 0.22), transparent 60%)',
         }}
       />
-      {/* Long, smooth vertical blend so the image melts into the page
-          background instead of ending in a hard cut */}
+      {/* Long, smooth vertical blend so the image melts seamlessly into the
+          page background instead of ending in a hard cut or line */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, rgb(var(--background)) 0%, transparent 14%, transparent 40%, rgb(var(--background) / 0.75) 72%, rgb(var(--background)) 92%)',
+            'linear-gradient(to bottom, rgb(var(--background)) 0%, transparent 15%, transparent 32%, rgb(var(--background) / 0.55) 60%, rgb(var(--background) / 0.9) 82%, rgb(var(--background)) 100%)',
         }}
       />
-      {/* Subtle glowing divider line at the bottom edge */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand/50 to-transparent shadow-[0_0_12px_rgb(var(--brand-500)/0.5)]" />
     </div>
   );
 }

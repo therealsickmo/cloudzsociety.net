@@ -4,15 +4,16 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { LogIn, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   useContent,
   useSettings,
 } from '@/components/providers/settings-provider';
 import { HeaderBrand } from '@/components/layout/header-brand';
+import { DiscordJoinButton } from '@/components/layout/discord-join-button';
 import { DiscordIcon } from '@/components/icons/discord-icon';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -32,8 +33,8 @@ export function Navbar() {
         {/* Brand (far left) */}
         <HeaderBrand />
 
-        {/* Desktop nav */}
-        <ul className="hidden items-center gap-1.5 lg:flex">
+        {/* Desktop nav — same box style as the Discord button */}
+        <ul className="hidden items-center gap-2 lg:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -41,19 +42,11 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'stripe-hover relative flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-colors',
-                    active
-                      ? 'text-white'
-                      : 'text-text-secondary hover:text-white',
+                    buttonVariants({ variant: 'outline', size: 'sm' }),
+                    'gap-1.5 transition-transform hover:scale-105',
+                    active && 'border-brand/50 bg-brand/15 text-white',
                   )}
                 >
-                  {active && (
-                    <motion.span
-                      layoutId="nav-active"
-                      className="absolute inset-0 -z-10 rounded-full bg-white/5"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
                   {item.label}
                   {item.badge && (
                     <span className="rounded-full bg-brand px-1.5 py-0.5 text-[10px] font-bold uppercase leading-none text-white">
@@ -68,16 +61,11 @@ export function Navbar() {
 
         {/* Desktop actions (far right) */}
         <div className="hidden items-center gap-3 lg:flex">
-          <Button asChild variant="outline" size="sm">
-            <a href={links.discord} target="_blank" rel="noopener noreferrer">
-              <DiscordIcon className="size-4 text-[#5865F2]" />
-              DISCORD
-            </a>
-          </Button>
-          <Button asChild size="sm">
-            <Link href="/login">
-              <LogIn className="size-4" />
-              LOGIN
+          <DiscordJoinButton href={links.discord} />
+          <Button asChild size="sm" className="transition-transform hover:scale-105">
+            <Link href="/dashboard">
+              <LayoutDashboard className="size-4" />
+              DASHBOARD
             </Link>
           </Button>
         </div>
@@ -111,10 +99,10 @@ export function Navbar() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors',
+                      'flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.08] px-4 py-3 text-sm font-medium transition-colors',
                       active
-                        ? 'bg-white/5 text-white'
-                        : 'text-text-secondary hover:bg-white/5 hover:text-white',
+                        ? 'border-brand/50 bg-brand/15 text-white'
+                        : 'text-text-secondary hover:text-white',
                     )}
                   >
                     {item.label}
@@ -138,9 +126,9 @@ export function Navbar() {
                   </a>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="/login">
-                    <LogIn className="size-4" />
-                    LOGIN
+                  <Link href="/dashboard">
+                    <LayoutDashboard className="size-4" />
+                    DASHBOARD
                   </Link>
                 </Button>
               </div>
