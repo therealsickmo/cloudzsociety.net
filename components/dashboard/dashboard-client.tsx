@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   LogOut,
   Sparkles,
+  Users,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -18,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { TodosPanel } from '@/components/dashboard/todos-panel';
 import { TicketsPanel } from '@/components/dashboard/tickets-panel';
 import { TimePanel } from '@/components/dashboard/time-panel';
+import { MembersPanel } from '@/components/dashboard/members-panel';
 import type {
   DashboardTicket,
   DashboardTodo,
@@ -36,7 +38,7 @@ interface DashboardClientProps {
   };
 }
 
-type Tab = 'todos' | 'tickets' | 'time';
+type Tab = 'todos' | 'tickets' | 'time' | 'members';
 
 const ROLE_LABEL: Record<SessionUser['role'], string> = {
   admin: 'Administrator',
@@ -52,6 +54,9 @@ export function DashboardClient({ user, initial }: DashboardClientProps) {
     { id: 'todos', label: 'ToDos', icon: CheckSquare },
     { id: 'tickets', label: 'Tickets', icon: Inbox },
     { id: 'time', label: 'Zeitstempel', icon: Clock },
+    ...(user.role === 'admin'
+      ? [{ id: 'members' as Tab, label: 'Mitglieder', icon: Users }]
+      : []),
   ];
 
   return (
@@ -141,6 +146,9 @@ export function DashboardClient({ user, initial }: DashboardClientProps) {
             )}
             {tab === 'time' && (
               <TimePanel initial={initial.time} userId={user.sub} />
+            )}
+            {tab === 'members' && user.role === 'admin' && (
+              <MembersPanel initial={initial.members} />
             )}
           </div>
 
