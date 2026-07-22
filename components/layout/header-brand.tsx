@@ -12,6 +12,7 @@ interface Bit {
   y: number;
   dx: number;
   dy: number;
+  size: number;
 }
 
 /**
@@ -32,35 +33,47 @@ export function HeaderBrand() {
     if (busy.current) return;
     busy.current = true;
 
-    // Scatter pixel bits across the whole brand area.
+    // Break the brand into a grid of blocky pixels that scatter outward.
     const rect = boxRef.current?.getBoundingClientRect();
     const w = rect?.width ?? 160;
     const h = rect?.height ?? 48;
+    const cell = 9; // pixel block size (Minecraft-ish)
+    const cols = Math.max(1, Math.round(w / cell));
+    const rows = Math.max(1, Math.round(h / cell));
+    const cx = w / 2;
+    const cy = h / 2;
     const spawned: Bit[] = [];
-    for (let i = 0; i < 34; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 18 + Math.random() * 50;
-      spawned.push({
-        id: idRef.current++,
-        x: Math.random() * w,
-        y: Math.random() * h,
-        dx: Math.cos(angle) * dist,
-        dy: Math.sin(angle) * dist,
-      });
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = c * cell + (Math.random() - 0.5) * 3;
+        const y = r * cell + (Math.random() - 0.5) * 3;
+        // Drift outward from the centre + a little randomness.
+        const dirX = (x - cx) / cx;
+        const dirY = (y - cy) / cy;
+        const spread = 26 + Math.random() * 40;
+        spawned.push({
+          id: idRef.current++,
+          x,
+          y,
+          dx: dirX * spread + (Math.random() - 0.5) * 18,
+          dy: dirY * spread + (Math.random() - 0.5) * 18 + 10,
+          size: cell - 1,
+        });
+      }
     }
     setBits(spawned);
 
-    // Dissolve…
+    // Dissolve into the pixels (a touch slower so the break-up reads).
     await content.start({
       opacity: 0,
-      scale: 0.82,
-      filter: 'blur(2px)',
-      transition: { duration: 0.22, ease: 'easeIn' },
+      scale: 0.9,
+      filter: 'blur(1px)',
+      transition: { duration: 0.3, ease: 'easeIn' },
     });
-    window.setTimeout(() => setBits([]), 520);
+    window.setTimeout(() => setBits([]), 640);
 
-    // …then reappear.
-    await new Promise((r) => setTimeout(r, 130));
+    // …then reassemble.
+    await new Promise((r) => setTimeout(r, 150));
     await content.start({
       opacity: 1,
       scale: 1,
@@ -110,9 +123,10 @@ export function HeaderBrand() {
             <motion.span
               key={b.id}
               initial={{ opacity: 1, x: b.x, y: b.y, scale: 1 }}
-              animate={{ opacity: 0, x: b.x + b.dx, y: b.y + b.dy, scale: 0.35 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="pointer-events-none absolute left-0 top-0 size-1.5 rounded-[1px] bg-brand-300 shadow-[0_0_4px_rgb(var(--brand-400))]"
+              animate={{ opacity: 0, x: b.x + b.dx, y: b.y + b.dy, scale: 0.4 }}
+              transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+              style={{ width: b.size, height: b.size }}
+              className="pointer-events-none absolute left-0 top-0 bg-brand-400 shadow-[0_0_4px_rgb(var(--brand-500)/0.8)]"
             />
           ))}
         </AnimatePresence>
