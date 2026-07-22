@@ -52,6 +52,14 @@ export function HeroBackground() {
       ref={rootRef}
       aria-hidden
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      style={{
+        // Fade the whole background (image + tints) to transparent towards the
+        // bottom so the identical page background shows through — the hero
+        // melts seamlessly into the sections below, no hard cut.
+        WebkitMaskImage:
+          'linear-gradient(to bottom, #000 62%, transparent 100%)',
+        maskImage: 'linear-gradient(to bottom, #000 62%, transparent 100%)',
+      }}
     >
       {/* Parallax image layer (scaled up so edges never show while shifting) */}
       <motion.div
@@ -89,16 +97,7 @@ export function HeroBackground() {
         className="absolute inset-x-0 top-0 h-24"
         style={{
           background:
-            'linear-gradient(to bottom, rgb(var(--background)), transparent)',
-        }}
-      />
-      {/* Tall, fixed bottom fade — guarantees the image melts seamlessly into
-          the page background regardless of the section height (no hard cut) */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-2/3 md:h-3/4"
-        style={{
-          background:
-            'linear-gradient(to bottom, transparent 0%, rgb(var(--background) / 0.5) 45%, rgb(var(--background) / 0.85) 75%, rgb(var(--background)) 100%)',
+            'linear-gradient(to bottom, rgb(var(--background) / 0.8), transparent)',
         }}
       />
     </div>
