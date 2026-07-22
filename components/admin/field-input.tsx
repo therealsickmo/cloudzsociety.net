@@ -1,6 +1,7 @@
 'use client';
 
-import { Check } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Check, Loader2, Upload } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -160,6 +161,11 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
         </select>
       );
 
+    case 'image':
+      return (
+        <ImageControl id={id} value={String(value ?? '')} onChange={onChange} />
+      );
+
     default:
       return (
         <Input
@@ -170,4 +176,87 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
         />
       );
   }
+}
+
+/** Image path field with a preview and a direct upload button. */
+function ImageControl({
+  id,
+  value,
+  onChange,
+}: {
+  id: string;
+  value: string;
+  onChange: (value: unknown) => void;
+}) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+
+  async function upload(file: File) {
+    setBusy(true);
+    setError('');
+    const body = new FormData();
+    body.append('file', file);
+    try {
+      const res = await fetch('/api/admin/upload', { method: 'POST', body });
+      const json = await res.json();
+      if (json.ok) onChange(json.path);
+      else setError(json.message ?? 'Upload fehlgeschlagen.');
+    } catch {
+      setError('Upload fehlgeschlagen.');
+    }
+    setBusy(false);
+  }
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center gap-3">
+        {value ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={value}
+            alt="Vorschau"
+            className="size-14 shrink-0 rounded-lg border border-border bg-surface/60 object-contain p-1"
+          />
+        ) : (
+          <div className="flex size-14 shrink-0 items-center justify-center rounded-lg border border-dashed border-border bg-surface/60 text-text-secondary">
+            <Upload className="size-5" />
+          </div>
+        )}
+        <div className="flex-1">
+          <Input
+            id={id}
+            value={value}
+            placeholder="/images/…"
+            onChange={(e) => onChange(e.target.value)}
+          />
+        </div>
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          disabled={busy}
+          className="inline-flex h-11 shrink-0 items-center gap-2 rounded-xl border border-border bg-surface/60 px-4 text-sm font-medium text-white transition-colors hover:border-brand/50 disabled:opacity-50"
+        >
+          {busy ? (
+            <Loader2 className="size-4 animate-spin" />
+          ) : (
+            <Upload className="size-4" />
+          )}
+          Hochladen
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+          className="hidden"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) upload(file);
+            e.target.value = '';
+          }}
+        />
+      </div>
+      {error && <p className="text-xs text-red-400">{error}</p>}
+    </div>
+  );
 }

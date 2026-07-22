@@ -20,14 +20,28 @@ export const defaultContent: SiteContent = {
   },
   showcase: {
     sectionTitle: 'Der faire deutsche Minecraft Server ohne Pay2Win',
-    cardTitle: 'Stabile Server ohne Lags',
-    description:
-      'Hochleistungs-Hardware garantiert dir ein lagfreies Minecraft-Erlebnis rund um die Uhr. 99.9% Uptime mit dedizierter Hardware und optimierter Tickrate.',
-    image: '/images/skin-render.webp',
-    tags: [
-      { label: '99.9% Uptime' },
-      { label: 'Dedicated Hardware' },
-      { label: 'Optimierte Tickrate' },
+    cards: [
+      {
+        image: '/images/skin-render.webp',
+        title: 'Stabile Server ohne Lags',
+        description:
+          'Hochleistungs-Hardware garantiert dir ein lagfreies Minecraft-Erlebnis rund um die Uhr.',
+        tags: '99.9% Uptime, Dedicated Hardware',
+      },
+      {
+        image: '/images/skin-render.webp',
+        title: 'Faires Spiel ohne Pay2Win',
+        description:
+          'Bei uns entscheidet Können, nicht dein Geldbeutel. Alle Spieler starten mit den gleichen Chancen.',
+        tags: 'Kein Pay2Win, Fair Play',
+      },
+      {
+        image: '/images/skin-render.webp',
+        title: 'Aktive & freundliche Community',
+        description:
+          'Eine loyale Community und ein Team, das rund um die Uhr für dich da ist.',
+        tags: '+400 Mitglieder, 24/7 Support',
+      },
     ],
   },
   hero: {

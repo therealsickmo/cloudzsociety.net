@@ -193,12 +193,17 @@ export interface PageHeaderContent {
   description: string;
 }
 
+export interface ShowcaseCard {
+  image: string;
+  title: string;
+  description: string;
+  /** Comma-separated tags. */
+  tags: string;
+}
+
 export interface ShowcaseContent {
   sectionTitle: string;
-  cardTitle: string;
-  description: string;
-  image: string;
-  tags: { label: string }[];
+  cards: ShowcaseCard[];
 }
 
 export interface SiteContent {

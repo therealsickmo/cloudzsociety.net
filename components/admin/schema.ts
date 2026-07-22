@@ -11,7 +11,8 @@ export type FieldType =
   | 'boolean'
   | 'select'
   | 'lines'
-  | 'color';
+  | 'color'
+  | 'image';
 
 export interface Field {
   key: string;

@@ -4,18 +4,17 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * The Minecraft skin render on the right of the showcase card — large,
- * breaking out over the top edge, anchored bottom-right, gently bobbing.
- * Renders nothing if the image is missing.
+ * The Minecraft skin render inside a showcase card — smaller, anchored to the
+ * bottom-left, gently bobbing. Renders nothing if the image is missing.
  */
-export function SkinRender({ src }: { src: string }) {
+export function CardSkin({ src }: { src: string }) {
   const [ok, setOk] = useState(true);
-  if (!ok) return null;
+  if (!ok || !src) return null;
 
   return (
-    <div className="pointer-events-none absolute bottom-0 right-2 z-20 hidden h-full items-end md:flex lg:right-6">
+    <div className="pointer-events-none absolute bottom-0 left-0 z-20 flex h-[52%] items-end">
       <motion.div
-        animate={{ y: [0, -14, 0] }}
+        animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         className="flex h-full items-end"
       >
@@ -24,7 +23,7 @@ export function SkinRender({ src }: { src: string }) {
           src={src}
           alt="Minecraft Skin"
           onError={() => setOk(false)}
-          className="h-[132%] w-auto object-contain object-bottom drop-shadow-[0_24px_50px_rgba(0,0,0,0.6)]"
+          className="h-full w-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(0,0,0,0.6)]"
         />
       </motion.div>
     </div>
