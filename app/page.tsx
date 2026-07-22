@@ -14,8 +14,8 @@ export default function HomePage() {
     <>
       <Hero />
       {sections.about && <About />}
-      {sections.features && <Features />}
       <Showcase />
+      {sections.features && <Features />}
       {sections.stats && <Stats />}
       {sections.cta && <CTA />}
     </>
