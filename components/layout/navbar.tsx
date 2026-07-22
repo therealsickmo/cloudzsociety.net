@@ -33,8 +33,8 @@ export function Navbar() {
         {/* Brand (far left) */}
         <HeaderBrand />
 
-        {/* Desktop nav — no permanent box; a glowing blue stripe ring appears
-            on hover and stays on the active page. Scales up on hover. */}
+        {/* Desktop nav — no permanent box; a static blue border with a soft
+            glow appears on hover and stays on the active page. No animation. */}
         <ul className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
@@ -43,10 +43,10 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'stripe-hover relative flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-bold transition-transform duration-200 hover:scale-105',
+                    'relative flex items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-bold transition-all duration-200 hover:scale-105',
                     active
-                      ? 'stripe-on text-white'
-                      : 'text-text-secondary hover:text-white',
+                      ? 'border-brand bg-white/5 text-white shadow-[0_0_14px_rgb(var(--brand-500)/0.5)]'
+                      : 'border-transparent text-text-secondary hover:border-brand hover:bg-white/5 hover:text-white hover:shadow-[0_0_14px_rgb(var(--brand-500)/0.5)]',
                   )}
                 >
                   {item.label}
@@ -67,7 +67,7 @@ export function Navbar() {
           <Button
             asChild
             size="sm"
-            className="border-brand-300/30 bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700 font-bold shadow-[0_8px_24px_-10px_rgb(var(--brand-500)/0.8)] transition-transform duration-200 hover:scale-105 hover:from-brand-300 hover:to-brand-600"
+            className="border-brand-300/30 bg-gradient-to-r from-brand-600 via-brand-300 to-brand-600 font-bold shadow-none transition-transform duration-200 hover:scale-105"
           >
             <Link href="/dashboard">
               <LayoutDashboard className="size-4" />
@@ -134,7 +134,7 @@ export function Navbar() {
                 <Button
                   asChild
                   size="sm"
-                  className="border-brand-300/30 bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700 font-bold"
+                  className="border-brand-300/30 bg-gradient-to-r from-brand-600 via-brand-300 to-brand-600 font-bold shadow-none"
                 >
                   <Link href="/dashboard">
                     <LayoutDashboard className="size-4" />
