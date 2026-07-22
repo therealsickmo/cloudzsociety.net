@@ -1,9 +1,7 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
 import { CardSkin } from '@/components/home/skin-render';
 import { getIcon } from '@/lib/icons';
-import { viewportOnce } from '@/lib/animations';
 import type { ShowcaseCard } from '@/types';
 
 type Tag = { icon: string; label: string };
@@ -31,35 +29,14 @@ function normalizeTags(raw: unknown): Tag[] {
   return [];
 }
 
-// Parent staggers the cards so they appear one after another on scroll.
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.22, delayChildren: 0.05 } },
-};
-
-const card: Variants = {
-  hidden: { opacity: 0, y: 48 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={viewportOnce}
-      className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3"
-    >
+    <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
       {cards.map((c, i) => {
         const CardIcon = getIcon(c.icon);
         const tags = normalizeTags(c.tags);
         return (
-          <motion.div key={`${c.title}-${i}`} variants={card}>
+          <div key={`${c.title}-${i}`}>
             <div className="group relative flex min-h-[640px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-brand-500/[0.06] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.3)]">
               <div className="flex items-start gap-3">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand shadow-[0_0_16px_rgb(var(--brand-500)/0.25)] transition-transform duration-300 group-hover:scale-110">
@@ -95,9 +72,9 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
               {/* Skin — large, on the left, anchored bottom */}
               <CardSkin src={c.image} />
             </div>
-          </motion.div>
+          </div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }
