@@ -33,19 +33,13 @@ export const defaultContent: SiteContent = {
   },
   about: {
     eyebrow: 'Über Cloudz',
-    title: 'Mehr als nur ein Server',
-    description:
-      'CLOUDZ™ verbindet moderne Technik mit einer Community, die zusammenhält. Das steckt hinter dem Netzwerk.',
+    title: 'Wieso ausgerechnet CLOUDZ™?',
+    description: 'Test erstmals..',
     points: [
       {
         icon: 'Sparkles',
         title: 'Was ist Cloudz?',
         text: 'CLOUDZ™ ist eine moderne Minecraft Community mit eigenen Spielmodi, die du so nirgendwo sonst findest.',
-      },
-      {
-        icon: 'Calendar',
-        title: 'Seit 2021',
-        text: 'Das Netzwerk existiert seit 2021 und wächst seitdem kontinuierlich mit einer aktiven, loyalen Community.',
       },
       {
         icon: 'Compass',
