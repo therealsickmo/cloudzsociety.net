@@ -33,3 +33,6 @@ yarn-error.log*
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# runtime data written by the admin/dashboard (keep folder, ignore contents)
+data/*.json

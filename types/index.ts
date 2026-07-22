@@ -244,3 +244,60 @@ export type AdminCollection =
   | 'team'
   | 'changelog'
   | 'roles';
+
+// ── Dashboard & auth (Discord OAuth) ───────────────────────────────
+
+/** Access level of a logged-in user. */
+export type Role = 'admin' | 'team' | 'player';
+
+export interface Member {
+  discordId: string;
+  username: string;
+  avatar?: string;
+  role: Role;
+  createdAt: string;
+}
+
+/** A signed-session snapshot stored in the auth cookie. */
+export interface SessionUser {
+  sub: string;
+  name: string;
+  avatar?: string;
+  role: Role;
+}
+
+export type TodoStatus = 'open' | 'in_progress' | 'done';
+
+export interface DashboardTodo {
+  id: string;
+  title: string;
+  description?: string;
+  assignee?: string;
+  status: TodoStatus;
+  createdBy: string;
+  createdAt: string;
+  dueAt?: string;
+}
+
+export type TicketStatus = 'open' | 'in_progress' | 'closed';
+
+export interface DashboardTicket {
+  id: string;
+  subject: string;
+  message: string;
+  category: string;
+  status: TicketStatus;
+  assignee?: string;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface TimeEntry {
+  id: string;
+  userId: string;
+  username: string;
+  clockIn: string;
+  clockOut?: string;
+  note?: string;
+}

@@ -1,84 +1,99 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Gamepad2, ShieldCheck, Sparkles } from 'lucide-react';
+import { redirect } from 'next/navigation';
+import { ArrowRight, ShieldCheck, TriangleAlert } from 'lucide-react';
 import { PageHeader } from '@/components/common/page-header';
 import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
-import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { DiscordIcon } from '@/components/icons/discord-icon';
+import { discordConfigured } from '@/lib/auth/discord';
+import { getSession } from '@/lib/auth/session';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Login',
   description:
-    'Melde dich bei CLOUDZ™ an — als Spieler für dein persönliches Dashboard oder als Teammitglied bzw. Administrator.',
+    'Melde dich bei CLOUDZ™ über Discord an — als Spieler oder Teammitglied — und verwalte dein persönliches Dashboard.',
 };
 
-const options = [
-  {
-    href: '/login/spieler',
-    icon: Gamepad2,
-    eyebrow: 'Spieler',
-    title: 'Spieler-Login',
-    text: 'Melde dich mit deinem Minecraft-Account an und verwalte dein persönliches Dashboard — Statistiken, Ränge und mehr.',
-    cta: 'Als Spieler anmelden',
-    soon: true,
-  },
-  {
-    href: '/admin/login',
-    icon: ShieldCheck,
-    eyebrow: 'Team & Administration',
-    title: 'Team-Login',
-    text: 'Zugang für Teammitglieder und Administratoren — verwalte Inhalte, Bewerbungen und die Serverkonfiguration.',
-    cta: 'Als Team anmelden',
-    soon: false,
-  },
-];
+const ERRORS: Record<string, string> = {
+  discord_not_configured:
+    'Der Discord-Login ist noch nicht eingerichtet. Bitte nutze vorerst den Team-Login.',
+  oauth_state: 'Die Anmeldung ist abgelaufen. Bitte versuche es erneut.',
+  oauth_failed: 'Die Anmeldung mit Discord ist fehlgeschlagen.',
+};
 
-export default function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const user = await getSession();
+  if (user) redirect('/dashboard');
+
+  const { error } = await searchParams;
+  const configured = discordConfigured();
+
   return (
     <>
       <PageHeader
         eyebrow="Login"
         title="Willkommen zurück"
-        description="Wähle aus, wie du dich anmelden möchtest."
+        description="Melde dich mit Discord an. Spieler landen im persönlichen Dashboard, Teammitglieder im Team-Dashboard."
       />
 
       <Section>
-        <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-          {options.map((opt, i) => (
-            <Reveal key={opt.href} delay={i * 0.1}>
-              <Link href={opt.href} className="group block h-full">
-                <Card className="card-hover flex h-full flex-col p-8">
-                  <div className="flex items-center justify-between">
-                    <div className="flex size-14 items-center justify-center rounded-2xl bg-white/5 text-brand">
-                      <opt.icon className="size-7" />
-                    </div>
-                    {opt.soon && (
-                      <Badge variant="outline">
-                        <Sparkles className="size-3.5" />
-                        Bald
-                      </Badge>
-                    )}
-                  </div>
-                  <span className="mt-6 text-xs font-semibold uppercase tracking-widest text-brand">
-                    {opt.eyebrow}
-                  </span>
-                  <h2 className="mt-1 text-xl font-bold text-white">
-                    {opt.title}
-                  </h2>
-                  <p className="mt-2 flex-1 text-sm text-text-secondary">
-                    {opt.text}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white">
-                    {opt.cta}
-                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </span>
-                </Card>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="mx-auto max-w-md space-y-5">
+          {error && ERRORS[error] && (
+            <div className="flex items-start gap-3 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-300">
+              <TriangleAlert className="mt-0.5 size-4 shrink-0" />
+              <span>{ERRORS[error]}</span>
+            </div>
+          )}
+
+          <Reveal>
+            <Card className="p-8 text-center">
+              <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#5865F2]/15">
+                <DiscordIcon className="size-7 text-[#5865F2]" />
+              </div>
+              <h2 className="mt-6 text-lg font-semibold text-white">
+                Mit Discord anmelden
+              </h2>
+              <p className="mx-auto mt-2 max-w-xs text-sm text-text-secondary">
+                Schnell und sicher über deinen Discord-Account. Deine Rolle
+                erkennen wir automatisch.
+              </p>
+              <Button asChild size="lg" className="mt-6 w-full">
+                <a href="/api/auth/discord">
+                  <DiscordIcon className="size-5" />
+                  Mit Discord fortfahren
+                  <ArrowRight className="size-4" />
+                </a>
+              </Button>
+              {!configured && (
+                <p className="mt-3 text-xs text-text-secondary">
+                  Discord-Login wird gerade eingerichtet.
+                </p>
+              )}
+            </Card>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <Link
+              href="/admin/login"
+              className="flex items-center gap-3 rounded-2xl border border-border bg-surface/40 p-4 text-sm transition-colors hover:border-brand/40"
+            >
+              <ShieldCheck className="size-5 shrink-0 text-brand" />
+              <span className="flex-1 text-text-secondary">
+                <span className="font-semibold text-white">Team & Admin</span> —
+                Login mit Passwort
+              </span>
+              <ArrowRight className="size-4 text-text-secondary" />
+            </Link>
+          </Reveal>
         </div>
       </Section>
     </>
