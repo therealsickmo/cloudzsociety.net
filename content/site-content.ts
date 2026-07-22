@@ -23,7 +23,7 @@ export const defaultContent: SiteContent = {
     cardTitle: 'Stabile Server ohne Lags',
     description:
       'Hochleistungs-Hardware garantiert dir ein lagfreies Minecraft-Erlebnis rund um die Uhr. 99.9% Uptime mit dedizierter Hardware und optimierter Tickrate.',
-    image: '/images/skin-render.png',
+    image: '/images/skin-render.webp',
     tags: [
       { label: '99.9% Uptime' },
       { label: 'Dedicated Hardware' },
