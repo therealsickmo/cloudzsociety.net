@@ -90,9 +90,9 @@ export function ShowcaseCards({
           const CardIcon = getIcon(c.icon);
           const tags = normalizeTags(c.tags);
           const box = (
-            <div className="group relative flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.12] to-white/[0.04] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-2xl transition-all duration-300 hover:scale-[1.02] hover:border-white/30 hover:shadow-[0_0_50px_rgb(59_130_246/0.4),0_0_90px_rgb(37_99_235/0.28),0_0_130px_rgb(147_197_253/0.22)]">
-              {/* Glass glow sheen */}
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(255,255,255,0.14),transparent_60%)]" />
+            <div className="group relative flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-white/[0.16] via-white/[0.08] to-white/[0.03] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_0_30px_rgba(255,255,255,0.05),0_18px_50px_-18px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-all duration-300 hover:scale-[1.02] hover:border-white/25 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_0_50px_rgb(59_130_246/0.38),0_0_95px_rgb(37_99_235/0.26),0_0_140px_rgb(147_197_253/0.2)]">
+              {/* Frosted-glass sheen */}
+              <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(130%_90%_at_50%_-15%,rgb(255,255,255,0.2),transparent_58%)]" />
 
               {/* Skin — small, stands at the bottom-left corner, peeking out of
                   the box. Fixed frame so all skins render the same size. */}
@@ -138,7 +138,7 @@ export function ShowcaseCards({
           <div
             key={`${c.title}-${i}`}
             className={cn(
-              'group relative flex min-h-[340px] flex-col overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.1] to-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-2xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_40px_rgb(59_130_246/0.35),0_0_80px_rgb(37_99_235/0.25),0_0_120px_rgb(147_197_253/0.2)] md:flex-row',
+              'group relative flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-white/[0.14] via-white/[0.07] to-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_0_30px_rgba(255,255,255,0.05),0_18px_50px_-18px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-all duration-300 hover:border-white/25 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),0_0_40px_rgb(59_130_246/0.33),0_0_85px_rgb(37_99_235/0.24),0_0_125px_rgb(147_197_253/0.18)] md:flex-row',
               skinRight && 'md:flex-row-reverse',
             )}
           >

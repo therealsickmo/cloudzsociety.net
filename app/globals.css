@@ -179,7 +179,7 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 0 18px rgb(59 130 246 / 0.55));
+  filter: drop-shadow(0 0 30px rgb(59 130 246 / 0.28));
   animation: blue-flow 5s linear infinite;
 }
 
@@ -194,6 +194,14 @@
 
 .title-base {
   color: #ffffff;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* As the blue overlay wipes in from the left, hide the white base underneath
+   it (complementary clip) so no white edge shows around the blue letters. */
+.group:hover .title-base {
+  clip-path: inset(0 0 0 100%);
 }
 
 .title-flow {
@@ -212,7 +220,7 @@
 
 .group:hover .title-flow {
   clip-path: inset(0 0 0 0); /* wipes fully open, left → right */
-  filter: drop-shadow(0 0 14px rgb(59 130 246 / 0.55));
+  filter: drop-shadow(0 0 16px rgb(59 130 246 / 0.4));
   animation: blue-flow 5s linear infinite;
 }
 
@@ -221,7 +229,8 @@
   .group:hover .title-flow {
     animation: none;
   }
-  .title-flow {
+  .title-flow,
+  .title-base {
     transition: none;
   }
 }
