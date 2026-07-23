@@ -61,12 +61,12 @@ export function ShowcaseCards({
   // ── Showcase: 3 compact square boxes in a row, skin on top-right (in front)
   if (emphasis) {
     return (
-      <div className="mx-auto grid max-w-[1300px] gap-16 md:grid-cols-3">
+      <div className="mx-auto grid max-w-[1600px] gap-x-28 gap-y-16 md:grid-cols-3">
         {cards.map((c, i) => {
           const CardIcon = getIcon(c.icon);
           const tags = normalizeTags(c.tags);
           const box = (
-            <div className="group relative flex min-h-[420px] flex-col items-end justify-center overflow-visible rounded-3xl border border-white/10 bg-white/[0.03] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_50px_rgb(var(--brand-500)/0.3)]">
+            <div className="group relative flex min-h-[480px] flex-col items-end justify-center overflow-visible rounded-3xl border border-white/10 bg-white/[0.03] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_50px_rgb(var(--brand-500)/0.3)]">
               {/* Glass glow sheen */}
               <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
 
@@ -77,14 +77,14 @@ export function ShowcaseCards({
               </div>
 
               {/* Content — packed up on the right, next to the skin */}
-              <div className="relative z-10 flex max-w-[72%] flex-col gap-3 text-left">
+              <div className="relative z-10 flex max-w-[74%] flex-col gap-3.5 text-left">
                 <div className="flex items-center gap-2.5">
-                  <CardIcon className="size-8 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                  <h3 className="title-fill inline-block text-2xl font-extrabold tracking-tight">
+                  <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
+                  <h3 className="title-fill inline-block text-[1.7rem] font-extrabold tracking-tight">
                     {c.title}
                   </h3>
                 </div>
-                <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-text-secondary">
+                <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
                   {c.description}
                 </p>
                 <div className="flex flex-wrap gap-2">

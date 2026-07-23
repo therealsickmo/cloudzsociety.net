@@ -274,6 +274,71 @@ function TagsControl({
   );
 }
 
+/**
+ * Trim fully/near transparent borders from a PNG/WebP in the browser so every
+ * uploaded skin fills its frame edge-to-edge (→ all skins render the same
+ * size). Falls back to the original file on any error or if it isn't a
+ * transparent-capable raster image.
+ */
+async function trimTransparent(file: File): Promise<File> {
+  if (!/\.(png|webp)$/i.test(file.name)) return file;
+  try {
+    const url = URL.createObjectURL(file);
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const el = new Image();
+      el.onload = () => resolve(el);
+      el.onerror = reject;
+      el.src = url;
+    });
+    URL.revokeObjectURL(url);
+
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    if (!w || !h) return file;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return file;
+    ctx.drawImage(img, 0, 0);
+
+    const { data } = ctx.getImageData(0, 0, w, h);
+    const threshold = 12; // alpha ≤ threshold counts as empty
+    let top = h, left = w, right = 0, bottom = 0;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        if (data[(y * w + x) * 4 + 3] > threshold) {
+          if (x < left) left = x;
+          if (x > right) right = x;
+          if (y < top) top = y;
+          if (y > bottom) bottom = y;
+        }
+      }
+    }
+    if (right < left || bottom < top) return file; // fully transparent
+
+    const cw = right - left + 1;
+    const ch = bottom - top + 1;
+    if (cw === w && ch === h) return file; // nothing to trim
+
+    const out = document.createElement('canvas');
+    out.width = cw;
+    out.height = ch;
+    out.getContext('2d')?.drawImage(canvas, left, top, cw, ch, 0, 0, cw, ch);
+
+    const blob = await new Promise<Blob | null>((resolve) =>
+      out.toBlob(resolve, 'image/png'),
+    );
+    if (!blob) return file;
+
+    const base = file.name.replace(/\.(png|webp)$/i, '');
+    return new File([blob], `${base}.png`, { type: 'image/png' });
+  } catch {
+    return file;
+  }
+}
+
 /** Image path field with a preview and a direct upload button. */
 function ImageControl({
   id,
@@ -288,9 +353,10 @@ function ImageControl({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
-  async function upload(file: File) {
+  async function upload(rawFile: File) {
     setBusy(true);
     setError('');
+    const file = await trimTransparent(rawFile);
     const body = new FormData();
     body.append('file', file);
     try {
