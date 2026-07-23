@@ -27,9 +27,9 @@ export function Hero() {
   const logoSize = LOGO_SIZE[layout.heroLogoSize] ?? LOGO_SIZE.gross;
 
   return (
-    <section className="relative overflow-hidden py-10 md:py-14">
+    <section className="relative flex min-h-[calc(100vh-6rem)] items-center overflow-hidden py-10 md:py-14">
       <HeroBackground />
-      <div className="container relative z-10 flex flex-col items-center text-center">
+      <div className="container relative z-10 flex w-full flex-col items-center text-center">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
