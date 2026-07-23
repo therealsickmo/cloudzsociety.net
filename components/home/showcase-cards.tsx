@@ -32,13 +32,13 @@ function normalizeTags(raw: unknown): Tag[] {
 
 export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
   return (
-    <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
+    <div className="grid w-full gap-6 md:grid-cols-3">
       {cards.map((c, i) => {
         const CardIcon = getIcon(c.icon);
         const tags = normalizeTags(c.tags);
         return (
           <div key={`${c.title}-${i}`}>
-            <div className="group relative flex min-h-[640px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.25)]">
+            <div className="group relative flex min-h-[560px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.25)]">
               <div className="flex items-center gap-2.5">
                 {/* Icon without background, subtle glow */}
                 <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
