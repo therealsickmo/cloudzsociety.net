@@ -4,23 +4,27 @@ import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Scroll-reveal wrapper for a showcase card: glides in from the left or the
- * right (alternating) with a fade + slight zoom, once, when it enters view.
- * Keeps the card content server-rendered (passed as children).
+ * Scroll-reveal wrapper for a showcase card: all cards glide in from the left
+ * and "park" next to each other one after another (staggered by index) when
+ * the row enters view. Keeps the card content server-rendered (as children).
  */
 export function RevealCard({
   children,
-  fromLeft,
+  index,
 }: {
   children: ReactNode;
-  fromLeft: boolean;
+  index: number;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: fromLeft ? -140 : 140, scale: 0.94 }}
+      initial={{ opacity: 0, x: -240, scale: 0.92 }}
       whileInView={{ opacity: 1, x: 0, scale: 1 }}
       viewport={{ once: true, margin: '-120px' }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.22,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       style={{ willChange: 'transform, opacity' }}
     >
       {children}
