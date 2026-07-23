@@ -148,73 +148,69 @@
   }
 }
 
-/* ── Fluid blue title fill (showcase cards) ─────────────────────── */
-/* Single text layer: gradient goes blue → white so there is no second
-   layer bleeding a white outline. Fills blue left→right on hover. */
+/* Seamless multi-blue gradient shared by titles & eyebrows. Start and end
+   colours match so a background-position scroll loops without a jump. */
+.blue-multi,
 .title-fill {
   background-image: linear-gradient(
-    90deg,
-    rgb(147 197 253) 0%,
-    rgb(59 130 246) 12%,
-    rgb(37 99 235) 26%,
-    rgb(96 165 250) 40%,
-    #ffffff 58%,
-    #ffffff 100%
+    100deg,
+    rgb(59 130 246) 0%,
+    rgb(147 197 253) 18%,
+    rgb(37 99 235) 36%,
+    rgb(96 165 250) 55%,
+    rgb(165 206 255) 74%,
+    rgb(37 99 235) 90%,
+    rgb(59 130 246) 100%
   );
-  background-size: 230% 100%;
-  background-position: 100% 0;
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  filter: drop-shadow(0 0 0 transparent);
-  transition:
-    background-position 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.6s ease;
+  background-size: 200% 100%;
+  background-repeat: repeat;
 }
 
-/* Hover the card → title fills with the multi-blue gradient + soft glow */
-.group:hover .title-fill {
-  background-position: 0% 0;
-  filter: drop-shadow(0 0 14px rgb(var(--brand-500) / 0.55));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .title-fill {
-    transition: none;
+/* Continuous left → right "river" flow of the blue tones. */
+@keyframes blue-flow {
+  to {
+    background-position: 200% 0;
   }
 }
 
-/* ── Multi-blue gradient text with soft glow (Veylor-style) ─────────
-   Several blue shades flowing across the text plus a blurred glow behind
-   it. Used for eyebrows and highlighted brand words. */
+/* ── Always-on flowing titles/eyebrows (UNSERE WERTE, CLOUDZ, FEATURES…) */
 .blue-multi {
-  background-image: linear-gradient(
-    100deg,
-    rgb(147 197 253) 0%,
-    rgb(59 130 246) 20%,
-    rgb(37 99 235) 40%,
-    rgb(96 165 250) 62%,
-    rgb(165 206 255) 82%,
-    rgb(59 130 246) 100%
-  );
-  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   filter: drop-shadow(0 0 18px rgb(59 130 246 / 0.55));
-  animation: blue-shift 8s ease-in-out infinite;
+  animation: blue-flow 5s linear infinite;
 }
 
-@keyframes blue-shift {
-  0%,
-  100% {
-    background-position: 0% 0;
+/* ── Showcase card titles: white by default, flowing multi-blue on hover ── */
+.title-fill {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
+  filter: drop-shadow(0 0 0 transparent);
+  transition:
+    -webkit-text-fill-color 0.45s ease,
+    color 0.45s ease,
+    filter 0.5s ease;
+}
+
+/* Stay on the card → title turns blue and the tones keep flowing. */
+.group:hover .title-fill {
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgb(59 130 246 / 0.55));
+  animation: blue-flow 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blue-multi,
+  .group:hover .title-fill {
+    animation: none;
   }
-  50% {
-    background-position: 100% 0;
+  .title-fill {
+    transition: none;
   }
 }
 
