@@ -42,12 +42,13 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
               <div className="flex items-center gap-2.5">
                 {/* Icon without background, subtle glow */}
                 <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                {/* Title fills blue from right to left on hover, stays blue */}
+                {/* Title fills blue from left to right on hover, glow follows
+                    the moving fill edge; stays blue while hovered */}
                 <h3 className="relative inline-block text-2xl font-bold tracking-tight">
                   <span className="text-white">{c.title}</span>
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 text-brand [clip-path:inset(0_0_0_100%)] transition-[clip-path] duration-700 ease-out group-hover:[clip-path:inset(0_0_0_0)]"
+                    className="pointer-events-none absolute inset-0 text-brand [clip-path:inset(0_100%_0_0)] drop-shadow-[0_0_8px_rgb(var(--brand-400))] transition-[clip-path] duration-700 ease-out group-hover:[clip-path:inset(0_0_0_0)]"
                   >
                     {c.title}
                   </span>
