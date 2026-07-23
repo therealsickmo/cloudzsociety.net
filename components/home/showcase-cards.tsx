@@ -40,7 +40,12 @@ export function ShowcaseCards({
   emphasis?: boolean;
 }) {
   return (
-    <div className="mx-auto flex max-w-[1300px] flex-col gap-8">
+    <div
+      className={cn(
+        'mx-auto flex flex-col gap-8',
+        emphasis ? 'max-w-[1600px]' : 'max-w-[1300px]',
+      )}
+    >
       {cards.map((c, i) => {
         const CardIcon = getIcon(c.icon);
         const tags = normalizeTags(c.tags);
