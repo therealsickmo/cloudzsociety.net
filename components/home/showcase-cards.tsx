@@ -67,8 +67,14 @@ export function ShowcaseCards({
           const tags = normalizeTags(c.tags);
           const box = (
             <div className="group relative flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-3xl border border-white/10 bg-white/[0.03] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_50px_rgb(var(--brand-500)/0.3)]">
-              {/* Glass glow sheen */}
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
+              {/* Water / glass effect — drifting blurred blue blobs */}
+              <div className="water-fx">
+                <div className="water-blob b1" />
+                <div className="water-blob b2" />
+                <div className="water-blob b3" />
+              </div>
+              {/* Soft top sheen over the water */}
+              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(255,255,255,0.06),transparent_55%)]" />
 
               {/* Skin — small, stands at the bottom-left corner, peeking out of
                   the box. Fixed frame so all skins render the same size. */}

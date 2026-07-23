@@ -179,6 +179,107 @@
   }
 }
 
+/* ── Water / glass effect (showcase cards, Veylor-style) ────────────
+   Several blurred blue blobs drift slowly behind the card content for a
+   modern, watery glass look. Clipped by a rounded overflow-hidden layer. */
+.water-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1.5rem; /* matches rounded-3xl */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.water-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(46px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.water-blob.b1 {
+  width: 70%;
+  height: 70%;
+  top: -18%;
+  left: -12%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(var(--brand-400) / 0.9),
+    transparent 70%
+  );
+  animation: water-drift-1 14s ease-in-out infinite;
+}
+
+.water-blob.b2 {
+  width: 65%;
+  height: 65%;
+  bottom: -20%;
+  right: -10%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(56 130 246 / 0.85),
+    transparent 70%
+  );
+  animation: water-drift-2 18s ease-in-out infinite;
+}
+
+.water-blob.b3 {
+  width: 55%;
+  height: 55%;
+  top: 25%;
+  left: 30%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(99 179 255 / 0.7),
+    transparent 70%
+  );
+  animation: water-drift-3 22s ease-in-out infinite;
+}
+
+@keyframes water-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(14%, 10%) scale(1.12);
+  }
+  66% {
+    transform: translate(6%, 18%) scale(0.94);
+  }
+}
+
+@keyframes water-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-16%, -12%) scale(1.15);
+  }
+  70% {
+    transform: translate(-8%, -4%) scale(0.9);
+  }
+}
+
+@keyframes water-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-12%, 14%) scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-blob {
+    animation: none;
+  }
+}
+
 /* ── Blog prose styling ─────────────────────────────────────────── */
 .prose-cloudz {
   @apply text-text-secondary;
