@@ -31,7 +31,14 @@ function normalizeTags(raw: unknown): Tag[] {
   return [];
 }
 
-export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
+export function ShowcaseCards({
+  cards,
+  emphasis = false,
+}: {
+  cards: ShowcaseCard[];
+  /** Larger title/icon/text/tags and no embed box (used by the showcase). */
+  emphasis?: boolean;
+}) {
   return (
     <div className="mx-auto flex max-w-[1300px] flex-col gap-8">
       {cards.map((c, i) => {
@@ -53,31 +60,53 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
 
             {/* Content column */}
             <div className="flex flex-1 flex-col justify-center gap-4 p-8">
-              <div className="flex items-center gap-2.5">
-                <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                <h3 className="title-fill inline-block text-2xl font-bold tracking-tight">
+              <div className={cn('flex items-center', emphasis ? 'gap-3.5' : 'gap-2.5')}>
+                <CardIcon
+                  className={cn(
+                    'shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]',
+                    emphasis ? 'size-10' : 'size-7',
+                  )}
+                />
+                <h3
+                  className={cn(
+                    'title-fill inline-block font-bold tracking-tight',
+                    emphasis ? 'text-3xl md:text-4xl' : 'text-2xl',
+                  )}
+                >
                   {c.title}
                 </h3>
               </div>
 
-              {/* Embedded description panel — glow on hover */}
-              <div className="flex min-h-[104px] items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
-                <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-text-secondary">
+              {emphasis ? (
+                /* No embed box — larger text directly */
+                <p className="max-w-xl whitespace-pre-line text-lg font-bold leading-relaxed text-text-secondary">
                   {c.description}
                 </p>
-              </div>
+              ) : (
+                /* Embedded description panel — glow on hover */
+                <div className="flex min-h-[104px] items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
+                  <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-text-secondary">
+                    {c.description}
+                  </p>
+                </div>
+              )}
 
-              <div className="flex flex-wrap gap-2">
+              <div className={cn('flex flex-wrap', emphasis ? 'gap-3' : 'gap-2')}>
                 {tags.map((tag, t) => {
                   const TagIcon = getIcon(tag.icon);
                   return (
                     <span
                       key={`${tag.label}-${t}`}
                       style={pillStyle(tag.color)}
-                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-bold"
+                      className={cn(
+                        'inline-flex items-center whitespace-nowrap rounded-full border font-bold',
+                        emphasis
+                          ? 'gap-2 px-4 py-2 text-sm'
+                          : 'gap-1.5 px-2.5 py-1 text-[11px]',
+                      )}
                     >
                       <TagIcon
-                        className="size-3.5 shrink-0"
+                        className={cn('shrink-0', emphasis ? 'size-4' : 'size-3.5')}
                         style={iconStyle(tag.iconColor)}
                       />
                       {tag.label}

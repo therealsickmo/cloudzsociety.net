@@ -19,7 +19,13 @@ function highlightBrand(text: string): ReactNode {
 
 /** Reusable showcase-style section: eyebrow + big title + subtitle + cards.
  *  Uses a wide max-width so the cards stretch across the page. */
-export function ShowcaseSection({ content }: { content: ShowcaseContent }) {
+export function ShowcaseSection({
+  content,
+  emphasis = false,
+}: {
+  content: ShowcaseContent;
+  emphasis?: boolean;
+}) {
   const { eyebrow, title, subtitle, cards } = content;
   return (
     <section className="relative py-20 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/15 after:to-transparent md:py-28">
@@ -40,12 +46,12 @@ export function ShowcaseSection({ content }: { content: ShowcaseContent }) {
           )}
         </Reveal>
 
-        <ShowcaseCards cards={cards} />
+        <ShowcaseCards cards={cards} emphasis={emphasis} />
       </div>
     </section>
   );
 }
 
 export function Showcase() {
-  return <ShowcaseSection content={getContent().showcase} />;
+  return <ShowcaseSection content={getContent().showcase} emphasis />;
 }
