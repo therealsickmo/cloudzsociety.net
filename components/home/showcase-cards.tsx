@@ -61,8 +61,13 @@ export function ShowcaseCards({
               <CardSkin src={c.image} />
             </div>
 
-            {/* Content column */}
-            <div className="relative z-10 flex flex-1 flex-col justify-center gap-4 p-8 md:p-12">
+            {/* Content column — aligned to the outer edge (away from the skin) */}
+            <div
+              className={cn(
+                'relative z-10 flex flex-1 flex-col justify-center gap-4 p-8 md:p-12',
+                skinRight ? 'items-start text-left' : 'items-end text-right',
+              )}
+            >
               <div className={cn('flex items-center', emphasis ? 'gap-3.5' : 'gap-2.5')}>
                 <CardIcon
                   className={cn(
@@ -87,14 +92,20 @@ export function ShowcaseCards({
                 </p>
               ) : (
                 /* Embedded description panel — glow on hover */
-                <div className="flex min-h-[104px] items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <div className="flex min-h-[104px] w-full max-w-md items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
                   <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-text-secondary">
                     {c.description}
                   </p>
                 </div>
               )}
 
-              <div className={cn('flex flex-wrap', emphasis ? 'gap-3' : 'gap-2')}>
+              <div
+                className={cn(
+                  'flex flex-wrap',
+                  emphasis ? 'gap-3' : 'gap-2',
+                  skinRight ? 'justify-start' : 'justify-end',
+                )}
+              >
                 {tags.map((tag, t) => {
                   const TagIcon = getIcon(tag.icon);
                   return (
