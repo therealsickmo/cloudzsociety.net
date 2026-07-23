@@ -148,33 +148,6 @@
   }
 }
 
-/* ── Wavy blue title fill (showcase cards) ──────────────────────── */
-.title-wave {
-  --wave: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%2024'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%200%20H160%20C150%204%20172%206%20152%208%20C132%2011%20160%2013%20138%2016%20C120%2019%20150%2021%20122%2024%20H0%20Z'%20fill='%23000'/%3E%3C/svg%3E");
-  -webkit-mask-image: var(--wave);
-  mask-image: var(--wave);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 280% 100%;
-  mask-size: 280% 100%;
-  -webkit-mask-position: 100% 0;
-  mask-position: 100% 0;
-  transition:
-    -webkit-mask-position 1.5s cubic-bezier(0.5, 0, 0.2, 1),
-    mask-position 1.5s cubic-bezier(0.5, 0, 0.2, 1);
-}
-
-.group:hover .title-wave {
-  -webkit-mask-position: 0% 0;
-  mask-position: 0% 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .title-wave {
-    transition: none;
-  }
-}
-
 /* ── Blog prose styling ─────────────────────────────────────────── */
 .prose-cloudz {
   @apply text-text-secondary;
