@@ -52,21 +52,24 @@ export function ShowcaseCards({
         const tags = normalizeTags(c.tags);
         const skinRight = i % 2 === 1; // box 1 left, box 2 right, box 3 left…
         const cardEl = (
-          <div
-            className={cn(
-              'group relative flex min-h-[360px] flex-col overflow-visible rounded-3xl border border-white/10 bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_45px_-8px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.01] hover:border-brand/40 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_0_55px_rgb(var(--brand-500)/0.3)] md:flex-row',
-              skinRight && 'md:flex-row-reverse',
-            )}
-          >
-            {/* Glass glow sheen */}
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
-
-            {/* Skin column */}
-            <div className="relative h-64 w-full shrink-0 md:h-auto md:w-[34%]">
+          <div className="relative">
+            {/* Skin BEHIND the glass — head/feet stick out sharp, body shows
+                blurred through the transparent card */}
+            <div
+              className={cn(
+                'pointer-events-none absolute inset-y-0 z-0 w-[42%]',
+                skinRight ? 'right-0' : 'left-0',
+              )}
+            >
               <CardSkin src={c.image} />
             </div>
 
-            {/* Content column — left-aligned block sitting at the outer edge */}
+            {/* Glass card over the skin */}
+            <div className="group relative z-10 flex min-h-[380px] overflow-visible rounded-3xl border border-white/10 bg-white/[0.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_45px_-8px_rgb(var(--brand-500)/0.15)] backdrop-blur-lg transition-all duration-300 hover:scale-[1.01] hover:border-brand/40 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_0_55px_rgb(var(--brand-500)/0.3)]">
+            {/* Glass glow sheen */}
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
+
+            {/* Content — left-aligned block sitting at the outer edge */}
             <div
               className={cn(
                 'relative z-10 flex flex-1 flex-col justify-center p-8 md:p-12',
@@ -134,6 +137,7 @@ export function ShowcaseCards({
                 })}
               </div>
               </div>
+            </div>
             </div>
           </div>
         );

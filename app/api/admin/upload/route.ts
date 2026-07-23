@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import sharp from 'sharp';
 import { NextResponse } from 'next/server';
 import { isAdminAuthed } from '@/lib/admin-auth';
 
@@ -49,7 +50,19 @@ export async function POST(request: Request) {
     );
   }
 
-  const buffer = Buffer.from(await file.arrayBuffer());
+  let buffer: Buffer = Buffer.from(await file.arrayBuffer());
+
+  // Auto-trim transparent borders so uploaded skins fill the frame.
+  if (ext === '.png' || ext === '.webp') {
+    try {
+      buffer = Buffer.from(
+        await sharp(buffer).trim({ threshold: 12 }).toBuffer(),
+      );
+    } catch {
+      /* keep original on failure */
+    }
+  }
+
   fs.mkdirSync(UPLOAD_DIR, { recursive: true });
   const filename = slugify(file.name);
   fs.writeFileSync(path.join(UPLOAD_DIR, filename), buffer);
