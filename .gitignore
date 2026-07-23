@@ -36,3 +36,7 @@ yarn-error.log*
 
 # runtime data written by the admin/dashboard (keep folder, ignore contents)
 data/*.json
+# …but keep the editable site content & settings in git so they sync
+# across machines (dashboard runtime data stays ignored above).
+!data/content.json
+!data/settings.json
