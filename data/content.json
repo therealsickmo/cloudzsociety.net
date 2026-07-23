@@ -87,29 +87,39 @@
     ]
   },
   "features": {
-    "eyebrow": "Features",
+    "eyebrow": "FEATURES",
     "title": "Warum CLOUDZ™?",
-    "description": "Vier Gründe, warum sich tausende Spieler für unser Netzwerk entscheiden.",
-    "items": [
+    "subtitle": "Vier Gründe, warum sich tausende Spieler für unser Netzwerk entscheiden.",
+    "cards": [
       {
         "icon": "Gamepad2",
+        "image": "/images/skin-render.webp",
         "title": "Eigene Spielmodi",
-        "text": "Einzigartige Spielmodi, die wir selbst entwickeln — von rasantem PvP bis zu entspanntem Survival."
+        "description": "Einzigartige Spielmodi, die wir selbst entwickeln — von rasantem PvP bis zu entspanntem Survival.",
+        "tags": [
+          { "icon": "Swords", "label": "PvP", "color": "red-neon", "iconColor": "red" },
+          { "icon": "Sparkles", "label": "Einzigartig", "color": "blue-neon", "iconColor": "blue" }
+        ]
       },
       {
         "icon": "Users",
+        "image": "/images/skin-render.webp",
         "title": "Aktive Community",
-        "text": "Tausende Spieler auf Discord und im Spiel. Finde neue Freunde und erlebe Events gemeinsam."
+        "description": "Tausende Spieler auf Discord und im Spiel. Finde neue Freunde und erlebe Events gemeinsam.",
+        "tags": [
+          { "icon": "Handshake", "label": "Community", "color": "green-neon", "iconColor": "green" },
+          { "icon": "PartyPopper", "label": "Events", "color": "purple-neon", "iconColor": "purple" }
+        ]
       },
       {
         "icon": "RefreshCw",
+        "image": "/images/skin-render.webp",
         "title": "Regelmäßige Updates",
-        "text": "Neue Inhalte, Balance-Anpassungen und Features — wir liefern kontinuierlich frischen Content."
-      },
-      {
-        "icon": "Headphones",
-        "title": "Schneller Support",
-        "text": "Unser Support-Team ist rund um die Uhr für dich da und hilft bei jedem Anliegen zügig weiter."
+        "description": "Neue Inhalte, Balance-Anpassungen und Features — wir liefern kontinuierlich frischen Content.",
+        "tags": [
+          { "icon": "Rocket", "label": "Fortschritt", "color": "cyan-neon", "iconColor": "cyan" },
+          { "icon": "Gift", "label": "Neuer Content", "color": "amber-neon", "iconColor": "amber" }
+        ]
       }
     ]
   },

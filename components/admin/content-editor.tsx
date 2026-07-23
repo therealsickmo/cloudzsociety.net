@@ -20,6 +20,27 @@ const ICON_TEXT_FIELDS: Field[] = [
   { key: 'text', label: 'Text', type: 'textarea', wide: true },
 ];
 
+// Shared header + card fields for showcase-style sections.
+const SHOWCASE_HEADER_FIELDS: Field[] = [
+  { key: 'eyebrow', label: 'Kleiner Text (über dem Titel)', type: 'text', wide: true },
+  { key: 'title', label: 'Großer Titel', type: 'text', wide: true, hint: '„CLOUDZ" wird automatisch blau' },
+  { key: 'subtitle', label: 'Untertitel', type: 'text', wide: true },
+];
+const SHOWCASE_CARD_FIELDS: Field[] = [
+  { key: 'icon', label: 'Icon (vor dem Titel)', type: 'icon' },
+  { key: 'title', label: 'Titel', type: 'text' },
+  { key: 'image', label: 'Skin-Bild', type: 'image', wide: true },
+  { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },
+  { key: 'tags', label: 'Tags (mit Icon)', type: 'tags', wide: true },
+];
+const newShowcaseCard = () => ({
+  icon: 'Sparkles',
+  image: '/images/skin-render.webp',
+  title: 'Neue Karte',
+  description: '',
+  tags: [],
+});
+
 type Group =
   | { kind: 'fields'; title: string; path: string; fields: Field[] }
   | {
@@ -70,31 +91,15 @@ const GROUPS: Group[] = [
     kind: 'fields',
     title: 'Showcase – Überschrift',
     path: 'showcase',
-    fields: [
-      { key: 'eyebrow', label: 'Kleiner Text (über dem Titel)', type: 'text', wide: true },
-      { key: 'title', label: 'Großer Titel', type: 'text', wide: true, hint: '„CLOUDZ" wird automatisch blau' },
-      { key: 'subtitle', label: 'Untertitel', type: 'text', wide: true },
-    ],
+    fields: SHOWCASE_HEADER_FIELDS,
   },
   {
     kind: 'repeater',
     title: 'Showcase – Karten',
     path: 'showcase.cards',
-    fields: [
-      { key: 'icon', label: 'Icon (vor dem Titel)', type: 'icon' },
-      { key: 'title', label: 'Titel', type: 'text' },
-      { key: 'image', label: 'Skin-Bild', type: 'image', wide: true },
-      { key: 'description', label: 'Beschreibung', type: 'textarea', wide: true },
-      { key: 'tags', label: 'Tags (mit Icon)', type: 'tags', wide: true },
-    ],
+    fields: SHOWCASE_CARD_FIELDS,
     itemLabel: (i) => String(i.title),
-    newItem: () => ({
-      icon: 'Sparkles',
-      image: '/images/skin-render.webp',
-      title: 'Neue Karte',
-      description: '',
-      tags: [],
-    }),
+    newItem: newShowcaseCard,
   },
   {
     kind: 'fields',
@@ -114,15 +119,15 @@ const GROUPS: Group[] = [
     kind: 'fields',
     title: 'Features – Überschrift',
     path: 'features',
-    fields: HEADER_FIELDS,
+    fields: SHOWCASE_HEADER_FIELDS,
   },
   {
     kind: 'repeater',
     title: 'Features – Karten',
-    path: 'features.items',
-    fields: ICON_TEXT_FIELDS,
+    path: 'features.cards',
+    fields: SHOWCASE_CARD_FIELDS,
     itemLabel: (i) => String(i.title),
-    newItem: () => ({ icon: 'Star', title: 'Neu', text: '' }),
+    newItem: newShowcaseCard,
   },
   {
     kind: 'fields',

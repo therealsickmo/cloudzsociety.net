@@ -3,6 +3,7 @@ import { Section } from '@/components/common/section';
 import { Reveal } from '@/components/common/reveal';
 import { ShowcaseCards } from '@/components/home/showcase-cards';
 import { getContent } from '@/lib/content-store';
+import type { ShowcaseContent } from '@/types';
 
 /** Colour every "CLOUDZ" / "CLOUDZ™" occurrence in the brand blue. */
 function highlightBrand(text: string): ReactNode {
@@ -17,12 +18,11 @@ function highlightBrand(text: string): ReactNode {
   );
 }
 
-export function Showcase() {
-  const { eyebrow, title, subtitle, cards } = getContent().showcase;
-
+/** Reusable showcase-style section: eyebrow + big title + subtitle + cards. */
+export function ShowcaseSection({ content }: { content: ShowcaseContent }) {
+  const { eyebrow, title, subtitle, cards } = content;
   return (
     <Section>
-      {/* Eyebrow + big title + subtitle */}
       <Reveal className="mb-14 flex flex-col items-center gap-3 text-center">
         {eyebrow && (
           <span className="text-sm font-extrabold uppercase tracking-widest text-brand">
@@ -42,4 +42,8 @@ export function Showcase() {
       <ShowcaseCards cards={cards} />
     </Section>
   );
+}
+
+export function Showcase() {
+  return <ShowcaseSection content={getContent().showcase} />;
 }

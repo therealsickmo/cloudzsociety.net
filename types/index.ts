@@ -234,12 +234,7 @@ export interface SiteContent {
     description: string;
     points: IconTextItem[];
   };
-  features: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    items: IconTextItem[];
-  };
+  features: ShowcaseContent;
   stats: { eyebrow: string; title: string; description: string };
   cta: {
     title: string;
