@@ -42,21 +42,21 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
               <div className="flex items-center gap-2.5">
                 {/* Icon without background, subtle glow */}
                 <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                {/* Title with a left-to-right blue fill on hover */}
+                {/* Title with a wavy left-to-right blue fill on hover */}
                 <h3 className="relative inline-block text-2xl font-bold tracking-tight">
                   <span className="text-white">{c.title}</span>
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 text-brand [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-500 ease-out group-hover:[clip-path:inset(0_0_0_0)]"
+                    className="title-wave pointer-events-none absolute inset-0 text-brand"
                   >
                     {c.title}
                   </span>
                 </h3>
               </div>
 
-              {/* Embedded description panel */}
-              <div className="mt-4 rounded-2xl border border-white/[0.07] bg-black/20 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                <p className="text-[13px] font-medium leading-relaxed text-text-secondary">
+              {/* Embedded description panel (scales slightly on hover) */}
+              <div className="mt-4 origin-left rounded-2xl border border-white/[0.07] bg-black/20 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-transform duration-300 group-hover:scale-[1.03]">
+                <p className="text-[13px] font-semibold leading-relaxed text-text-secondary">
                   {c.description}
                 </p>
               </div>
