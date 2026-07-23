@@ -80,7 +80,7 @@ export function ShowcaseCards({
               <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
                 <div className="flex items-center gap-2.5">
                   <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                  <h3 className="blue-multi inline-block text-[1.7rem] font-extrabold tracking-tight">
+                  <h3 className="title-fill inline-block text-[1.7rem] font-extrabold tracking-tight">
                     {c.title}
                   </h3>
                 </div>
@@ -132,7 +132,7 @@ export function ShowcaseCards({
               <div className="flex max-w-md flex-col gap-4 text-left">
                 <div className="flex items-center gap-2.5">
                   <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                  <h3 className="blue-multi inline-block text-2xl font-extrabold tracking-tight">
+                  <h3 className="title-fill inline-block text-2xl font-extrabold tracking-tight">
                     {c.title}
                   </h3>
                 </div>
