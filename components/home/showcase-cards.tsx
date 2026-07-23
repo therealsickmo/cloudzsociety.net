@@ -76,9 +76,9 @@ export function ShowcaseCards({
                 <CardSkin src={c.image} />
               </div>
 
-              {/* Content — up top, centred left-to-right */}
-              <div className="relative z-10 flex w-full flex-col items-center gap-3.5 text-center">
-                <div className="flex items-center justify-center gap-2.5">
+              {/* Content — up top, left-aligned */}
+              <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
+                <div className="flex items-center gap-2.5">
                   <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
                   <h3 className="title-fill inline-block text-[1.7rem] font-extrabold tracking-tight">
                     {c.title}
@@ -87,7 +87,7 @@ export function ShowcaseCards({
                 <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
                   {c.description}
                 </p>
-                <div className="flex flex-wrap justify-center gap-2">
+                <div className="flex flex-wrap justify-start gap-2">
                   {tags.map((tag, t) => (
                     <TagPill key={`${tag.label}-${t}`} tag={tag} />
                   ))}
