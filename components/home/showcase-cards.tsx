@@ -1,4 +1,5 @@
 import { CardSkin } from '@/components/home/skin-render';
+import { RevealCard } from '@/components/home/reveal-card';
 import { getIcon } from '@/lib/icons';
 import { iconStyle, pillStyle } from '@/lib/tag-colors';
 import { cn } from '@/lib/utils';
@@ -50,9 +51,8 @@ export function ShowcaseCards({
         const CardIcon = getIcon(c.icon);
         const tags = normalizeTags(c.tags);
         const skinRight = i % 2 === 1; // box 1 left, box 2 right, box 3 left…
-        return (
+        const cardEl = (
           <div
-            key={`${c.title}-${i}`}
             className={cn(
               'group relative flex min-h-[360px] flex-col overflow-visible rounded-3xl border border-white/10 bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_45px_-8px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.01] hover:border-brand/40 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_0_55px_rgb(var(--brand-500)/0.3)] md:flex-row',
               skinRight && 'md:flex-row-reverse',
@@ -136,6 +136,13 @@ export function ShowcaseCards({
               </div>
             </div>
           </div>
+        );
+        return emphasis ? (
+          <RevealCard key={`${c.title}-${i}`} fromLeft={!skinRight}>
+            {cardEl}
+          </RevealCard>
+        ) : (
+          <div key={`${c.title}-${i}`}>{cardEl}</div>
         );
       })}
     </div>
