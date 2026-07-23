@@ -39,9 +39,11 @@ export function IconPicker({
   useOutsideClose(ref, () => setOpen(false));
 
   const Current = getIcon(value || 'Sparkles');
-  const filtered = q
+  const matches = q
     ? ICON_OPTIONS.filter((o) => o.value.toLowerCase().includes(q.toLowerCase()))
     : ICON_OPTIONS;
+  // Cap rendered tiles for performance (search narrows the full set).
+  const filtered = matches.slice(0, 300);
 
   return (
     <div ref={ref} className="relative">
@@ -97,6 +99,11 @@ export function IconPicker({
               </p>
             )}
           </div>
+          <p className="mt-2 text-center text-[11px] text-text-secondary">
+            {matches.length > filtered.length
+              ? `${filtered.length} von ${matches.length} — tippe zum Suchen`
+              : `${matches.length} Icons`}
+          </p>
         </div>
       )}
     </div>

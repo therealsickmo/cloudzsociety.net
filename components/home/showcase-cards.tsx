@@ -1,5 +1,3 @@
-'use client';
-
 import { CardSkin } from '@/components/home/skin-render';
 import { getIcon } from '@/lib/icons';
 import { iconStyle, pillStyle } from '@/lib/tag-colors';
