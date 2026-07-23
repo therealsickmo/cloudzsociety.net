@@ -83,7 +83,7 @@ export function ShowcaseCards({
                 />
                 <h3
                   className={cn(
-                    'title-fill inline-block font-bold tracking-tight',
+                    'title-fill inline-block font-extrabold tracking-tight',
                     emphasis ? 'text-3xl md:text-4xl' : 'text-2xl',
                   )}
                 >
