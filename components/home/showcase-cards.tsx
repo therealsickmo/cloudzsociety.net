@@ -54,9 +54,9 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
                 </h3>
               </div>
 
-              {/* Embedded description panel — uniform height, glowing border */}
-              <div className="mt-4 flex min-h-[132px] items-center rounded-2xl border border-brand/25 bg-black/25 p-4 shadow-[0_0_18px_rgb(var(--brand-500)/0.18),inset_0_1px_0_rgba(255,255,255,0.05)]">
-                <p className="text-[13px] font-semibold leading-relaxed text-text-secondary">
+              {/* Embedded description panel — uniform height; glow on hover */}
+              <div className="mt-4 flex min-h-[132px] items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <p className="whitespace-pre-line text-[13px] font-bold leading-relaxed text-text-secondary">
                   {c.description}
                 </p>
               </div>
