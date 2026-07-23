@@ -29,7 +29,7 @@ export function ShowcaseSection({
   const { eyebrow, title, subtitle, cards } = content;
   return (
     <section className="relative py-20 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/15 after:to-transparent md:py-28">
-      <div className={emphasis ? 'mx-auto max-w-[1600px] px-6' : 'mx-auto max-w-[1300px] px-6'}>
+      <div className="mx-auto max-w-[1300px] px-6">
         <Reveal className="mb-14 flex flex-col items-center gap-3 text-center">
           {eyebrow && (
             <span className="text-sm font-extrabold uppercase tracking-widest text-brand">

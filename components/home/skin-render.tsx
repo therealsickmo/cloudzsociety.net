@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * The Minecraft skin render — larger than its column so it breaks out over
- * the top edge and tucks its feet below (behind the next card). Gently bobs.
+ * Minecraft skin render — fills its (positioned) parent, anchored to the
+ * bottom, gently bobbing. The parent controls position/size/overflow.
  * Renders nothing if the image is missing.
  */
 export function CardSkin({ src }: { src: string }) {
@@ -13,9 +13,9 @@ export function CardSkin({ src }: { src: string }) {
   if (!ok || !src) return null;
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 -top-20 -bottom-12 flex items-end justify-center">
+    <div className="pointer-events-none absolute inset-0 flex items-end justify-center">
       <motion.div
-        animate={{ y: [0, -12, 0] }}
+        animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         className="flex h-full items-end"
       >
@@ -24,7 +24,7 @@ export function CardSkin({ src }: { src: string }) {
           src={src}
           alt="Minecraft Skin"
           onError={() => setOk(false)}
-          className="h-[96%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_18px_36px_rgba(0,0,0,0.6)]"
+          className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_16px_32px_rgba(0,0,0,0.55)]"
         />
       </motion.div>
     </div>
