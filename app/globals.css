@@ -169,7 +169,7 @@
 /* Continuous left → right "river" flow of the blue tones. */
 @keyframes blue-flow {
   to {
-    background-position: 200% 0;
+    background-position: -200% 0;
   }
 }
 
