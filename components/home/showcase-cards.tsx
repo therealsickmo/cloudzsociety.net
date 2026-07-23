@@ -2,7 +2,7 @@
 
 import { CardSkin } from '@/components/home/skin-render';
 import { getIcon } from '@/lib/icons';
-import { iconColorClass, pillClass } from '@/lib/tag-colors';
+import { iconStyle, pillStyle } from '@/lib/tag-colors';
 import type { ShowcaseCard } from '@/types';
 
 type Tag = { icon: string; label: string; color?: string; iconColor?: string };
@@ -68,9 +68,13 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
                   return (
                     <span
                       key={`${tag.label}-${t}`}
-                      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-bold ${pillClass(tag.color)}`}
+                      style={pillStyle(tag.color)}
+                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-bold"
                     >
-                      <TagIcon className={`size-3.5 shrink-0 ${iconColorClass(tag.iconColor)}`} />
+                      <TagIcon
+                        className="size-3.5 shrink-0"
+                        style={iconStyle(tag.iconColor)}
+                      />
                       {tag.label}
                     </span>
                   );

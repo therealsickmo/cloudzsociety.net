@@ -6,8 +6,7 @@ import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { getIcon, ICON_OPTIONS } from '@/lib/icons';
-import { iconColorClass, TAG_COLOR_OPTIONS } from '@/lib/tag-colors';
+import { IconPicker, ColorPicker } from '@/components/admin/pickers';
 import type { Field } from '@/components/admin/schema';
 
 interface FieldInputProps {
@@ -165,7 +164,7 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
 
     case 'icon':
       return (
-        <IconControl id={id} value={String(value ?? '')} onChange={onChange} />
+        <IconPicker value={String(value ?? '')} onChange={onChange} />
       );
 
     case 'tags':
@@ -188,39 +187,7 @@ function Control({ field, value, onChange, id }: FieldInputProps) {
   }
 }
 
-/** Icon picker with a live preview of the selected icon. */
-function IconControl({
-  id,
-  value,
-  onChange,
-}: {
-  id: string;
-  value: string;
-  onChange: (value: unknown) => void;
-}) {
-  const Icon = getIcon(value || 'Sparkles');
-  return (
-    <div className="flex items-center gap-2">
-      <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface/60 text-brand">
-        <Icon className="size-5" />
-      </span>
-      <select
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="h-11 w-full rounded-xl border border-border bg-surface/60 px-4 text-sm text-white focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
-      >
-        {ICON_OPTIONS.map((opt) => (
-          <option key={opt.value} value={opt.value} className="bg-surface">
-            {opt.label}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-/** Editable list of tags with icon preview + colour pickers per tag. */
+/** Editable list of tags with icon + colour pickers per tag. */
 type Tag = { icon: string; label: string; color: string; iconColor: string };
 
 function TagsControl({
@@ -245,80 +212,56 @@ function TagsControl({
   const add = () =>
     onChange([
       ...tags,
-      { icon: 'Sparkles', label: 'Neu', color: 'blue', iconColor: 'blue' },
+      { icon: 'Sparkles', label: 'Neu', color: 'blue-normal', iconColor: 'blue-neon' },
     ]);
-
-  const selectCls =
-    'h-10 rounded-lg border border-border bg-surface/60 px-2 text-sm text-white focus-visible:border-brand/50 focus-visible:outline-none';
 
   return (
     <div className="space-y-3">
-      {tags.map((tag, i) => {
-        const Icon = getIcon(tag.icon || 'Sparkles');
-        return (
-          <div
-            key={i}
-            className="space-y-2 rounded-xl border border-border bg-surface/40 p-3"
-          >
-            <div className="flex items-center gap-2">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface/60">
-                <Icon className={`size-4 ${iconColorClass(tag.iconColor)}`} />
-              </span>
-              <Input
-                value={tag.label}
-                placeholder="Beschriftung…"
-                onChange={(e) => update(i, { label: e.target.value })}
-              />
-              <button
-                type="button"
-                onClick={() => remove(i)}
-                className="shrink-0 rounded-lg p-2 text-red-400 transition-colors hover:bg-red-500/10"
-                aria-label="Tag entfernen"
-              >
-                <Trash2 className="size-4" />
-              </button>
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              <select
+      {tags.map((tag, i) => (
+        <div
+          key={i}
+          className="space-y-2 rounded-xl border border-border bg-surface/40 p-3"
+        >
+          <div className="flex items-center gap-2">
+            <Input
+              value={tag.label}
+              placeholder="Beschriftung…"
+              onChange={(e) => update(i, { label: e.target.value })}
+            />
+            <button
+              type="button"
+              onClick={() => remove(i)}
+              className="shrink-0 rounded-lg p-2 text-red-400 transition-colors hover:bg-red-500/10"
+              aria-label="Tag entfernen"
+            >
+              <Trash2 className="size-4" />
+            </button>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="space-y-1">
+              <span className="text-[11px] text-text-secondary">Icon</span>
+              <IconPicker
                 value={tag.icon}
-                onChange={(e) => update(i, { icon: e.target.value })}
-                className={selectCls}
-                title="Icon"
-              >
-                {ICON_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value} className="bg-surface">
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-              <select
+                onChange={(v) => update(i, { icon: v })}
+              />
+            </div>
+            <div className="space-y-1">
+              <span className="text-[11px] text-text-secondary">Tag-Farbe</span>
+              <ColorPicker
                 value={tag.color}
-                onChange={(e) => update(i, { color: e.target.value })}
-                className={selectCls}
-                title="Farbe"
-              >
-                {TAG_COLOR_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value} className="bg-surface">
-                    Farbe: {opt.label}
-                  </option>
-                ))}
-              </select>
-              <select
+                onChange={(v) => update(i, { color: v })}
+              />
+            </div>
+            <div className="space-y-1">
+              <span className="text-[11px] text-text-secondary">Icon-Farbe</span>
+              <ColorPicker
                 value={tag.iconColor}
-                onChange={(e) => update(i, { iconColor: e.target.value })}
-                className={selectCls}
-                title="Icon-Farbe"
-              >
-                {TAG_COLOR_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value} className="bg-surface">
-                    Icon: {opt.label}
-                  </option>
-                ))}
-              </select>
+                onChange={(v) => update(i, { iconColor: v })}
+              />
             </div>
           </div>
-        );
-      })}
+        </div>
+      ))}
       <button
         type="button"
         onClick={add}

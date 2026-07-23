@@ -30,8 +30,8 @@ export const defaultContent: SiteContent = {
         description:
           'Langweilige Dauer-Server gibt es genug. CLOUDZ™ setzt auf zeitlich begrenzte Projekte mit frischen Ideen und einzigartigen Erlebnissen.',
         tags: [
-          { icon: 'RefreshCw', label: 'Temporäre Projekte', color: 'blue', iconColor: 'blue' },
-          { icon: 'Sparkles', label: 'Einzigartige Konzepte', color: 'purple', iconColor: 'purple' },
+          { icon: 'RefreshCw', label: 'Temporäre Projekte', color: 'blue-normal', iconColor: 'blue-neon' },
+          { icon: 'Sparkles', label: 'Einzigartige Konzepte', color: 'purple-normal', iconColor: 'purple-neon' },
         ],
       },
       {
@@ -41,8 +41,8 @@ export const defaultContent: SiteContent = {
         description:
           'Neue Projekte bedeuten einen gemeinsamen Start für alle. Niemand ist jahrelang im Vorteil – jeder hat die Chance, Geschichte zu schreiben.',
         tags: [
-          { icon: 'Target', label: 'Chancengleichheit', color: 'green', iconColor: 'green' },
-          { icon: 'Shield', label: 'Faire Bedingungen', color: 'cyan', iconColor: 'cyan' },
+          { icon: 'Target', label: 'Chancengleichheit', color: 'green-normal', iconColor: 'green-neon' },
+          { icon: 'Shield', label: 'Faire Bedingungen', color: 'cyan-normal', iconColor: 'cyan-neon' },
         ],
       },
       {
@@ -52,8 +52,8 @@ export const defaultContent: SiteContent = {
         description:
           'Wir veröffentlichen nur Projekte, hinter denen wir stehen. Weniger Features, dafür mehr Liebe zum Detail und ein durchdachtes Spielerlebnis.',
         tags: [
-          { icon: 'Heart', label: 'Liebe zum Detail', color: 'pink', iconColor: 'pink' },
-          { icon: 'Trophy', label: 'Hohe Qualität', color: 'amber', iconColor: 'amber' },
+          { icon: 'Heart', label: 'Liebe zum Detail', color: 'pink-normal', iconColor: 'pink-neon' },
+          { icon: 'Trophy', label: 'Hohe Qualität', color: 'amber-normal', iconColor: 'amber-neon' },
         ],
       },
     ],
