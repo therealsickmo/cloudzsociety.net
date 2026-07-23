@@ -56,10 +56,13 @@ export function ShowcaseCards({ cards }: { cards: ShowcaseCard[] }) {
                 </h3>
               </div>
 
-              <p className="mt-4 text-[15px] font-semibold leading-relaxed text-text-secondary">
-                {c.description}
-              </p>
-              <div className="mt-5 flex flex-nowrap gap-2">
+              {/* Embedded description panel */}
+              <div className="mt-4 rounded-2xl border border-white/[0.07] bg-black/20 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                <p className="text-[13px] font-medium leading-relaxed text-text-secondary">
+                  {c.description}
+                </p>
+              </div>
+              <div className="mt-4 flex flex-nowrap gap-2">
                 {tags.map((tag, t) => {
                   const TagIcon = getIcon(tag.icon);
                   return (
