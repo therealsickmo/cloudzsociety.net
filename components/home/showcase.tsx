@@ -8,7 +8,7 @@ import type { ShowcaseContent } from '@/types';
 function highlightBrand(text: string): ReactNode {
   return text.split(/(CLOUDZ™|CLOUDZ)/g).map((part, i) =>
     part === 'CLOUDZ™' || part === 'CLOUDZ' ? (
-      <span key={i} className="text-brand">
+      <span key={i} className="blue-multi">
         {part}
       </span>
     ) : (
@@ -32,7 +32,7 @@ export function ShowcaseSection({
       <div className={emphasis ? 'mx-auto max-w-[1600px] px-6' : 'mx-auto max-w-[1300px] px-6'}>
         <Reveal className="mb-14 flex flex-col items-center gap-3 text-center">
           {eyebrow && (
-            <span className="text-sm font-extrabold uppercase tracking-widest text-brand">
+            <span className="blue-multi text-sm font-extrabold uppercase tracking-widest">
               {eyebrow}
             </span>
           )}
