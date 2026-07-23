@@ -72,7 +72,7 @@ export function ShowcaseCards({
 
               {/* Skin — small, stands at the bottom-left corner, peeking out of
                   the box. Fixed frame so all skins render the same size. */}
-              <div className="pointer-events-none absolute bottom-0 left-[-10%] z-20 h-[46%] w-[40%]">
+              <div className="pointer-events-none absolute bottom-0 left-[-18%] z-20 h-[46%] w-[40%]">
                 <CardSkin src={c.image} />
               </div>
 
