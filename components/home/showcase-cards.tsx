@@ -96,7 +96,7 @@ export function ShowcaseCards({
             </div>
           );
           return (
-            <RevealCard key={`${c.title}-${i}`} index={i}>
+            <RevealCard key={`${c.title}-${i}`} index={i} total={cards.length}>
               {box}
             </RevealCard>
           );
