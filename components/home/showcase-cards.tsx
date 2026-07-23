@@ -49,17 +49,20 @@ export function ShowcaseCards({
           <div
             key={`${c.title}-${i}`}
             className={cn(
-              'group relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl transition-all duration-300 hover:scale-[1.01] hover:border-brand/40 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.25)] md:flex-row',
+              'group relative flex min-h-[360px] flex-col overflow-visible rounded-3xl border border-white/10 bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_45px_-8px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.01] hover:border-brand/40 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_0_55px_rgb(var(--brand-500)/0.3)] md:flex-row',
               skinRight && 'md:flex-row-reverse',
             )}
           >
+            {/* Glass glow sheen */}
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
+
             {/* Skin column */}
             <div className="relative h-64 w-full shrink-0 md:h-auto md:w-[34%]">
               <CardSkin src={c.image} />
             </div>
 
             {/* Content column */}
-            <div className="flex flex-1 flex-col justify-center gap-4 p-8">
+            <div className="relative z-10 flex flex-1 flex-col justify-center gap-4 p-8 md:p-12">
               <div className={cn('flex items-center', emphasis ? 'gap-3.5' : 'gap-2.5')}>
                 <CardIcon
                   className={cn(
