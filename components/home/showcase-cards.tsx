@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { CardSkin } from '@/components/home/skin-render';
 import { RevealCard } from '@/components/home/reveal-card';
 import { getIcon } from '@/lib/icons';
@@ -30,6 +31,29 @@ function normalizeTags(raw: unknown): Tag[] {
       });
   }
   return [];
+}
+
+/** Card title: white base with a blue flowing overlay that wipes in on hover. */
+function FlowTitle({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <h3
+      className={cn(
+        'title-flow-wrap font-extrabold tracking-tight',
+        className,
+      )}
+    >
+      <span className="title-base">{children}</span>
+      <span className="title-flow" aria-hidden="true">
+        {children}
+      </span>
+    </h3>
+  );
 }
 
 function TagPill({ tag, big }: { tag: Tag; big?: boolean }) {
@@ -66,9 +90,9 @@ export function ShowcaseCards({
           const CardIcon = getIcon(c.icon);
           const tags = normalizeTags(c.tags);
           const box = (
-            <div className="group relative flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-3xl border border-white/10 bg-white/[0.03] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_50px_rgb(var(--brand-500)/0.3)]">
+            <div className="group relative flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.12] to-white/[0.04] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-2xl transition-all duration-300 hover:scale-[1.02] hover:border-white/30 hover:shadow-[0_0_50px_rgb(59_130_246/0.4),0_0_90px_rgb(37_99_235/0.28),0_0_130px_rgb(147_197_253/0.22)]">
               {/* Glass glow sheen */}
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
+              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(255,255,255,0.14),transparent_60%)]" />
 
               {/* Skin — small, stands at the bottom-left corner, peeking out of
                   the box. Fixed frame so all skins render the same size. */}
@@ -80,9 +104,7 @@ export function ShowcaseCards({
               <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
                 <div className="flex items-center gap-2.5">
                   <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                  <h3 className="title-fill inline-block text-[1.7rem] font-extrabold tracking-tight">
-                    {c.title}
-                  </h3>
+                  <FlowTitle className="text-[1.7rem]">{c.title}</FlowTitle>
                 </div>
                 <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
                   {c.description}
@@ -116,7 +138,7 @@ export function ShowcaseCards({
           <div
             key={`${c.title}-${i}`}
             className={cn(
-              'group relative flex min-h-[340px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl transition-all duration-300 hover:border-brand/40 hover:shadow-[0_0_40px_rgb(var(--brand-500)/0.25)] md:flex-row',
+              'group relative flex min-h-[340px] flex-col overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-white/[0.1] to-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-2xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_40px_rgb(59_130_246/0.35),0_0_80px_rgb(37_99_235/0.25),0_0_120px_rgb(147_197_253/0.2)] md:flex-row',
               skinRight && 'md:flex-row-reverse',
             )}
           >
@@ -132,9 +154,7 @@ export function ShowcaseCards({
               <div className="flex max-w-md flex-col gap-4 text-left">
                 <div className="flex items-center gap-2.5">
                   <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                  <h3 className="title-fill inline-block text-2xl font-extrabold tracking-tight">
-                    {c.title}
-                  </h3>
+                  <FlowTitle className="text-2xl">{c.title}</FlowTitle>
                 </div>
                 <div className="flex min-h-[104px] w-full items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
                   <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-text-secondary">

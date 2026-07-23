@@ -151,7 +151,7 @@
 /* Seamless multi-blue gradient shared by titles & eyebrows. Start and end
    colours match so a background-position scroll loops without a jump. */
 .blue-multi,
-.title-fill {
+.title-flow {
   background-image: linear-gradient(
     100deg,
     rgb(59 130 246) 0%,
@@ -183,40 +183,46 @@
   animation: blue-flow 5s linear infinite;
 }
 
-/* ── Showcase card titles: white by default, flowing multi-blue on hover ── */
-.title-fill {
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: #ffffff;
-  color: #ffffff;
-  filter: drop-shadow(0 0 0 transparent);
-  transition:
-    -webkit-text-fill-color 0.45s ease,
-    color 0.45s ease,
-    filter 0.5s ease;
+/* ── Showcase card titles ───────────────────────────────────────────
+   Two stacked layers: a white base and a blue flowing overlay. On card
+   hover the overlay wipes in left→right (clip-path) and then keeps flowing
+   left→right in multiple blue tones for as long as the pointer stays. */
+.title-flow-wrap {
+  position: relative;
+  display: inline-block;
 }
 
-/* Stay on the card → title turns blue and the tones keep flowing. */
-.group:hover .title-fill {
+.title-base {
+  color: #ffffff;
+}
+
+.title-flow {
+  position: absolute;
+  inset: 0;
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  clip-path: inset(0 100% 0 0); /* hidden — fully clipped from the right */
+  filter: drop-shadow(0 0 0 transparent);
+  transition:
+    clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s ease;
+}
+
+.group:hover .title-flow {
+  clip-path: inset(0 0 0 0); /* wipes fully open, left → right */
   filter: drop-shadow(0 0 14px rgb(59 130 246 / 0.55));
   animation: blue-flow 5s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .blue-multi,
-  .group:hover .title-fill {
+  .group:hover .title-flow {
     animation: none;
   }
-  .title-fill {
+  .title-flow {
     transition: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .blue-multi {
-    animation: none;
   }
 }
 
