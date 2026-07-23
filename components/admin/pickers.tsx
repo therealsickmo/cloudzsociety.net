@@ -39,11 +39,9 @@ export function IconPicker({
   useOutsideClose(ref, () => setOpen(false));
 
   const Current = getIcon(value || 'Sparkles');
-  const matches = q
+  const filtered = q
     ? ICON_OPTIONS.filter((o) => o.value.toLowerCase().includes(q.toLowerCase()))
     : ICON_OPTIONS;
-  // Cap rendered tiles for performance (search narrows the full set).
-  const filtered = matches.slice(0, 300);
 
   return (
     <div ref={ref} className="relative">
@@ -83,7 +81,7 @@ export function IconPicker({
                     setOpen(false);
                   }}
                   className={cn(
-                    'flex aspect-square items-center justify-center rounded-lg border transition-colors',
+                    'flex aspect-square items-center justify-center rounded-lg border transition-colors [contain-intrinsic-size:36px] [content-visibility:auto]',
                     active
                       ? 'border-brand bg-brand/15 text-brand'
                       : 'border-transparent text-text-secondary hover:border-border hover:bg-white/5 hover:text-white',
@@ -100,9 +98,7 @@ export function IconPicker({
             )}
           </div>
           <p className="mt-2 text-center text-[11px] text-text-secondary">
-            {matches.length > filtered.length
-              ? `${filtered.length} von ${matches.length} — tippe zum Suchen`
-              : `${matches.length} Icons`}
+            {filtered.length} Icons{q ? ' gefunden' : ' — tippe zum Suchen'}
           </p>
         </div>
       )}
