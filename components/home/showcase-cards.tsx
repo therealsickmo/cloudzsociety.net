@@ -66,19 +66,19 @@ export function ShowcaseCards({
           const CardIcon = getIcon(c.icon);
           const tags = normalizeTags(c.tags);
           const box = (
-            <div className="group relative flex min-h-[480px] flex-col items-end justify-center overflow-visible rounded-3xl border border-white/10 bg-white/[0.03] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_50px_rgb(var(--brand-500)/0.3)]">
+            <div className="group relative flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-3xl border border-white/10 bg-white/[0.03] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_-10px_rgb(var(--brand-500)/0.15)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-brand/40 hover:shadow-[0_0_50px_rgb(var(--brand-500)/0.3)]">
               {/* Glass glow sheen */}
               <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(120%_80%_at_50%_-10%,rgb(var(--brand-500)/0.12),transparent_60%)]" />
 
-              {/* Skin — stands to the LEFT of the box, half outside it, full
-                  height. Fixed frame so all skins render the same size. */}
-              <div className="pointer-events-none absolute inset-y-[-1.5rem] left-[-24%] z-20 w-[48%]">
+              {/* Skin — small, stands at the bottom-left corner, peeking out of
+                  the box. Fixed frame so all skins render the same size. */}
+              <div className="pointer-events-none absolute bottom-0 left-[-10%] z-20 h-[46%] w-[40%]">
                 <CardSkin src={c.image} />
               </div>
 
-              {/* Content — packed up on the right, next to the skin */}
-              <div className="relative z-10 flex max-w-[74%] flex-col gap-3.5 text-left">
-                <div className="flex items-center gap-2.5">
+              {/* Content — up top, centred left-to-right */}
+              <div className="relative z-10 flex w-full flex-col items-center gap-3.5 text-center">
+                <div className="flex items-center justify-center gap-2.5">
                   <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
                   <h3 className="title-fill inline-block text-[1.7rem] font-extrabold tracking-tight">
                     {c.title}
@@ -87,7 +87,7 @@ export function ShowcaseCards({
                 <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
                   {c.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap justify-center gap-2">
                   {tags.map((tag, t) => (
                     <TagPill key={`${tag.label}-${t}`} tag={tag} />
                   ))}
