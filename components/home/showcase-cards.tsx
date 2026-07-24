@@ -94,8 +94,14 @@ export function ShowcaseCards({
               {/* Blurred rotating glow behind the card */}
               <div className="glow-ring-soft" aria-hidden="true" />
 
-              {/* Transparent glass panel */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] bg-white/[0.02] p-8 pt-10 backdrop-blur-sm">
+              {/* Liquid-glass panel */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.14] via-white/[0.05] to-white/[0.09] p-8 pt-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.55),inset_0_-2px_6px_rgba(255,255,255,0.12),inset_0_0_26px_rgba(255,255,255,0.06),0_30px_70px_-20px_rgba(0,0,0,0.75)] backdrop-blur-2xl">
+                {/* Glossy reflection: top sheen + soft diagonal light streak */}
+                <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
+                  <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-white/[0.18] via-white/[0.04] to-transparent" />
+                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/[0.1] to-transparent blur-md" />
+                </div>
+
                 {/* Skin — small, stands at the bottom-left corner, peeking out
                     of the box. Fixed frame so all skins render the same size. */}
                 <div className="pointer-events-none absolute bottom-0 left-[-18%] z-30 h-[46%] w-[40%]">
@@ -149,11 +155,16 @@ export function ShowcaseCards({
             <div className="glow-ring-soft" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] bg-white/[0.02] backdrop-blur-sm md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.13] via-white/[0.05] to-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.5),inset_0_-2px_6px_rgba(255,255,255,0.1),inset_0_0_26px_rgba(255,255,255,0.05),0_30px_70px_-20px_rgba(0,0,0,0.75)] backdrop-blur-2xl md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
-            <div className="relative h-64 w-full shrink-0 md:h-auto md:w-[34%]">
+            {/* Glossy reflection: top sheen + soft diagonal light streak */}
+            <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[1.75rem]">
+              <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-white/[0.16] via-white/[0.03] to-transparent" />
+              <div className="absolute -left-1/4 top-[-20%] h-[140%] w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/[0.09] to-transparent blur-md" />
+            </div>
+            <div className="relative z-[2] h-64 w-full shrink-0 md:h-auto md:w-[34%]">
               <CardSkin src={c.image} />
             </div>
             <div
