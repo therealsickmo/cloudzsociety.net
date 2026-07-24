@@ -327,22 +327,22 @@
 /* Mid royal-blue ribbons (diagonal, elongated → silky folds) */
 .site-aura {
   background:
-    radial-gradient(76% 34% at 38% 40%, rgba(45, 110, 235, 0.9), transparent 78%),
-    radial-gradient(66% 30% at 70% 68%, rgba(29, 78, 216, 0.85), transparent 80%),
-    radial-gradient(60% 28% at 18% 80%, rgba(37, 99, 235, 0.82), transparent 80%);
-  filter: blur(80px);
-  animation: silk-a 30s ease-in-out infinite;
+    radial-gradient(76% 34% at 38% 40%, rgba(37, 99, 235, 0.78), transparent 80%),
+    radial-gradient(66% 30% at 70% 68%, rgba(29, 78, 216, 0.8), transparent 82%),
+    radial-gradient(60% 28% at 18% 80%, rgba(30, 64, 175, 0.78), transparent 82%);
+  filter: blur(82px);
+  animation: silk-a 32s ease-in-out infinite;
 }
 
-/* Light-blue highlight ribbons (other diagonal, brighten where they cross) */
+/* Light-blue highlight ribbons (subtle, so titles/text stay readable) */
 .site-aura-2 {
   background:
-    radial-gradient(72% 30% at 55% 34%, rgba(120, 180, 255, 0.55), transparent 80%),
-    radial-gradient(58% 26% at 28% 60%, rgba(96, 165, 250, 0.55), transparent 82%),
-    radial-gradient(50% 24% at 82% 64%, rgba(147, 197, 253, 0.45), transparent 82%);
-  filter: blur(74px);
+    radial-gradient(72% 30% at 55% 34%, rgba(96, 165, 250, 0.4), transparent 82%),
+    radial-gradient(58% 26% at 28% 60%, rgba(96, 165, 250, 0.4), transparent 84%),
+    radial-gradient(50% 24% at 82% 64%, rgba(147, 197, 253, 0.32), transparent 84%);
+  filter: blur(78px);
   mix-blend-mode: screen;
-  animation: silk-b 36s ease-in-out infinite;
+  animation: silk-b 38s ease-in-out infinite;
 }
 
 /* Deep navy shadow ribbons (steeper diagonal → depth/folds) */
