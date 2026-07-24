@@ -94,13 +94,13 @@ export function ShowcaseCards({
               {/* Soft multi-blue glow — only on hover, behind the skin */}
               <div className="card-glow" aria-hidden="true" />
 
-              {/* 3D liquid-glass panel — opaque body so the glow stays outside */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-card via-surface to-surface p-8 pt-10 shadow-[inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.45),0_38px_75px_-16px_rgba(0,0,0,0.85)]">
-                {/* Glossy reflection: top sheen + soft diagonal light streak */}
+              {/* 3D liquid-glass panel — bluish highlights, recedes into depth */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(147,197,253,0.3)] bg-gradient-to-b from-card via-surface to-background p-8 pt-10 shadow-[inset_0_2px_1px_rgba(147,197,253,0.7),inset_0_-28px_46px_-22px_rgba(6,14,34,0.85),inset_0_26px_40px_-24px_rgba(96,165,250,0.45),0_44px_84px_-16px_rgba(0,0,0,0.8),0_16px_40px_-12px_rgba(37,99,235,0.32)]">
+                {/* Glossy reflection: bluish top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
-                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.16] via-white/[0.03] to-transparent" />
-                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/[0.1] to-transparent blur-md" />
-                  <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[rgba(173,206,255,0.18)] via-[rgba(96,165,250,0.05)] to-transparent" />
+                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-[rgba(191,219,254,0.14)] to-transparent blur-md" />
+                  <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(147,197,253,0.3)] to-transparent" />
                 </div>
 
                 {/* Skin — small, stands at the bottom-left corner, peeking out
@@ -153,14 +153,14 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-card via-surface to-surface shadow-[inset_0_2px_2px_rgba(255,255,255,0.85),inset_0_1px_0_rgba(255,255,255,0.55),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.4),0_38px_75px_-16px_rgba(0,0,0,0.85)] md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(147,197,253,0.3)] bg-gradient-to-b from-card via-surface to-background shadow-[inset_0_2px_1px_rgba(147,197,253,0.65),inset_0_-28px_46px_-22px_rgba(6,14,34,0.85),inset_0_26px_40px_-24px_rgba(96,165,250,0.4),0_44px_84px_-16px_rgba(0,0,0,0.8),0_16px_40px_-12px_rgba(37,99,235,0.3)] md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
             {/* Glossy reflection: top sheen + soft diagonal light streak */}
             <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[1.75rem]">
-              <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-white/[0.16] via-white/[0.03] to-transparent" />
-              <div className="absolute -left-1/4 top-[-20%] h-[140%] w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/[0.09] to-transparent blur-md" />
+              <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-[rgba(173,206,255,0.16)] via-[rgba(96,165,250,0.04)] to-transparent" />
+              <div className="absolute -left-1/4 top-[-20%] h-[140%] w-1/3 rotate-12 bg-gradient-to-r from-transparent via-[rgba(191,219,254,0.12)] to-transparent blur-md" />
             </div>
             <div className="relative z-[2] h-64 w-full shrink-0 md:h-auto md:w-[34%]">
               <CardSkin src={c.image} />
