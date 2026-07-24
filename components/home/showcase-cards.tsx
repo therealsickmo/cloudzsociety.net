@@ -94,8 +94,8 @@ export function ShowcaseCards({
               {/* Soft multi-blue glow — only on hover, behind the skin */}
               <div className="card-glow" aria-hidden="true" />
 
-              {/* 3D liquid-glass panel — clearer body, stronger bevel */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.09] via-white/[0.02] to-white/[0.05] p-8 pt-10 shadow-[inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.45),0_38px_75px_-16px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+              {/* 3D liquid-glass panel — opaque body so the glow stays outside */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-card via-surface to-surface p-8 pt-10 shadow-[inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.45),0_38px_75px_-16px_rgba(0,0,0,0.85)]">
                 {/* Glossy reflection: top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
                   <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.16] via-white/[0.03] to-transparent" />
@@ -153,7 +153,7 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-white/[0.05] shadow-[inset_0_2px_2px_rgba(255,255,255,0.85),inset_0_1px_0_rgba(255,255,255,0.55),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.4),0_38px_75px_-16px_rgba(0,0,0,0.85)] backdrop-blur-xl md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-card via-surface to-surface shadow-[inset_0_2px_2px_rgba(255,255,255,0.85),inset_0_1px_0_rgba(255,255,255,0.55),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.4),0_38px_75px_-16px_rgba(0,0,0,0.85)] md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >

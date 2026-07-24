@@ -8,10 +8,10 @@
 
     /* Default theme tokens (channel triplets for rgb()/<alpha-value>).
        Overridden at runtime by the injected theme from /admin. */
-    --background: 10 15 26;
-    --surface: 18 25 38;
-    --card: 26 35 50;
-    --text-secondary: 176 187 214;
+    --background: 18 32 56;
+    --surface: 27 44 74;
+    --card: 36 55 88;
+    --text-secondary: 182 194 220;
     --brand-50: 234 242 255;
     --brand-100: 213 228 255;
     --brand-200: 171 202 255;
@@ -245,15 +245,15 @@
   inherits: false;
 }
 
-/* Soft multi-blue glow hugging only the card's EDGE (masked ring), in the
-   same tones as the flowing title. Invisible until the card is hovered,
-   then it fades in and glows around the rim — the centre stays clear. */
+/* Soft multi-blue glow BEHIND the card, in the same tones as the flowing
+   title. Invisible until hovered; then it fades in and glows outward around
+   the box (the opaque card body covers its own footprint, so the glow only
+   shows as an outer halo — never fills the inside). Rotates clockwise. */
 .card-glow {
   position: absolute;
-  inset: -1px;
+  inset: -16px;
   z-index: 0;
-  border-radius: inherit;
-  padding: 11px; /* ring thickness before the mask */
+  border-radius: 2rem;
   pointer-events: none;
   background: conic-gradient(
     from var(--cz-angle),
@@ -265,19 +265,14 @@
     #2563eb,
     #3b82f6
   );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  filter: blur(16px);
+  filter: blur(30px);
   opacity: 0;
   transition: opacity 0.45s ease;
   animation: cz-spin 6s linear infinite;
 }
 
 .group:hover .card-glow {
-  opacity: 1;
+  opacity: 0.85;
 }
 
 @keyframes cz-spin {
