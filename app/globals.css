@@ -326,30 +326,32 @@
 
 .site-aura {
   background:
-    radial-gradient(55% 58% at 22% 28%, rgba(37, 99, 235, 0.85), transparent 72%),
-    radial-gradient(58% 62% at 80% 22%, rgba(23, 49, 132, 0.9), transparent 74%),
-    radial-gradient(60% 64% at 72% 84%, rgba(29, 78, 216, 0.85), transparent 74%),
-    radial-gradient(54% 58% at 18% 82%, rgba(30, 64, 175, 0.85), transparent 74%);
-  filter: blur(72px);
-  animation: site-aura-a 26s ease-in-out infinite;
+    radial-gradient(46% 52% at 20% 26%, rgba(30, 64, 175, 0.92), transparent 64%),
+    radial-gradient(50% 56% at 82% 20%, rgba(10, 26, 74, 0.96), transparent 66%),
+    radial-gradient(56% 60% at 70% 85%, rgba(37, 99, 235, 0.85), transparent 66%),
+    radial-gradient(50% 54% at 14% 82%, rgba(15, 30, 72, 0.96), transparent 66%);
+  filter: blur(58px);
+  animation: site-aura-a 24s ease-in-out infinite;
 }
 
 .site-aura-2 {
   background:
-    radial-gradient(46% 50% at 60% 34%, rgba(96, 165, 250, 0.6), transparent 72%),
-    radial-gradient(42% 46% at 28% 64%, rgba(59, 130, 246, 0.62), transparent 74%),
-    radial-gradient(40% 44% at 86% 66%, rgba(46, 125, 255, 0.58), transparent 74%);
-  filter: blur(80px);
-  animation: site-aura-b 34s ease-in-out infinite;
+    radial-gradient(40% 46% at 62% 32%, rgba(56, 189, 248, 0.5), transparent 66%),
+    radial-gradient(44% 48% at 28% 62%, rgba(67, 56, 202, 0.58), transparent 68%),
+    radial-gradient(40% 44% at 86% 64%, rgba(59, 130, 246, 0.62), transparent 68%),
+    radial-gradient(36% 40% at 46% 88%, rgba(29, 78, 216, 0.6), transparent 68%);
+  filter: blur(64px);
+  animation: site-aura-b 32s ease-in-out infinite;
 }
 
 .site-aura-3 {
   background:
-    radial-gradient(40% 44% at 46% 44%, rgba(130, 185, 255, 0.75), transparent 66%),
-    radial-gradient(30% 34% at 74% 58%, rgba(147, 197, 253, 0.55), transparent 70%);
-  filter: blur(90px);
+    radial-gradient(34% 40% at 48% 42%, rgba(96, 165, 250, 0.6), transparent 62%),
+    radial-gradient(26% 32% at 74% 58%, rgba(125, 211, 252, 0.42), transparent 66%),
+    radial-gradient(24% 30% at 24% 60%, rgba(99, 102, 241, 0.4), transparent 66%);
+  filter: blur(70px);
   mix-blend-mode: screen;
-  animation: site-aura-c 30s ease-in-out infinite;
+  animation: site-aura-c 28s ease-in-out infinite;
 }
 
 @keyframes site-aura-a {

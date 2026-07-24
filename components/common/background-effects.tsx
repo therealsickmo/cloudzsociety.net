@@ -12,7 +12,7 @@ export function BackgroundEffects() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
       style={{
         background:
-          'linear-gradient(155deg, #0f2a5e 0%, #17408a 48%, #0f2a5e 100%)',
+          'radial-gradient(130% 120% at 50% 25%, #0c2050 0%, #071331 68%, #040c22 100%)',
       }}
     >
       {/* Flowing gradient layers */}
