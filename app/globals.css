@@ -8,9 +8,9 @@
 
     /* Default theme tokens (channel triplets for rgb()/<alpha-value>).
        Overridden at runtime by the injected theme from /admin. */
-    --background: 18 32 56;
-    --surface: 27 44 74;
-    --card: 36 55 88;
+    --background: 26 46 82;
+    --surface: 36 58 99;
+    --card: 45 70 117;
     --text-secondary: 182 194 220;
     --brand-50: 234 242 255;
     --brand-100: 213 228 255;
