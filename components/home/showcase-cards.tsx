@@ -94,8 +94,8 @@ export function ShowcaseCards({
               {/* Soft multi-blue glow — only on hover, behind the skin */}
               <div className="card-glow" aria-hidden="true" />
 
-              {/* 3D liquid-glass panel — bluish highlights, recedes into depth */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(147,197,253,0.3)] bg-gradient-to-b from-card via-surface to-background p-8 pt-10 shadow-[inset_0_2px_1px_rgba(147,197,253,0.7),inset_0_-28px_46px_-22px_rgba(6,14,34,0.85),inset_0_26px_40px_-24px_rgba(96,165,250,0.45),0_44px_84px_-16px_rgba(0,0,0,0.8),0_16px_40px_-12px_rgba(37,99,235,0.32)]">
+              {/* Transparent 3D glass — blue lit edges up top, clear/receding below */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(147,197,253,0.28)] bg-gradient-to-b from-[rgba(147,197,253,0.1)] via-[rgba(96,165,250,0.03)] to-transparent p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_3px_9px_rgba(147,197,253,0.32),inset_0_-1px_0_rgba(0,0,0,0.22),0_34px_66px_-18px_rgba(0,0,0,0.5),0_12px_38px_-10px_rgba(37,99,235,0.34)] backdrop-blur-md">
                 {/* Glossy reflection: bluish top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
                   <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[rgba(173,206,255,0.18)] via-[rgba(96,165,250,0.05)] to-transparent" />
@@ -153,7 +153,7 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(147,197,253,0.3)] bg-gradient-to-b from-card via-surface to-background shadow-[inset_0_2px_1px_rgba(147,197,253,0.65),inset_0_-28px_46px_-22px_rgba(6,14,34,0.85),inset_0_26px_40px_-24px_rgba(96,165,250,0.4),0_44px_84px_-16px_rgba(0,0,0,0.8),0_16px_40px_-12px_rgba(37,99,235,0.3)] md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(147,197,253,0.28)] bg-gradient-to-b from-[rgba(147,197,253,0.09)] via-[rgba(96,165,250,0.03)] to-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.25),inset_0_3px_9px_rgba(147,197,253,0.3),inset_0_-1px_0_rgba(0,0,0,0.22),0_34px_66px_-18px_rgba(0,0,0,0.5),0_12px_38px_-10px_rgba(37,99,235,0.32)] backdrop-blur-md md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >

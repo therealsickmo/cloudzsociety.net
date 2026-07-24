@@ -251,28 +251,33 @@
    shows as an outer halo — never fills the inside). Rotates clockwise. */
 .card-glow {
   position: absolute;
-  inset: -16px;
+  inset: -3px;
   z-index: 0;
-  border-radius: 2rem;
+  border-radius: inherit;
+  padding: 3px; /* thin ring → soft rim glow after blur */
   pointer-events: none;
   background: conic-gradient(
     from var(--cz-angle),
+    #2563eb,
     #3b82f6,
     #93c5fd,
-    #2563eb,
+    #1d4ed8,
     #60a5fa,
-    #a5ceff,
-    #2563eb,
-    #3b82f6
+    #2563eb
   );
-  filter: blur(30px);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(15px);
   opacity: 0;
   transition: opacity 0.45s ease;
   animation: cz-spin 6s linear infinite;
 }
 
 .group:hover .card-glow {
-  opacity: 0.85;
+  opacity: 1;
 }
 
 @keyframes cz-spin {
