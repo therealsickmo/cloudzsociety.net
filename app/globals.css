@@ -312,55 +312,65 @@
   }
 }
 
-/* ── Apple-Music-style flowing blue gradient (whole-site background) ─
-   Three big layers of soft blue gradients — deep navy zones, royal blue,
-   and a bright drifting highlight — blended and slowly morphing so the
-   whole background flows like a coloured aura. */
-.site-aura,
-.site-aura-2,
-.site-aura-3 {
-  position: absolute;
-  inset: -28%;
-  will-change: transform;
-}
-
+/* ── Apple-Music-style silky liquid gradient (whole-site background) ─
+   A slowly swirling conic colour field (the flowing "liquid" ribbons),
+   bright drifting wisps on top (screen) and deep drifting shadows below
+   (multiply) — together they read as morphing silk, all in blue tones. */
 .site-aura {
-  background:
-    radial-gradient(50% 56% at 20% 26%, rgba(29, 78, 216, 0.9), transparent 68%),
-    radial-gradient(54% 60% at 82% 20%, rgba(10, 26, 74, 0.96), transparent 70%),
-    radial-gradient(60% 64% at 70% 85%, rgba(37, 99, 235, 0.82), transparent 70%),
-    radial-gradient(54% 58% at 14% 82%, rgba(13, 34, 84, 0.96), transparent 70%);
-  filter: blur(66px);
-  animation: site-aura-a 24s ease-in-out infinite;
+  position: absolute;
+  inset: -55%;
+  will-change: transform;
+  background: conic-gradient(
+    from 0deg at 46% 42%,
+    #0c2050,
+    #1d4ed8,
+    #3b82f6,
+    #60a5fa,
+    #2563eb,
+    #0b1f4d,
+    #1d4ed8,
+    #38bdf8,
+    #2563eb,
+    #0c2050
+  );
+  filter: blur(84px);
+  animation: site-swirl 48s linear infinite;
 }
 
 .site-aura-2 {
+  position: absolute;
+  inset: -30%;
+  will-change: transform;
   background:
-    radial-gradient(46% 52% at 62% 34%, rgba(56, 189, 248, 0.5), transparent 72%),
-    radial-gradient(48% 54% at 28% 62%, rgba(59, 130, 246, 0.62), transparent 72%),
-    radial-gradient(44% 48% at 86% 64%, rgba(96, 165, 250, 0.55), transparent 72%),
-    radial-gradient(40% 44% at 46% 90%, rgba(29, 78, 216, 0.58), transparent 72%);
-  filter: blur(74px);
-  animation: site-aura-b 32s ease-in-out infinite;
+    radial-gradient(58% 32% at 60% 34%, rgba(125, 211, 252, 0.55), transparent 74%),
+    radial-gradient(54% 30% at 26% 62%, rgba(96, 165, 250, 0.6), transparent 76%),
+    radial-gradient(48% 28% at 86% 64%, rgba(56, 189, 248, 0.5), transparent 76%);
+  filter: blur(66px);
+  mix-blend-mode: screen;
+  animation: site-aura-b 30s ease-in-out infinite;
 }
 
 .site-aura-3 {
+  position: absolute;
+  inset: -30%;
+  will-change: transform;
   background:
-    radial-gradient(36% 42% at 48% 44%, rgba(125, 211, 252, 0.55), transparent 66%),
-    radial-gradient(28% 34% at 74% 56%, rgba(147, 197, 253, 0.45), transparent 70%),
-    radial-gradient(26% 32% at 26% 60%, rgba(96, 165, 250, 0.45), transparent 70%);
-  filter: blur(82px);
-  mix-blend-mode: screen;
-  animation: site-aura-c 28s ease-in-out infinite;
+    radial-gradient(52% 34% at 28% 26%, rgba(4, 12, 38, 0.75), transparent 72%),
+    radial-gradient(48% 30% at 80% 82%, rgba(6, 16, 48, 0.75), transparent 74%);
+  filter: blur(70px);
+  mix-blend-mode: multiply;
+  animation: site-aura-c 38s ease-in-out infinite;
 }
 
-@keyframes site-aura-a {
-  0%,
-  100% {
-    transform: translate(-4%, -3%) scale(1.08) rotate(0deg);
+@keyframes site-swirl {
+  0% {
+    transform: rotate(0deg) scale(1.12) translate(0, 0);
   }
   50% {
-    transform: translate(7%, 6%) scale(1.2) rotate(6deg);
+    transform: rotate(180deg) scale(1.22) translate(3%, -3%);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.12) translate(0, 0);
   }
 }
 
@@ -370,17 +380,17 @@
     transform: translate(6%, 4%) scale(1.1) rotate(0deg);
   }
   50% {
-    transform: translate(-8%, -7%) scale(1.24) rotate(-8deg);
+    transform: translate(-9%, -7%) scale(1.26) rotate(-10deg);
   }
 }
 
 @keyframes site-aura-c {
   0%,
   100% {
-    transform: translate(-6%, 5%) scale(1.05) rotate(0deg);
+    transform: translate(-6%, 5%) scale(1.06) rotate(0deg);
   }
   50% {
-    transform: translate(9%, -6%) scale(1.2) rotate(10deg);
+    transform: translate(9%, -6%) scale(1.22) rotate(12deg);
   }
 }
 
