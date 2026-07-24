@@ -245,32 +245,39 @@
   inherits: false;
 }
 
-/* Soft multi-blue glow behind the card — invisible until the card is
-   hovered, then it fades in and glows out behind the skin. */
+/* Soft multi-blue glow hugging only the card's EDGE (masked ring), in the
+   same tones as the flowing title. Invisible until the card is hovered,
+   then it fades in and glows around the rim — the centre stays clear. */
 .card-glow {
   position: absolute;
-  inset: -10px;
+  inset: -1px;
   z-index: 0;
   border-radius: inherit;
+  padding: 11px; /* ring thickness before the mask */
   pointer-events: none;
   background: conic-gradient(
     from var(--cz-angle),
-    #1d4ed8,
     #3b82f6,
     #93c5fd,
-    #60a5fa,
     #2563eb,
-    #93c5fd,
-    #1d4ed8
+    #60a5fa,
+    #a5ceff,
+    #2563eb,
+    #3b82f6
   );
-  filter: blur(30px);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(16px);
   opacity: 0;
   transition: opacity 0.45s ease;
   animation: cz-spin 6s linear infinite;
 }
 
 .group:hover .card-glow {
-  opacity: 0.9;
+  opacity: 1;
 }
 
 @keyframes cz-spin {

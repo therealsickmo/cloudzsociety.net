@@ -94,13 +94,13 @@ export function ShowcaseCards({
               {/* Soft multi-blue glow — only on hover, behind the skin */}
               <div className="card-glow" aria-hidden="true" />
 
-              {/* 3D liquid-glass panel */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/30 bg-gradient-to-br from-white/[0.16] via-white/[0.05] to-white/[0.1] p-8 pt-10 shadow-[inset_0_2px_1px_rgba(255,255,255,0.75),inset_0_-16px_28px_-14px_rgba(0,0,0,0.5),inset_0_16px_26px_-16px_rgba(255,255,255,0.35),0_30px_70px_-18px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
+              {/* 3D liquid-glass panel — clearer body, stronger bevel */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.09] via-white/[0.02] to-white/[0.05] p-8 pt-10 shadow-[inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.45),0_38px_75px_-16px_rgba(0,0,0,0.85)] backdrop-blur-xl">
                 {/* Glossy reflection: top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
-                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.22] via-white/[0.05] to-transparent" />
-                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/[0.12] to-transparent blur-md" />
-                  <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.16] via-white/[0.03] to-transparent" />
+                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/[0.1] to-transparent blur-md" />
+                  <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                 </div>
 
                 {/* Skin — small, stands at the bottom-left corner, peeking out
@@ -153,7 +153,7 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/30 bg-gradient-to-br from-white/[0.15] via-white/[0.05] to-white/[0.09] shadow-[inset_0_2px_1px_rgba(255,255,255,0.7),inset_0_-16px_28px_-14px_rgba(0,0,0,0.5),inset_0_16px_26px_-16px_rgba(255,255,255,0.3),0_30px_70px_-18px_rgba(0,0,0,0.8)] backdrop-blur-2xl md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-white/[0.05] shadow-[inset_0_2px_2px_rgba(255,255,255,0.85),inset_0_1px_0_rgba(255,255,255,0.55),inset_0_-22px_34px_-18px_rgba(0,0,0,0.6),inset_0_22px_32px_-20px_rgba(255,255,255,0.4),0_38px_75px_-16px_rgba(0,0,0,0.85)] backdrop-blur-xl md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
