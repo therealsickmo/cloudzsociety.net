@@ -8,20 +8,20 @@
 
     /* Default theme tokens (channel triplets for rgb()/<alpha-value>).
        Overridden at runtime by the injected theme from /admin. */
-    --background: 5 7 10;
-    --surface: 13 17 23;
-    --card: 21 27 35;
-    --text-secondary: 168 179 207;
-    --brand-50: 229 240 255;
-    --brand-100: 204 224 255;
-    --brand-200: 153 194 255;
-    --brand-300: 102 163 255;
-    --brand-400: 51 133 255;
-    --brand-500: 0 102 255;
-    --brand-600: 0 82 204;
-    --brand-700: 0 61 153;
-    --brand-800: 0 41 102;
-    --brand-900: 0 20 51;
+    --background: 10 15 26;
+    --surface: 18 25 38;
+    --card: 26 35 50;
+    --text-secondary: 176 187 214;
+    --brand-50: 234 242 255;
+    --brand-100: 213 228 255;
+    --brand-200: 171 202 255;
+    --brand-300: 129 176 255;
+    --brand-400: 88 149 255;
+    --brand-500: 46 125 255;
+    --brand-600: 37 100 204;
+    --brand-700: 28 75 153;
+    --brand-800: 18 50 102;
+    --brand-900: 9 25 51;
   }
 
   * {
@@ -245,9 +245,12 @@
   inherits: false;
 }
 
-.glow-ring,
-.glow-ring-soft {
+/* Soft multi-blue glow behind the card — invisible until the card is
+   hovered, then it fades in and glows out behind the skin. */
+.card-glow {
   position: absolute;
+  inset: -10px;
+  z-index: 0;
   border-radius: inherit;
   pointer-events: none;
   background: conic-gradient(
@@ -260,29 +263,14 @@
     #93c5fd,
     #1d4ed8
   );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
   animation: cz-spin 6s linear infinite;
 }
 
-/* Crisp colourful border on top */
-.glow-ring {
-  inset: 0;
-  padding: 1.5px;
-  z-index: 20;
-  opacity: 0.95;
-}
-
-/* Blurred copy behind the card for the outer glow */
-.glow-ring-soft {
-  inset: -4px;
-  padding: 8px;
-  z-index: 0;
-  filter: blur(14px);
-  opacity: 0.85;
+.group:hover .card-glow {
+  opacity: 0.9;
 }
 
 @keyframes cz-spin {
@@ -292,8 +280,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .glow-ring,
-  .glow-ring-soft {
+  .card-glow {
     animation: none;
   }
 }

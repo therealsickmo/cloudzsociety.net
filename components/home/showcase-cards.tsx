@@ -91,15 +91,16 @@ export function ShowcaseCards({
           const tags = normalizeTags(c.tags);
           const box = (
             <div className="group relative rounded-[1.75rem] transition-transform duration-300 hover:scale-[1.02]">
-              {/* Blurred rotating glow behind the card */}
-              <div className="glow-ring-soft" aria-hidden="true" />
+              {/* Soft multi-blue glow — only on hover, behind the skin */}
+              <div className="card-glow" aria-hidden="true" />
 
-              {/* Liquid-glass panel */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.14] via-white/[0.05] to-white/[0.09] p-8 pt-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.55),inset_0_-2px_6px_rgba(255,255,255,0.12),inset_0_0_26px_rgba(255,255,255,0.06),0_30px_70px_-20px_rgba(0,0,0,0.75)] backdrop-blur-2xl">
+              {/* 3D liquid-glass panel */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/30 bg-gradient-to-br from-white/[0.16] via-white/[0.05] to-white/[0.1] p-8 pt-10 shadow-[inset_0_2px_1px_rgba(255,255,255,0.75),inset_0_-16px_28px_-14px_rgba(0,0,0,0.5),inset_0_16px_26px_-16px_rgba(255,255,255,0.35),0_30px_70px_-18px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
                 {/* Glossy reflection: top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
-                  <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-white/[0.18] via-white/[0.04] to-transparent" />
-                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/[0.1] to-transparent blur-md" />
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.22] via-white/[0.05] to-transparent" />
+                  <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/[0.12] to-transparent blur-md" />
+                  <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                 </div>
 
                 {/* Skin — small, stands at the bottom-left corner, peeking out
@@ -124,9 +125,6 @@ export function ShowcaseCards({
                   </div>
                 </div>
               </div>
-
-              {/* Crisp rotating gradient border on top */}
-              <div className="glow-ring" aria-hidden="true" />
             </div>
           );
           return (
@@ -151,11 +149,11 @@ export function ShowcaseCards({
             key={`${c.title}-${i}`}
             className="group relative rounded-[1.75rem] transition-transform duration-300"
           >
-            {/* Blurred rotating glow behind the card */}
-            <div className="glow-ring-soft" aria-hidden="true" />
+            {/* Soft multi-blue glow — only on hover, behind the skin */}
+            <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-gradient-to-br from-white/[0.13] via-white/[0.05] to-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.5),inset_0_-2px_6px_rgba(255,255,255,0.1),inset_0_0_26px_rgba(255,255,255,0.05),0_30px_70px_-20px_rgba(0,0,0,0.75)] backdrop-blur-2xl md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/30 bg-gradient-to-br from-white/[0.15] via-white/[0.05] to-white/[0.09] shadow-[inset_0_2px_1px_rgba(255,255,255,0.7),inset_0_-16px_28px_-14px_rgba(0,0,0,0.5),inset_0_16px_26px_-16px_rgba(255,255,255,0.3),0_30px_70px_-18px_rgba(0,0,0,0.8)] backdrop-blur-2xl md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
@@ -191,8 +189,6 @@ export function ShowcaseCards({
               </div>
             </div>
             </div>
-            {/* Crisp rotating gradient border on top */}
-            <div className="glow-ring" aria-hidden="true" />
           </div>
         );
       })}
