@@ -35,9 +35,9 @@ export const defaultSettings: SiteSettings = {
   },
   theme: {
     brand: '#2E7DFF',
-    background: '#1B3A6D',
-    surface: '#21437C',
-    card: '#294F8C',
+    background: '#102242',
+    surface: '#1A325C',
+    card: '#244274',
     textSecondary: '#A8B3CF',
     radius: 'abgerundet',
   },

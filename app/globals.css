@@ -8,9 +8,9 @@
 
     /* Default theme tokens (channel triplets for rgb()/<alpha-value>).
        Overridden at runtime by the injected theme from /admin. */
-    --background: 27 58 109;
-    --surface: 33 67 124;
-    --card: 41 79 140;
+    --background: 16 34 66;
+    --surface: 26 50 92;
+    --card: 36 66 116;
     --text-secondary: 182 194 220;
     --brand-50: 234 242 255;
     --brand-100: 213 228 255;
@@ -324,43 +324,40 @@
 
 .site-aura {
   background:
-    radial-gradient(62% 66% at 24% 24%, rgba(46, 125, 255, 0.8), transparent 82%),
-    radial-gradient(66% 70% at 80% 20%, rgba(59, 130, 246, 0.62), transparent 82%),
-    radial-gradient(72% 76% at 70% 82%, rgba(29, 78, 216, 0.72), transparent 82%),
-    radial-gradient(66% 70% at 20% 80%, rgba(96, 165, 250, 0.58), transparent 82%);
-  filter: blur(55px);
-  animation: site-aura-a 30s ease-in-out infinite;
+    radial-gradient(46% 50% at 22% 26%, rgba(59, 130, 246, 0.55), transparent 66%),
+    radial-gradient(50% 54% at 82% 22%, rgba(30, 64, 175, 0.6), transparent 68%),
+    radial-gradient(54% 58% at 72% 82%, rgba(29, 78, 216, 0.58), transparent 68%),
+    radial-gradient(48% 52% at 18% 80%, rgba(37, 99, 235, 0.5), transparent 68%);
+  filter: blur(64px);
+  animation: site-aura-a 24s ease-in-out infinite;
 }
 
 .site-aura-2 {
   background:
-    radial-gradient(72% 76% at 60% 34%, rgba(37, 99, 235, 0.6), transparent 84%),
-    radial-gradient(66% 70% at 28% 64%, rgba(96, 165, 250, 0.5), transparent 84%),
-    radial-gradient(62% 66% at 86% 70%, rgba(59, 130, 246, 0.55), transparent 84%);
-  filter: blur(62px);
-  animation: site-aura-b 40s ease-in-out infinite;
+    radial-gradient(44% 48% at 64% 34%, rgba(96, 165, 250, 0.42), transparent 70%),
+    radial-gradient(42% 46% at 28% 62%, rgba(30, 58, 138, 0.6), transparent 70%),
+    radial-gradient(40% 44% at 86% 66%, rgba(59, 130, 246, 0.4), transparent 72%);
+  filter: blur(72px);
+  animation: site-aura-b 32s ease-in-out infinite;
 }
 
 @keyframes site-aura-a {
   0%,
   100% {
-    transform: translate(0, 0) scale(1.05);
+    transform: translate(-4%, -3%) scale(1.08);
   }
-  33% {
-    transform: translate(5%, 4%) scale(1.15);
-  }
-  66% {
-    transform: translate(-4%, 6%) scale(1.1);
+  50% {
+    transform: translate(7%, 6%) scale(1.22);
   }
 }
 
 @keyframes site-aura-b {
   0%,
   100% {
-    transform: translate(0, 0) scale(1.08);
+    transform: translate(5%, 4%) scale(1.1);
   }
   50% {
-    transform: translate(-6%, -5%) scale(1.18);
+    transform: translate(-8%, -7%) scale(1.24);
   }
 }
 

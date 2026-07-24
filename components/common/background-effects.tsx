@@ -11,17 +11,17 @@ export function BackgroundEffects() {
       aria-hidden
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
     >
-      {/* Blue base wash so the whole area stays filled with colour */}
+      {/* Moving aura layers (lighter blues) over the dark navy base */}
+      <div className="site-aura" />
+      <div className="site-aura-2" />
+      {/* Dark vignette to keep edges deep & give the motion contrast */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(135deg, rgb(var(--brand-700) / 0.5), rgb(var(--brand-900) / 0.35) 45%, rgb(var(--brand-800) / 0.5))',
+            'radial-gradient(120% 100% at 50% 40%, transparent 45%, rgb(var(--brand-900) / 0.55) 100%)',
         }}
       />
-      {/* Moving aura layers */}
-      <div className="site-aura" />
-      <div className="site-aura-2" />
     </div>
   );
 }
