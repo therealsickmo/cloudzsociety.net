@@ -95,7 +95,7 @@ export function ShowcaseCards({
               <div className="card-glow" aria-hidden="true" />
 
               {/* Frosted 3D glass — visible thickness, blue lit top, receding depth */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(147,197,253,0.32)] bg-gradient-to-b from-[rgba(46,80,140,0.6)] via-[rgba(33,60,110,0.5)] to-[rgba(23,44,84,0.55)] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),inset_0_4px_11px_rgba(147,197,253,0.3),inset_0_-26px_44px_-20px_rgba(3,9,26,0.75),0_42px_82px_-16px_rgba(0,0,0,0.6),0_18px_46px_-12px_rgba(37,99,235,0.38)] backdrop-blur-2xl">
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(173,206,255,0.35)] bg-gradient-to-b from-[rgba(125,170,240,0.16)] via-[rgba(70,110,190,0.08)] to-[rgba(40,72,135,0.1)] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),inset_0_4px_12px_rgba(173,206,255,0.28),inset_0_-26px_44px_-20px_rgba(3,9,26,0.6),0_42px_82px_-16px_rgba(0,0,0,0.55),0_18px_46px_-12px_rgba(37,99,235,0.34)] backdrop-blur-2xl">
                 {/* Inner bevel ring → the glass reads as having real thickness */}
                 <div className="pointer-events-none absolute inset-[5px] rounded-[1.5rem] border border-[rgba(173,206,255,0.16)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-10px_20px_-10px_rgba(0,0,0,0.45)]" />
                 {/* Glossy reflection: bluish top sheen + soft diagonal light streak */}
@@ -117,7 +117,7 @@ export function ShowcaseCards({
                     <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
                     <FlowTitle className="text-[1.7rem]">{c.title}</FlowTitle>
                   </div>
-                  <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
+                  <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                     {c.description}
                   </p>
                   <div className="flex flex-wrap justify-start gap-2">
@@ -155,7 +155,7 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(147,197,253,0.32)] bg-gradient-to-b from-[rgba(46,80,140,0.55)] via-[rgba(33,60,110,0.48)] to-[rgba(23,44,84,0.52)] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),inset_0_4px_11px_rgba(147,197,253,0.28),inset_0_-26px_44px_-20px_rgba(3,9,26,0.7),0_42px_82px_-16px_rgba(0,0,0,0.6),0_18px_46px_-12px_rgba(37,99,235,0.34)] backdrop-blur-2xl md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(173,206,255,0.35)] bg-gradient-to-b from-[rgba(125,170,240,0.15)] via-[rgba(70,110,190,0.08)] to-[rgba(40,72,135,0.1)] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),inset_0_4px_12px_rgba(173,206,255,0.26),inset_0_-26px_44px_-20px_rgba(3,9,26,0.55),0_42px_82px_-16px_rgba(0,0,0,0.55),0_18px_46px_-12px_rgba(37,99,235,0.32)] backdrop-blur-2xl md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
@@ -181,7 +181,7 @@ export function ShowcaseCards({
                   <FlowTitle className="text-2xl">{c.title}</FlowTitle>
                 </div>
                 <div className="flex min-h-[104px] w-full items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
-                  <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-text-secondary">
+                  <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                     {c.description}
                   </p>
                 </div>

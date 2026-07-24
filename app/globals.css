@@ -154,13 +154,13 @@
 .title-flow {
   background-image: linear-gradient(
     100deg,
-    rgb(59 130 246) 0%,
-    rgb(147 197 253) 18%,
-    rgb(37 99 235) 36%,
-    rgb(96 165 250) 55%,
-    rgb(165 206 255) 74%,
-    rgb(37 99 235) 90%,
-    rgb(59 130 246) 100%
+    rgb(37 99 235) 0%,
+    rgb(96 165 250) 18%,
+    rgb(29 78 216) 36%,
+    rgb(59 130 246) 55%,
+    rgb(37 99 235) 74%,
+    rgb(96 165 250) 90%,
+    rgb(37 99 235) 100%
   );
   background-size: 200% 100%;
   background-repeat: repeat;
@@ -257,13 +257,13 @@
   pointer-events: none;
   background: conic-gradient(
     from var(--cz-angle),
+    #1d4ed8,
     #2563eb,
+    #1e40af,
     #3b82f6,
     #1d4ed8,
-    #60a5fa,
     #2563eb,
-    #3b82f6,
-    #2563eb
+    #1d4ed8
   );
   filter: blur(28px);
   opacity: 0;
