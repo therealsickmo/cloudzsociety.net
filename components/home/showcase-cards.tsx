@@ -105,6 +105,10 @@ export function ShowcaseCards({
                   <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(147,197,253,0.3)] to-transparent" />
                 </div>
 
+                {/* Legibility scrim — darkens the content zone (top) so text,
+                    icon and tags stay readable when the glow floods the glass. */}
+                <div className="pointer-events-none absolute inset-0 z-[1] rounded-[1.75rem] bg-gradient-to-b from-[rgba(3,10,28,0.42)] via-[rgba(3,10,28,0.16)] to-transparent" />
+
                 {/* Skin — small, stands at the bottom-left corner, peeking out
                     of the box. Fixed frame so all skins render the same size. */}
                 <div className="pointer-events-none absolute bottom-0 left-[-18%] z-30 h-[46%] w-[40%]">
@@ -114,7 +118,7 @@ export function ShowcaseCards({
                 {/* Content — up top, left-aligned */}
                 <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
                   <div className="flex items-center gap-2.5">
-                    <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
+                    <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_1px_3px_rgba(2,8,24,0.9)]" />
                     <FlowTitle className="text-[1.7rem]">{c.title}</FlowTitle>
                   </div>
                   <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
@@ -175,9 +179,11 @@ export function ShowcaseCards({
                 skinRight ? 'items-start' : 'items-end',
               )}
             >
-              <div className="flex max-w-md flex-col gap-4 text-left">
+              <div className="relative flex max-w-md flex-col gap-4 text-left">
+                {/* Soft dark backing so text/tags stay readable over the glow */}
+                <div className="pointer-events-none absolute -inset-5 -z-10 rounded-3xl bg-gradient-to-br from-[rgba(3,10,28,0.35)] via-[rgba(3,10,28,0.14)] to-transparent blur-lg" />
                 <div className="flex items-center gap-2.5">
-                  <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
+                  <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_1px_3px_rgba(2,8,24,0.9)]" />
                   <FlowTitle className="text-2xl">{c.title}</FlowTitle>
                 </div>
                 <div className="flex min-h-[104px] w-full items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
