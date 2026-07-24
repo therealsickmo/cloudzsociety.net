@@ -1,25 +1,30 @@
 /**
- * Fixed background used across the whole app (public + admin): a moving blue
- * aura that fills the entire viewport. A blue base wash plus two big, slowly
- * drifting gradient layers keep the whole background bathed in shifting blue
- * tones. The home hero still paints its own image on top (fading into this
- * aura at its bottom).
+ * Fixed background used across the whole app (public + admin): an Apple-Music
+ * style flowing blue gradient. A rich blue base plus three slowly morphing
+ * gradient layers (deep navy, royal blue and a bright drifting highlight) make
+ * the whole background flow like a coloured aura. The home hero still paints
+ * its own image on top (fading into this aura at its bottom).
  */
 export function BackgroundEffects() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      style={{
+        background:
+          'linear-gradient(155deg, #0f2a5e 0%, #17408a 48%, #0f2a5e 100%)',
+      }}
     >
-      {/* Moving aura layers (lighter blues) over the dark navy base */}
+      {/* Flowing gradient layers */}
       <div className="site-aura" />
       <div className="site-aura-2" />
-      {/* Dark vignette to keep edges deep & give the motion contrast */}
+      <div className="site-aura-3" />
+      {/* Subtle vignette for depth */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(120% 100% at 50% 40%, transparent 45%, rgb(var(--brand-900) / 0.55) 100%)',
+            'radial-gradient(125% 105% at 50% 40%, transparent 55%, rgba(6, 18, 46, 0.5) 100%)',
         }}
       />
     </div>
