@@ -90,35 +90,37 @@ export function ShowcaseCards({
           const CardIcon = getIcon(c.icon);
           const tags = normalizeTags(c.tags);
           const box = (
-            <div className="group relative">
-              {/* Colourful water aura glowing outside the card */}
-              <div className="card-aura" aria-hidden="true" />
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-white/[0.16] via-white/[0.08] to-white/[0.03] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_0_30px_rgba(255,255,255,0.05),0_18px_50px_-18px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-all duration-300 group-hover:scale-[1.02] group-hover:border-white/25">
-              {/* Frosted-glass sheen */}
-              <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(130%_90%_at_50%_-15%,rgb(255,255,255,0.2),transparent_58%)]" />
+            <div className="group relative rounded-[1.75rem] transition-transform duration-300 hover:scale-[1.02]">
+              {/* Blurred rotating glow behind the card */}
+              <div className="glow-ring-soft" aria-hidden="true" />
 
-              {/* Skin — small, stands at the bottom-left corner, peeking out of
-                  the box. Fixed frame so all skins render the same size. */}
-              <div className="pointer-events-none absolute bottom-0 left-[-18%] z-20 h-[46%] w-[40%]">
-                <CardSkin src={c.image} />
+              {/* Transparent glass panel */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] bg-white/[0.02] p-8 pt-10 backdrop-blur-sm">
+                {/* Skin — small, stands at the bottom-left corner, peeking out
+                    of the box. Fixed frame so all skins render the same size. */}
+                <div className="pointer-events-none absolute bottom-0 left-[-18%] z-30 h-[46%] w-[40%]">
+                  <CardSkin src={c.image} />
+                </div>
+
+                {/* Content — up top, left-aligned */}
+                <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
+                  <div className="flex items-center gap-2.5">
+                    <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
+                    <FlowTitle className="text-[1.7rem]">{c.title}</FlowTitle>
+                  </div>
+                  <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
+                    {c.description}
+                  </p>
+                  <div className="flex flex-wrap justify-start gap-2">
+                    {tags.map((tag, t) => (
+                      <TagPill key={`${tag.label}-${t}`} tag={tag} />
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Content — up top, left-aligned */}
-              <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
-                <div className="flex items-center gap-2.5">
-                  <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_10px_rgb(var(--brand-500)/0.7)]" />
-                  <FlowTitle className="text-[1.7rem]">{c.title}</FlowTitle>
-                </div>
-                <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-text-secondary">
-                  {c.description}
-                </p>
-                <div className="flex flex-wrap justify-start gap-2">
-                  {tags.map((tag, t) => (
-                    <TagPill key={`${tag.label}-${t}`} tag={tag} />
-                  ))}
-                </div>
-              </div>
-              </div>
+              {/* Crisp rotating gradient border on top */}
+              <div className="glow-ring" aria-hidden="true" />
             </div>
           );
           return (
@@ -139,12 +141,15 @@ export function ShowcaseCards({
         const tags = normalizeTags(c.tags);
         const skinRight = i % 2 === 1;
         return (
-          <div key={`${c.title}-${i}`} className="group relative">
-            {/* Colourful water aura glowing outside the card */}
-            <div className="card-aura" aria-hidden="true" />
+          <div
+            key={`${c.title}-${i}`}
+            className="group relative rounded-[1.75rem] transition-transform duration-300"
+          >
+            {/* Blurred rotating glow behind the card */}
+            <div className="glow-ring-soft" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-white/[0.14] via-white/[0.07] to-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_0_30px_rgba(255,255,255,0.05),0_18px_50px_-18px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-all duration-300 group-hover:border-white/25 md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] bg-white/[0.02] backdrop-blur-sm md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
@@ -175,6 +180,8 @@ export function ShowcaseCards({
               </div>
             </div>
             </div>
+            {/* Crisp rotating gradient border on top */}
+            <div className="glow-ring" aria-hidden="true" />
           </div>
         );
       })}

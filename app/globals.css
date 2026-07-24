@@ -235,47 +235,65 @@
   }
 }
 
-/* ── Colourful "water" aura glowing outside the showcase cards ──────
-   Several blue tones (plus a hint of indigo) blurred and slowly swirling
-   for an epic, liquid look. Brightens when the card is hovered. */
-.card-aura {
+/* ── Rotating multi-blue glow border around the showcase cards ──────
+   A conic gradient of blue tones sweeps clockwise around the card edge
+   (like the flowing titles). Masked to a thin ring; a blurred copy adds
+   the outer glow. The card itself stays transparent. */
+@property --cz-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-ring,
+.glow-ring-soft {
   position: absolute;
-  inset: -10%;
-  z-index: 0;
-  border-radius: 2.25rem;
-  background:
-    radial-gradient(38% 48% at 22% 28%, rgba(59, 130, 246, 0.6), transparent 72%),
-    radial-gradient(44% 54% at 80% 22%, rgba(37, 99, 235, 0.55), transparent 72%),
-    radial-gradient(48% 58% at 72% 82%, rgba(96, 165, 250, 0.55), transparent 72%),
-    radial-gradient(42% 52% at 24% 82%, rgba(129, 140, 248, 0.5), transparent 72%),
-    radial-gradient(62% 62% at 50% 50%, rgba(37, 99, 235, 0.3), transparent 75%);
-  filter: blur(44px);
-  opacity: 0.55;
+  border-radius: inherit;
   pointer-events: none;
-  transition: opacity 0.45s ease;
-  animation: aura-swirl 14s ease-in-out infinite;
-  will-change: transform, opacity;
+  background: conic-gradient(
+    from var(--cz-angle),
+    #1d4ed8,
+    #3b82f6,
+    #93c5fd,
+    #60a5fa,
+    #2563eb,
+    #93c5fd,
+    #1d4ed8
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: cz-spin 6s linear infinite;
 }
 
-.group:hover .card-aura {
-  opacity: 1;
+/* Crisp colourful border on top */
+.glow-ring {
+  inset: 0;
+  padding: 1.5px;
+  z-index: 20;
+  opacity: 0.95;
 }
 
-@keyframes aura-swirl {
-  0%,
-  100% {
-    transform: rotate(0deg) scale(1);
-  }
-  33% {
-    transform: rotate(6deg) scale(1.08);
-  }
-  66% {
-    transform: rotate(-5deg) scale(1.04);
+/* Blurred copy behind the card for the outer glow */
+.glow-ring-soft {
+  inset: -4px;
+  padding: 8px;
+  z-index: 0;
+  filter: blur(14px);
+  opacity: 0.85;
+}
+
+@keyframes cz-spin {
+  to {
+    --cz-angle: 360deg;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-aura {
+  .glow-ring,
+  .glow-ring-soft {
     animation: none;
   }
 }
