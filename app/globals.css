@@ -220,10 +220,7 @@
 
 .group:hover .title-flow {
   clip-path: inset(0 0 0 0); /* wipes fully open, left → right */
-  /* Dark outline for contrast on the blue glow + a soft blue glow */
-  filter: drop-shadow(0 1px 1px rgba(2, 8, 24, 0.95))
-    drop-shadow(0 0 2px rgba(2, 8, 24, 0.8))
-    drop-shadow(0 0 14px rgb(37 99 235 / 0.45));
+  filter: drop-shadow(0 0 14px rgb(37 99 235 / 0.4));
   animation: blue-flow 5s linear infinite;
 }
 
@@ -248,44 +245,69 @@
   inherits: false;
 }
 
-/* Soft multi-blue glow BEHIND the card, in the same tones as the flowing
-   title. Invisible until hovered; then it fades in and glows outward around
-   the box (the opaque card body covers its own footprint, so the glow only
-   shows as an outer halo — never fills the inside). Rotates clockwise. */
+/* Lava-lamp aura BEHIND the card: two counter-drifting layers of blurred
+   blue blobs that slowly morph into each other — bright, washed-out, organic.
+   Fades in on hover and glows out around the sides of the box. */
 .card-glow {
   position: absolute;
-  inset: -14px;
+  inset: -18px;
   z-index: 0;
-  border-radius: 2rem;
+  border-radius: 2.2rem;
   pointer-events: none;
-  background: conic-gradient(
-    from var(--cz-angle),
-    #1d4ed8,
-    #2563eb,
-    #1e40af,
-    #3b82f6,
-    #1d4ed8,
-    #2563eb,
-    #1d4ed8
-  );
-  filter: blur(28px);
   opacity: 0;
-  transition: opacity 0.45s ease;
-  animation: cz-spin 6s linear infinite;
+  transition: opacity 0.5s ease;
+  filter: blur(34px);
+}
+
+.card-glow::before,
+.card-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.card-glow::before {
+  background:
+    radial-gradient(38% 44% at 28% 30%, rgba(125, 185, 255, 0.95), transparent 68%),
+    radial-gradient(42% 48% at 76% 72%, rgba(59, 130, 246, 0.9), transparent 68%);
+  animation: lava-a 11s ease-in-out infinite;
+}
+
+.card-glow::after {
+  background:
+    radial-gradient(40% 46% at 76% 26%, rgba(147, 197, 253, 0.92), transparent 68%),
+    radial-gradient(44% 50% at 24% 76%, rgba(37, 99, 235, 0.9), transparent 68%);
+  animation: lava-b 14s ease-in-out infinite;
 }
 
 .group:hover .card-glow {
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
-@keyframes cz-spin {
-  to {
-    --cz-angle: 360deg;
+@keyframes lava-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(6%, -5%) scale(1.16) rotate(12deg);
+  }
+}
+
+@keyframes lava-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-7%, 6%) scale(1.12) rotate(-14deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-glow {
+  .card-glow::before,
+  .card-glow::after {
     animation: none;
   }
 }

@@ -94,10 +94,8 @@ export function ShowcaseCards({
               {/* Soft multi-blue glow — only on hover, behind the skin */}
               <div className="card-glow" aria-hidden="true" />
 
-              {/* Frosted 3D glass — visible thickness, blue lit top, receding depth */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(173,206,255,0.35)] bg-gradient-to-b from-[rgba(125,170,240,0.16)] via-[rgba(70,110,190,0.08)] to-[rgba(40,72,135,0.1)] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),inset_0_4px_12px_rgba(173,206,255,0.28),inset_0_-26px_44px_-20px_rgba(3,9,26,0.6),0_42px_82px_-16px_rgba(0,0,0,0.55),0_18px_46px_-12px_rgba(37,99,235,0.34)] backdrop-blur-2xl">
-                {/* Inner bevel ring → the glass reads as having real thickness */}
-                <div className="pointer-events-none absolute inset-[5px] rounded-[1.5rem] border border-[rgba(173,206,255,0.16)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-10px_20px_-10px_rgba(0,0,0,0.45)]" />
+              {/* Clear Apple-style liquid glass */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(173,206,255,0.32)] bg-gradient-to-b from-[rgba(125,170,240,0.14)] via-[rgba(70,110,190,0.07)] to-[rgba(40,72,135,0.09)] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.45),inset_0_1px_12px_rgba(173,206,255,0.18),0_30px_62px_-18px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
                 {/* Glossy reflection: bluish top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
                   <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[rgba(173,206,255,0.2)] via-[rgba(96,165,250,0.05)] to-transparent" />
@@ -105,9 +103,9 @@ export function ShowcaseCards({
                   <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(147,197,253,0.3)] to-transparent" />
                 </div>
 
-                {/* Legibility scrim — darkens the content zone (top) so text,
-                    icon and tags stay readable when the glow floods the glass. */}
-                <div className="pointer-events-none absolute inset-0 z-[1] rounded-[1.75rem] bg-gradient-to-b from-[rgba(3,10,28,0.42)] via-[rgba(3,10,28,0.16)] to-transparent" />
+                {/* Legibility scrim — only fades in on hover (when the bright
+                    aura shows through) so the glass stays clear at rest. */}
+                <div className="pointer-events-none absolute inset-0 z-[1] rounded-[1.75rem] bg-gradient-to-b from-[rgba(3,10,28,0.5)] via-[rgba(3,10,28,0.18)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Skin — small, stands at the bottom-left corner, peeking out
                     of the box. Fixed frame so all skins render the same size. */}
@@ -118,10 +116,10 @@ export function ShowcaseCards({
                 {/* Content — up top, left-aligned */}
                 <div className="relative z-10 flex w-full flex-col items-start gap-3.5 text-left">
                   <div className="flex items-center gap-2.5">
-                    <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_1px_3px_rgba(2,8,24,0.9)]" />
+                    <CardIcon className="size-9 shrink-0 text-brand drop-shadow-[0_0_8px_rgba(37,99,235,0.55)]" />
                     <FlowTitle className="text-[1.7rem]">{c.title}</FlowTitle>
                   </div>
-                  <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
+                  <p className="whitespace-pre-line text-[0.95rem] font-bold leading-relaxed text-white/90">
                     {c.description}
                   </p>
                   <div className="flex flex-wrap justify-start gap-2">
@@ -159,12 +157,10 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(173,206,255,0.35)] bg-gradient-to-b from-[rgba(125,170,240,0.15)] via-[rgba(70,110,190,0.08)] to-[rgba(40,72,135,0.1)] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),inset_0_4px_12px_rgba(173,206,255,0.26),inset_0_-26px_44px_-20px_rgba(3,9,26,0.55),0_42px_82px_-16px_rgba(0,0,0,0.55),0_18px_46px_-12px_rgba(37,99,235,0.32)] backdrop-blur-2xl md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(173,206,255,0.32)] bg-gradient-to-b from-[rgba(125,170,240,0.13)] via-[rgba(70,110,190,0.07)] to-[rgba(40,72,135,0.09)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),inset_0_1px_12px_rgba(173,206,255,0.16),0_30px_62px_-18px_rgba(0,0,0,0.5)] backdrop-blur-2xl md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
-            {/* Inner bevel ring → real glass thickness */}
-            <div className="pointer-events-none absolute inset-[5px] z-[1] rounded-[1.5rem] border border-[rgba(173,206,255,0.16)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-10px_20px_-10px_rgba(0,0,0,0.45)]" />
             {/* Glossy reflection: top sheen + soft diagonal light streak */}
             <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[1.75rem]">
               <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-[rgba(173,206,255,0.16)] via-[rgba(96,165,250,0.04)] to-transparent" />
@@ -180,14 +176,12 @@ export function ShowcaseCards({
               )}
             >
               <div className="relative flex max-w-md flex-col gap-4 text-left">
-                {/* Soft dark backing so text/tags stay readable over the glow */}
-                <div className="pointer-events-none absolute -inset-5 -z-10 rounded-3xl bg-gradient-to-br from-[rgba(3,10,28,0.35)] via-[rgba(3,10,28,0.14)] to-transparent blur-lg" />
                 <div className="flex items-center gap-2.5">
-                  <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_1px_3px_rgba(2,8,24,0.9)]" />
+                  <CardIcon className="size-7 shrink-0 text-brand drop-shadow-[0_0_8px_rgba(37,99,235,0.55)]" />
                   <FlowTitle className="text-2xl">{c.title}</FlowTitle>
                 </div>
                 <div className="flex min-h-[104px] w-full items-center rounded-2xl border border-white/[0.07] bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow] duration-300 group-hover:border-brand/40 group-hover:shadow-[0_0_20px_rgb(var(--brand-500)/0.28),inset_0_1px_0_rgba(255,255,255,0.05)]">
-                  <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
+                  <p className="whitespace-pre-line text-sm font-bold leading-relaxed text-white/90">
                     {c.description}
                   </p>
                 </div>
