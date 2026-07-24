@@ -94,11 +94,13 @@ export function ShowcaseCards({
               {/* Soft multi-blue glow — only on hover, behind the skin */}
               <div className="card-glow" aria-hidden="true" />
 
-              {/* Transparent 3D glass — blue lit edges up top, clear/receding below */}
-              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(147,197,253,0.28)] bg-gradient-to-b from-[rgba(147,197,253,0.1)] via-[rgba(96,165,250,0.03)] to-transparent p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_3px_9px_rgba(147,197,253,0.32),inset_0_-1px_0_rgba(0,0,0,0.22),0_34px_66px_-18px_rgba(0,0,0,0.5),0_12px_38px_-10px_rgba(37,99,235,0.34)] backdrop-blur-md">
+              {/* Frosted 3D glass — visible thickness, blue lit top, receding depth */}
+              <div className="relative z-10 flex min-h-[480px] flex-col items-center justify-start overflow-visible rounded-[1.75rem] border border-[rgba(147,197,253,0.32)] bg-gradient-to-b from-[rgba(46,80,140,0.6)] via-[rgba(33,60,110,0.5)] to-[rgba(23,44,84,0.55)] p-8 pt-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),inset_0_4px_11px_rgba(147,197,253,0.3),inset_0_-26px_44px_-20px_rgba(3,9,26,0.75),0_42px_82px_-16px_rgba(0,0,0,0.6),0_18px_46px_-12px_rgba(37,99,235,0.38)] backdrop-blur-2xl">
+                {/* Inner bevel ring → the glass reads as having real thickness */}
+                <div className="pointer-events-none absolute inset-[5px] rounded-[1.5rem] border border-[rgba(173,206,255,0.16)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-10px_20px_-10px_rgba(0,0,0,0.45)]" />
                 {/* Glossy reflection: bluish top sheen + soft diagonal light streak */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem]">
-                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[rgba(173,206,255,0.18)] via-[rgba(96,165,250,0.05)] to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[rgba(173,206,255,0.2)] via-[rgba(96,165,250,0.05)] to-transparent" />
                   <div className="absolute -left-1/3 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-[rgba(191,219,254,0.14)] to-transparent blur-md" />
                   <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-[rgba(147,197,253,0.3)] to-transparent" />
                 </div>
@@ -153,10 +155,12 @@ export function ShowcaseCards({
             <div className="card-glow" aria-hidden="true" />
             <div
               className={cn(
-                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(147,197,253,0.28)] bg-gradient-to-b from-[rgba(147,197,253,0.09)] via-[rgba(96,165,250,0.03)] to-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.25),inset_0_3px_9px_rgba(147,197,253,0.3),inset_0_-1px_0_rgba(0,0,0,0.22),0_34px_66px_-18px_rgba(0,0,0,0.5),0_12px_38px_-10px_rgba(37,99,235,0.32)] backdrop-blur-md md:flex-row',
+                'relative z-10 flex min-h-[340px] flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(147,197,253,0.32)] bg-gradient-to-b from-[rgba(46,80,140,0.55)] via-[rgba(33,60,110,0.48)] to-[rgba(23,44,84,0.52)] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),inset_0_4px_11px_rgba(147,197,253,0.28),inset_0_-26px_44px_-20px_rgba(3,9,26,0.7),0_42px_82px_-16px_rgba(0,0,0,0.6),0_18px_46px_-12px_rgba(37,99,235,0.34)] backdrop-blur-2xl md:flex-row',
                 skinRight && 'md:flex-row-reverse',
               )}
             >
+            {/* Inner bevel ring → real glass thickness */}
+            <div className="pointer-events-none absolute inset-[5px] z-[1] rounded-[1.5rem] border border-[rgba(173,206,255,0.16)] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-10px_20px_-10px_rgba(0,0,0,0.45)]" />
             {/* Glossy reflection: top sheen + soft diagonal light streak */}
             <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[1.75rem]">
               <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-[rgba(173,206,255,0.16)] via-[rgba(96,165,250,0.04)] to-transparent" />
